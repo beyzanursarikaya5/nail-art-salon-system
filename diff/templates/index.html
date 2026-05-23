@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PIXIENAILS - Zarafeti Tırnaklarınıza İşliyoruz</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+ <style>
+       
+
+        /* --- MÜŞTERİ YORUMLARI BÖLÜMÜ STİLLERİ --- */
+        
+        .reviews-section {
+            padding: 80px 20px;
+            background-color: #fff; /* Arka plan beyaz */
+            text-align: center;
+        }
+
+        .reviews-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            max-width: 1200px;
+            margin: 40px auto 0;
+        }
+
+        /* KART TASARIMI - KOYU CAM EFEKTİ */
+        .review-card {
+            flex: 1;
+            min-width: 300px;
+            max-width: 350px;
+            
+            /* ZORUNLU KOYU RENK (!important eklendi) */
+            background: #912b6f !important; /* Tamamen koyu mor/siyah arka plan */
+            background-color: #b39aaa !important;
+            
+            /* Kenarlık */
+            border: 1px solid #ff3399 !important; 
+            
+            border-radius: 20px;
+            padding: 30px;
+            position: relative;
+            transition: all 0.3s ease;
+            
+            /* Gölge */
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4) !important; 
+            text-align: left;
+        }
+
+        .review-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(255, 51, 153, 0.3) !important; 
+        }
+
+        .review-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding-bottom: 15px;
+        }
+
+        .reviewer-img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #ff8fbc, #ffc6df);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #4b1a2e;
+            font-size: 1.2rem;
+            overflow: hidden;
+        }
+        
+        .reviewer-img img { width: 100%; height: 100%; object-fit: cover; }
+
+        /* İsim Rengi - Pembe */
+        .reviewer-info h4 {
+            margin: 0;
+            font-size: 1.1rem;
+            color: #ff69b4 !important; /* Hot Pink */
+            font-weight: 700;
+        }
+
+        .stars {
+            color: #ffd700; /* Altın Sarısı */
+            font-size: 0.9rem;
+            margin-top: 4px;
+        }
+
+        /* Yorum Metni - Beyaz */
+        .review-body p {
+            font-style: italic;
+            color: #ffffff !important; /* Bembeyaz Yazı */
+            line-height: 1.6;
+            font-size: 0.95rem;
+            margin: 0;
+        }
+
+        .quote-icon {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            font-size: 2rem;
+            color: rgba(255, 255, 255, 0.1) !important;
+        }
+        
+        .no-reviews {
+            color: #888;
+            font-size: 1.1rem;
+            margin-top: 20px;
+        }
+    </style>
+    </head>
+<body>
+
+   <header class="navbar">
+    <nav class="nav-links">
+        <a href="{{ url_for('index') }}">Anasayfa</a>
+        
+        <a href="{{ url_for('tasarimlar_page') }}">Tasarimlar</a>
+        
+        <a href="{{ url_for('index') }}#hizmetler">Hizmetlerimiz</a>
+        <a href="{{ url_for('index') }}#iletisim">İletişim</a>
+
+       {% if session.logged_in %}
+            <a href="{{ url_for('profile_page') }}" class="profile-link">
+                {% if session.profile_image %}
+                    <img src="{{ url_for('static', filename=session.profile_image) }}" 
+                         alt="Profil" 
+                         class="nav-profile-img">
+                {% else %}
+                    <i class="fas fa-user-circle" style="font-size: 1.8rem; color: #333;"></i> 
+                {% endif %}
+            </a>
+            <a href="{{ url_for('logout') }}" class="login-button secondary" style="color: #333 !important;">Çıkış Yap</a>
+        {% else %}
+            <a href="{{ url_for('auth_page') }}" class="login-button">Giriş Yap</a>
+        {% endif %}
+
+
+
+
+        
+    </nav>
+</header>
+
+
+ 
+
+
+    <section class="hero-section" id="anasayfa">
+        <h1 class="logo-text">PIXIENAILS</h1>
+
+        <div class="main-content">
+            <h2 class="main-heading">ZARAFETİ TIRNAKLARINIZA İŞLİYORUZ...</h2>
+        </div>
+
+        <div class="footer-content">
+            <p class="quote">"Güzelliğin için her dokunuşu düşündük."</p>
+            <a href= "{{ url_for('randevu_page') }}" class="appointment-button">RANDEVU AL</a>
+        </div>
+    </section>
+
+<section class="section services-section" id="hizmetler">
+    <h3 class="section-title">Özel Hizmetlerimiz</h3>
+    <p class="section-subtitle">Güzellik rutininizi tamamlayacak, size özel lüks bakımlarımız.</p>
+
+    <div class="circular-service-container">
+        
+        <div class="circle-item bakim-bg">
+            <div class="circle-content">
+                <h4 class="circle-title">MANİKÜR VE PEDİKÜR</h4>
+                <p class="circle-description">Kusursuz eller ve ayaklar için kapsamlı manikür ve pedikür hizmeti.</p>
+                <a href="{{ url_for('randevu_page') }}" class="circle-link">Randevu Al</a>
+            </div>
+        </div>
+
+        <div class="circle-item spa-bg">
+            <div class="circle-content">
+                <h4 class="circle-title">EL VE AYAK SPASI</h4>
+                <p class="circle-description">Yoğun nemlendirme ve masaj ile derinlemesine rahatlama ve yenilenme.</p>
+                <a href="#randevu-formu" class="circle-link">Randevu Al</a>
+            </div>
+        </div>
+
+        <div class="circle-item shape-bg">
+            <div class="circle-content">
+                <h4 class="circle-title">TIRNAK ŞEKİLLENDİRME & OJE</h4>
+                <p class="circle-description">Hızlı tırnak dizaynı ve en trend renklerle kalıcı oje uygulamaları.</p>
+                <a href="#randevu-formu" class="circle-link">Randevu Al</a>
+            </div>
+        </div>
+
+    </div>
+    
+</section>
+        
+        </div>
+</section>
+
+   <section class="section designs-section" id="tasarimlar">
+    <h3 class="design-section-title section-title">Galeri ve Tasarımlarımız</h3>
+    <p class="design-section-subtitle section-subtitle">En güncel ve yaratıcı tırnak sanatı koleksiyonumuzu keşfedin.</p>
+
+    <div class="design-gallery-container">
+        
+        <div class="gallery-item design-1"></div>
+        <div class="gallery-item design-2"></div>
+        <div class="gallery-item design-3"></div>
+
+        <div class="gallery-item design-4"></div>
+        <div class="gallery-item design-5"></div>
+        <div class="gallery-item design-6"></div>
+        <div class="design-button-container">
+    <a href="{{ url_for('tasarimlar_page') }}" class="appointment-button design-more-button">DAHA FAZLA TASARIM</a>
+</div>
+</section>
+        
+   <section class="section reviews-section">
+    <h2 class="section-title" style="text-align: center; margin-bottom: 10px;">Sizden Gelenler 💖</h2>
+    <p style="text-align: center; color: #ec058c; margin-bottom: 40px;">Mutlu müşterilerimizin deneyimleri...</p>
+
+    <div class="reviews-container">
+        {% if reviews %}
+            {% for review in reviews %}
+            <div class="review-card">
+                <div class="review-header">
+                    <div class="reviewer-img">
+                        {% if review.profile_image and review.profile_image != 'default_profile.png' %}
+                            <img src="{{ url_for('static', filename=review.profile_image) }}" alt="User">
+                        {% else %}
+                            <i class="fas fa-user"></i>
+                        {% endif %}
+                    </div>
+                    <div class="reviewer-info">
+                        <h4>{{ review.full_name }}</h4>
+                        <div class="stars">
+                            {% for i in range(review.rating) %}★{% endfor %}
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="review-body">
+                    <p>"{{ review.content }}"</p>
+                </div>
+                
+                <i class="fas fa-quote-right quote-icon"></i>
+            </div>
+            {% endfor %}
+        {% else %}
+            <div class="no-reviews">
+                <i class="far fa-smile-wink" style="font-size: 3rem; color: #ffb6d5;"></i>
+                <p>Henüz yorum yapılmamış. İlk yorumu sen yap! 💅</p>
+            </div>
+        {% endif %}
+    </div>
+</section>
+
+
+
+    
+<div class="contact-section">
+  <h3>BİZE ULAŞIN</h3>
+  <div class="contact-item">
+    <div class="icon"><i class="fas fa-map-marker-alt"></i></div>
+    <p>Bağlarbaşı Mah, ömür sokak no-26A Maltepe<br>İstanbul</p>
+  </div>
+
+  <div class="contact-item">
+    <div class="icon"><i class="fas fa-phone"></i></div>
+    <p><a href="tel:05437141874">0543 714 18 74</a></p>
+  </div>
+
+  <div class="contact-item">
+    <div class="icon"><i class="fas fa-envelope"></i></div>
+    <p><a href="mailto:bilgi@velvas.com">bilgi@velvas.com</a></p>
+  </div>
+
+  <div class="contact-item social">
+    <div class="icon"><i class="fas fa-share-alt"></i></div>
+    <div class="social-links">
+      <a href="#"><i class="fab fa-facebook-f"></i></a>
+      <a href="#"><i class="fab fa-x-twitter"></i></a>
+      <a href="#"><i class="fab fa-instagram"></i></a>
+    </div>
+  </div>
+</div>
+<footer class="copyright-bar-final">
+    <div class="copyright-align-container">
+        <p>&copy; 2025 PIXIENAILS. Tüm Hakları Saklıdır</p>
+    </div>
+</footer>
+
+</body>
+</html>

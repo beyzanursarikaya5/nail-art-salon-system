@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Pixie Nails{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+<header class="navbar">
+    <nav class="nav-links">
+        <a href="{{ url_for('index') }}">Anasayfa</a>
+        <a href="{{ url_for('tasarimlar_page') }}">Tasarimlar</a>
+        <a href="{{ url_for('index') }}#hizmetler">Hizmetlerimiz</a>
+        <a href="{{ url_for('index') }}#iletisim">İletişim</a>
+
+        <!-- Kullanıcı giriş yaptıysa -->
+        {% if session.logged_in %}
+            <a href="{{ url_for('profile_page', user_id=session.user_id) }}" class="profile-link">
+                {% if g.user and g.user.profile_image %}
+                    <img src="{{ url_for('static', filename='uploads/' + g.user.profile_image) }}" class="header-profile-img">
+                {% else %}
+                    <i class="fas fa-user-circle header-profile-icon"></i>
+                {% endif %}
+            </a>
+            <a href="{{ url_for('logout') }}" class="login-button secondary">Çıkış Yap</a>
+        {% else %}
+            <a href="{{ url_for('auth_page') }}" class="login-button">Giriş Yap</a>
+        {% endif %}
+    </nav>
+</header>
+
+<!-- Sayfaya özel içerik buraya gelecek -->
+<main>
+    {% block content %}
+    {% endblock %}
+</main>
+
+</body>
+</html>

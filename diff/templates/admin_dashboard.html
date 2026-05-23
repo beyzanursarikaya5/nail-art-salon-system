@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yönetici Paneli | PIXIE NAILS</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* =============================================
+           PIXIE ADMIN — DARK LUXURY THEME
+           ============================================= */
+        
+        * { box-sizing: border-box; }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('{{ url_for("static", filename="images/arkaplan17.jpg") }}');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-color: #1a0b15; /* Yedek renk */
+            background-blend-mode: multiply;
+            background-color: rgba(0, 0, 0, 0.7); /* Biraz daha koyu overlay */
+            color: #f0f0f0;
+            min-height: 100vh;
+        }
+
+        /* NAVBAR */
+        .navbar {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            padding: 15px 40px;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 51, 153, 0.2);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .admin-logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: #ff3399;
+            text-shadow: 0 0 10px rgba(255, 51, 153, 0.4);
+        }
+
+        .nav-links a {
+            color: #ccc;
+            text-decoration: none;
+            margin-left: 20px;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+        .nav-links a:hover { color: #fff; text-shadow: 0 0 5px #fff; }
+
+        /* CONTAINER */
+        .dashboard-container {
+            max-width: 1400px;
+            margin: 100px auto 40px; /* Navbar payı */
+            padding: 0 20px;
+        }
+
+        .dashboard-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding-bottom: 15px;
+        }
+
+        .dashboard-title {
+            font-size: 2rem;
+            font-weight: 700;
+            background: linear-gradient(45deg, #ff9a9e, #ff3399);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .user-welcome {
+            color: #ffccea;
+            font-size: 1rem;
+        }
+
+        /* ORTAK KART STİLİ (GLASSMORPHISM) */
+        .admin-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .card-header {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #ff69b4;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .card-header i { color: #ff3399; }
+
+        /* --- TABLO STİLLERİ --- */
+        .table-responsive {
+            overflow-x: auto;
+        }
+
+        .admin-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            margin-top: 10px;
+            font-size: 0.95rem;
+        }
+
+        .admin-table th {
+            background: rgba(255, 51, 153, 0.15);
+            color: #ffb6d5;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+            border-bottom: 2px solid rgba(255, 51, 153, 0.3);
+            white-space: nowrap;
+        }
+
+        .admin-table td {
+            padding: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            color: #eee;
+            vertical-align: middle;
+        }
+
+        .admin-table tr:hover td {
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        /* STATÜ ROZETLERİ */
+        .status-badge {
+            padding: 6px 12px;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .status-pending { background: rgba(255, 193, 7, 0.2); color: #ffca2c; border: 1px solid rgba(255, 193, 7, 0.3); }
+        .status-confirmed { background: rgba(25, 135, 84, 0.2); color: #20c997; border: 1px solid rgba(25, 135, 84, 0.3); }
+        .status-completed { background: rgba(13, 202, 240, 0.2); color: #0dcaf0; border: 1px solid rgba(13, 202, 240, 0.3); }
+
+        /* --- FİLTRE BUTONLARI --- */
+        .filter-buttons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 25px;
+        }
+
+        .btn-filter {
+            background: rgba(255, 255, 255, 0.05);
+            color: #ff99cc;
+            border: 1px solid rgba(255, 51, 153, 0.3);
+            padding: 8px 18px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-family: 'Poppins', sans-serif;
+            transition: all 0.3s;
+            font-weight: 500;
+        }
+
+        .btn-filter:hover, .btn-filter.active {
+            background: #ff3399;
+            color: white;
+            box-shadow: 0 0 15px rgba(255, 51, 153, 0.4);
+            border-color: #ff3399;
+        }
+
+        /* --- TASARIM EKLEME FORMU --- */
+        .design-form-container {
+            background: rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .design-upload-form {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr auto;
+            gap: 20px;
+            align-items: end;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .form-group label {
+            font-size: 0.85rem;
+            color: #ffccea;
+        }
+
+        .form-input {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 10px;
+            border-radius: 8px;
+            color: white;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        .form-input:focus {
+            outline: none;
+            border-color: #ff3399;
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        /* Dosya yükleme inputu özel stil */
+        input[type="file"]::file-selector-button {
+            background: #ff3399;
+            border: none;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            margin-right: 10px;
+            cursor: pointer;
+        }
+
+        .btn-add {
+            background: linear-gradient(45deg, #ff3399, #d6006b);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(255, 51, 153, 0.3);
+            transition: transform 0.2s;
+            height: 42px; /* Inputlarla aynı hizada olması için */
+        }
+        .btn-add:hover { transform: scale(1.05); }
+
+        /* --- TASARIM GALERİSİ GRID --- */
+        .design-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 20px;
+        }
+
+        .design-item {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 10px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: transform 0.3s;
+        }
+        .design-item:hover { transform: translateY(-5px); border-color: #ff3399; }
+
+        .design-item img {
+            width: 100%;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+
+        .design-title { font-weight: 600; color: #fff; font-size: 0.95rem; margin-bottom: 5px; }
+        .design-price { color: #ff99cc; font-size: 0.9rem; margin-bottom: 10px; }
+
+        .btn-delete {
+            background: rgba(255, 77, 77, 0.15);
+            color: #ff4d4d;
+            border: 1px solid rgba(255, 77, 77, 0.3);
+            padding: 5px 12px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: 0.3s;
+        }
+        .btn-delete:hover { background: #ff4d4d; color: white; }
+
+        /* ALERT MESAJLARI */
+        .alert { padding: 15px; border-radius: 10px; margin-bottom: 20px; }
+        .alert-success { background: rgba(25, 135, 84, 0.2); color: #20c997; border: 1px solid rgba(25, 135, 84, 0.3); }
+        .alert-error { background: rgba(220, 53, 69, 0.2); color: #ff6b6b; border: 1px solid rgba(220, 53, 69, 0.3); }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .design-upload-form { grid-template-columns: 1fr; }
+            .btn-add { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="admin-logo">PIXIE ADMIN</div>
+        <div class="nav-links">
+            <a href="{{ url_for('index') }}">Siteye Dön <i class="fas fa-external-link-alt"></i></a>
+            <a href="{{ url_for('logout') }}" style="color: #ff3399; font-weight:bold;">Çıkış Yap</a>
+        </div>
+    </nav>
+
+    <div class="dashboard-container">
+        
+        <div class="dashboard-header">
+            <div class="dashboard-title">Yönetici Paneli</div>
+            <div class="user-welcome">Hoşgeldin, {{ session.full_name }} 👑</div>
+        </div>
+
+        <!-- Flash Mesajları -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <!-- 1. BÖLÜM: RANDEVULAR -->
+        <div class="admin-card">
+            <div class="card-header">
+                <i class="fas fa-calendar-check"></i>
+                Bekleyen Randevular ve Geçmiş
+            </div>
+
+            <div class="filter-buttons">
+                <!-- 'all' değerini özellikle küçük harfle yazdık -->
+                <button class="btn-filter" onclick="filterTable('all', this)">Tüm Randevular</button>
+                <!-- Diğerlerinde Türkçe karakterlere dikkat ederek yazdık -->
+                <button class="btn-filter" onclick="filterTable('nail art', this)">Nail Art</button>
+                <button class="btn-filter" onclick="filterTable('jel tırnak', this)">Jel Tırnak</button>
+                <button class="btn-filter" onclick="filterTable('protez tırnak', this)">Protez Tırnak</button>
+                <button class="btn-filter" onclick="filterTable('manikür', this)">Manikür Pedikür</button>
+                <button class="btn-filter" onclick="filterTable('spa', this)">El ve Ayak Spası</button>
+                <button class="btn-filter" onclick="filterTable('çıkarma', this)">Tırnak Çıkarma</button>
+            </div>
+
+            <div class="table-responsive">
+                <table class="admin-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Müşteri</th>
+                            <th>Servisler</th>
+                            <th>Tarih / Saat</th>
+                            <th>Fiyat</th>
+                            <th>Ödeme</th>
+                            <th>Durum</th>
+                            <th>İşlem</th>
+                        </tr>
+                    </thead>
+                    <tbody id="appointmentsTableBody">
+                        {% if appointments %}
+                            {% for appt in appointments %}
+                            <tr class="appointment-row">
+                                <td style="color: #ff99cc;">#{{ appt.appointment_id }}</td>
+                                <td><strong>{{ appt.user_name }}</strong></td>
+                                <td class="service-cell">{{ appt.service_names | default('-') }}</td>
+                                <td>{{ appt.appointment_date.strftime('%d.%m.%Y %H:%M') }}</td>
+                                <td style="font-weight:bold; color:#0dcaf0;">{{ appt.total_price }} TL</td>
+                                <td>
+                                    {% if appt.payment_method == 'card' %}
+                                        <i class="fas fa-credit-card" title="Kart"></i>
+                                    {% else %}
+                                        <i class="fas fa-money-bill-wave" title="Nakit"></i>
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    <span class="status-badge status-{{ appt.status }}">
+                                        {{ appt.status }}
+                                    </span>
+                                </td>
+                                <td>
+                                    <form action="{{ url_for('delete_appointment', appointment_id=appt.appointment_id) }}" method="POST" onsubmit="return confirm('Bu randevuyu silmek istediğine emin misin?')">
+                                        <button type="submit" class="btn-delete" style="padding:5px 10px;">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        {% else %}
+                            <tr>
+                                <td colspan="8" style="text-align:center; padding:30px; color:#888;">
+                                    Henüz hiç randevu kaydı yok.
+                                </td>
+                            </tr>
+                        {% endif %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- 2. BÖLÜM: TASARIM YÖNETİMİ -->
+        <div class="admin-card">
+            <div class="card-header">
+                <i class="fas fa-paint-brush"></i>
+                Tasarım Galerisi Yönetimi
+            </div>
+
+            <!-- Ekleme Formu -->
+            <div class="design-form-container">
+                <form action="{{ url_for('admin_add_design') }}" method="POST" enctype="multipart/form-data" class="design-upload-form">
+                    <div class="form-group">
+                        <label>Görsel Dosyası</label>
+                        <input type="file" name="file" class="form-input" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Tasarım Adı</label>
+                        <input type="text" name="design_name" class="form-input" placeholder="Örn: Kırmızı Stiletto" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Ek Ücret (TL)</label>
+                        <input type="number" name="design_price" class="form-input" placeholder="0.00" step="0.01" required>
+                    </div>
+                    <button type="submit" class="btn-add">
+                        <i class="fas fa-plus"></i> Ekle
+                    </button>
+                </form>
+            </div>
+
+            <!-- Tasarım Listesi -->
+            <div class="design-grid">
+                {% if designs %}
+                    {% for design in designs %}
+                    <div class="design-item">
+                        <img src="{{ url_for('static', filename=design.design_image) }}" alt="{{ design.design_name }}">
+                        <div class="design-title">{{ design.design_name }}</div>
+                        <div class="design-price">+{{ design.design_price }} TL</div>
+                        
+                        <form action="{{ url_for('admin_delete_design', design_id=design.design_id) }}" method="POST" onsubmit="return confirm('Bu tasarımı silmek istediğinize emin misiniz?')">
+                            <button type="submit" class="btn-delete">Sil</button>
+                        </form>
+                    </div>
+                    {% endfor %}
+                {% else %}
+                    <div style="grid-column: 1/-1; text-align:center; color:#888; padding:20px;">
+                        Henüz galeriye tasarım eklenmemiş.
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- 3. BÖLÜM: PROFİL AYARLARI -->
+        <div class="admin-card">
+            <div class="card-header">
+                <i class="fas fa-user-cog"></i>
+                Profil ve Hesap Ayarları
+            </div>
+
+            <div class="design-form-container" style="display:flex; flex-wrap:wrap; gap:30px; align-items:flex-start;">
+                
+                <!-- Fotoğraf Değiştirme -->
+                <div style="flex:1; min-width:250px; text-align:center;">
+                    <div style="width:120px; height:120px; border-radius:50%; overflow:hidden; margin:0 auto 15px; border:3px solid #ff3399;">
+                        {% if session.profile_image %}
+                            <img src="{{ url_for('static', filename=session.profile_image) }}" style="width:100%; height:100%; object-fit:cover;">
+                        {% else %}
+                            <div style="width:100%; height:100%; background:#333; display:flex; align-items:center; justify-content:center; color:#ff3399; font-size:3rem;">
+                                <i class="fas fa-user"></i>
+                            </div>
+                        {% endif %}
+                    </div>
+                    
+                    <form action="{{ url_for('upload_profile_image', user_id=session.user_id) }}" method="POST" enctype="multipart/form-data">
+                        <input type="file" name="profile_image_file" id="admin_photo_input" style="display:none;" onchange="this.form.submit()">
+                        <label for="admin_photo_input" class="btn-filter" style="display:inline-block; width:auto;">
+                            <i class="fas fa-camera"></i> Fotoğraf Değiştir
+                        </label>
+                    </form>
+                </div>
+
+                <!-- Bilgi Güncelleme -->
+                <div style="flex:2; min-width:300px;">
+                    <form action="{{ url_for('update_profile_info') }}" method="POST" class="design-upload-form" style="grid-template-columns: 1fr 1fr;">
+                        <div class="form-group">
+                            <label>Ad Soyad</label>
+                            <input type="text" name="full_name" class="form-input" value="{{ session.full_name }}">
+                        </div>
+                        <div class="form-group">
+                            <label>Kullanıcı Adı (Email)</label>
+                            <input type="email" name="username" class="form-input" value="{{ session.username }}" disabled title="Email değiştirilemez">
+                        </div>
+                        <div class="form-group">
+                            <label>Telefon</label>
+                            <input type="tel" name="phone" class="form-input" placeholder="0555...">
+                        </div>
+                        <div class="form-group">
+                            <label>Doğum Tarihi</label>
+                            <input type="date" name="birth_date" class="form-input">
+                        </div>
+                        <button type="submit" class="btn-add" style="grid-column: span 2; margin-top:10px;">
+                            <i class="fas fa-save"></i> Kaydet
+                        </button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+<script>
+    // Sayfa açılışında tüm satırları GİZLİ başlat
+    document.addEventListener("DOMContentLoaded", function() {
+        const rows = document.querySelectorAll('.appointment-row');
+        rows.forEach(row => {
+            row.style.display = 'none';
+        });
+    });
+
+    function filterTable(category, btn) {
+        // 1. Buton aktiflik durumu
+        document.querySelectorAll('.filter-btn, .btn-filter').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        const rows = document.querySelectorAll('.appointment-row');
+        
+        rows.forEach(row => {
+            const serviceCell = row.querySelector('.service-cell');
+            if (serviceCell) {
+                // DÜZELTME: innerText yerine textContent kullanıyoruz.
+                // Çünkü satır gizliyken (display: none) innerText boş gelebilir.
+                // textContent ise gizli olsa bile metni okur.
+                const serviceText = serviceCell.textContent.trim().toLocaleLowerCase('tr-TR');
+                const searchKey = category.trim().toLocaleLowerCase('tr-TR');
+                
+                // Mantık: 'all' ise hepsini göster, değilse ve metin içeriyorsa göster
+                if (category === 'all') {
+                    row.style.display = ''; 
+                } else if (serviceText.includes(searchKey)) {
+                    row.style.display = ''; 
+                } else {
+                    row.style.display = 'none'; 
+                }
+            }
+        });
+    }
+</script>
+</body>
+</html>

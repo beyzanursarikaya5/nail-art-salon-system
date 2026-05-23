@@ -1,0 +1,1210 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Randevu | PIXIE NAILS</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+        /* ============================================================
+           ✨ VIP PREMIUM ROSE-GOLD LUXURY EDITION
+           ============================================================ */
+
+        /* GLOBAL */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            background: url('https://via.placeholder.com/1920x1080/2a0f1f/ffe6f2?text=Arka+Plan+Resmi') center/cover no-repeat fixed;
+            background-color: #2a0f1f;
+            color: #442233;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow-x: hidden;
+            animation: bodyFadeIn 1.5s ease-in-out;
+        }
+
+        @keyframes bodyFadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* ARKA PLANA GOLD VİGNET */
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background: radial-gradient(circle at center,
+                        rgba(255, 182, 213, 0.1) 0%,
+                        rgba(42, 15, 31, 0.5) 70%);
+            z-index: -1;
+        }
+
+        /* NAVBAR */
+        .navbar {
+            width: 100%;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: flex-end;
+            background: rgba(0,0,0,0.3);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 182, 213, 0.2);
+            position: fixed;
+            top: 0;
+            z-index: 10;
+            box-shadow: 0 2px 10px rgba(255, 150, 210, 0.2);
+        }
+
+        .nav-links a {
+            margin: 0 15px;
+            color: #ffe6f2;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+            font-size: 0.9rem;
+        }
+
+        .nav-links a:hover {
+            color: #ffb6d5;
+            text-shadow: 0 0 10px rgba(255, 182, 213, 0.8);
+            transform: translateY(-1px);
+        }
+
+        .nav-links a::after {
+            content: "";
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #ffb6d5, #ffe3f3);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* MAIN WRAPPER */
+        .appointment-wrapper {
+            max-width: 1000px;
+            margin: 100px auto 40px auto;
+            display: flex;
+            gap: 25px;
+            padding: 25px;
+            border-radius: 20px;
+            background: rgba(255, 235, 245, 0.1);
+            border: 1px solid rgba(255, 176, 208, 0.3);
+            backdrop-filter: blur(20px);
+            box-shadow: 0 15px 30px rgba(255, 180, 220, 0.3), 0 0 60px rgba(255, 150, 210, 0.15);
+            animation: wrapperSlideIn 1s ease-out;
+        }
+
+        @keyframes wrapperSlideIn {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        /* SOL WIZARD ALANI */
+        .wizard-container {
+            flex: 2;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: linear-gradient(90deg, #ff009d);
+            -webkit-background-clip: text;
+            background-clip: [DEĞER];
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+            text-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+        }
+
+        #wizard-subtitle {
+            font-size: 0.9rem;
+            margin-top: -8px;
+            opacity: 0.9;
+            color: #442233;
+        }
+
+        /* PROGRESS BAR */
+        .progress-bar-container {
+            margin: 20px 0 25px;
+            position: relative;
+        }
+
+        .progress-bar-container::before {
+            content: "";
+            position: absolute;
+            top: 12px;
+            left: 0;
+            right: 0;
+            height: 4px;
+            border-radius: 4px;
+            background: linear-gradient(90deg, rgba(255, 150, 210, 0.7), rgba(255, 210, 240, 1));
+            box-shadow: 0 0 8px rgba(255, 0, 144, 0.4);
+        }
+
+        /* Step Dot */
+        .step-dot {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.15);
+            border: 2px solid #ffb6d5;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 12px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: #ffd4e8;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 3px 10px rgba(255, 170, 210, 0.2);
+        }
+
+        .step-dot.active {
+            background: linear-gradient(135deg, #ffb1d3, #ffe2f1);
+            color: #4b1a2e;
+            border-color: #ffe4f3;
+            box-shadow: 0 0 15px rgba(255, 170, 210, 0.7);
+            transform: scale(1.05);
+        }
+
+        .step-dot:hover {
+            transform: scale(1.02);
+        }
+
+        /* ADIM İÇERİK */
+        .step-content {
+            display: none;
+            animation: stepFadeIn 0.5s ease;
+        }
+
+        .step-content.active {
+            display: block;
+        }
+
+        @keyframes stepFadeIn {
+            from { opacity: 0; transform: translateX(-15px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        /* GOLD INPUT */
+        input, select, textarea {
+            width: 100%;
+            padding: 12px 14px;
+            border-radius: 12px;
+            background: rgba(255,255,255,0.2);
+            border: 1px solid rgba(255, 200, 220, 0.5);
+            color: rgb(59, 57, 59);
+            font-size: 0.9rem;
+            outline: none;
+            margin-bottom: 15px;
+            transition: all 0.3s ease;
+            box-shadow: 0 3px 8px rgba(255, 190, 220, 0.15);
+        }
+
+        input:focus, select:focus, textarea:focus {
+            border-color: #ffb4cf;
+            box-shadow: 0 0 12px rgba(255, 190, 220, 0.6), 0 3px 15px rgba(255, 150, 210, 0.3);
+            background: rgba(255,255,255,0.25);
+            transform: translateY(-1px);
+        }
+
+        /* PREMIUM HİZMET KARTLARI */
+        .service-option-label {
+            display: block;
+            padding: 12px 16px;
+            border-radius: 12px;
+            background: rgba(255,255,255,0.15);
+            border: 1px solid rgba(255,180,210,0.4);
+            margin-bottom: 10px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
+            position: relative;
+            box-shadow: 0 4px 12px rgba(255,160,210,0.15);
+        }
+
+        .service-option-label:hover {
+            background: rgba(255, 160, 210, 0.2);
+            box-shadow: 0 6px 20px rgba(255,150,200,0.3);
+            transform: translateY(-2px);
+        }
+
+        .service-option-label input[type="checkbox"] {
+            display: none;
+        }
+
+        .service-option-label input[type="checkbox"]:checked + .service-option-label {
+            background: rgba(255, 160, 210, 0.3);
+            border-color: #ffb6d5;
+            box-shadow: 0 0 18px rgba(255, 182, 213, 0.5);
+        }
+
+        /* PRICE PANEL */
+        .price-panel-container {
+            flex: 1;
+            position: sticky;
+            top: 120px;
+        }
+
+        .live-price-panel {
+            background: rgba(255,255,255,0.15);
+            padding: 20px;
+            border-radius: 18px;
+            border: 1px solid rgba(255,200,220,0.5);
+            box-shadow: 0 8px 25px rgba(255,160,210,0.3);
+            animation: panelGlow 2s infinite alternate;
+        }
+
+        @keyframes panelGlow {
+            from { box-shadow: 0 8px 25px rgba(255,160,210,0.3); }
+            to { box-shadow: 0 8px 35px rgba(255,160,210,0.5); }
+        }
+
+        .live-price-panel h3 {
+            font-size: 1.4rem;
+            background: linear-gradient(90deg, #4b1a2e, #2a0f1f);
+            -webkit-background-clip: text;
+            background-clip: [DEĞER];
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 15px;
+        }
+
+        .price-detail-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            font-size: 0.9rem;
+            border-bottom: 1px solid rgba(255, 200, 220, 0.2);
+            color:#442233;
+        }
+        
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            font-size: 0.9rem;
+            border-bottom: 1px solid rgba(255, 200, 220, 0.2);
+            color: #442233;
+            font-weight: 500;
+        }
+
+        .price-total {
+            border-top: 1px solid #ffc6df;
+            margin-top: 15px;
+            padding-top: 15px;
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: #2a0f1f;
+            text-shadow: 0 0 8px rgba(255, 182, 213, 0.4);
+        }
+
+        /* BUTTONS */
+        .btn-nav {
+            padding: 12px 20px;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            cursor: pointer;
+            border: none;
+            transition: all 0.3s ease;
+            margin: 5px;
+            box-shadow: 0 3px 10px rgba(255,150,200,0.2);
+        }
+
+        .btn-forward, .btn-confirm {
+            background: linear-gradient(135deg, #ff8fbc, #ffc6df);
+            color: #4b1a2e;
+            box-shadow: 0 0 15px rgba(255,150,200,0.5);
+        }
+
+        .btn-forward:hover, .btn-confirm:hover {
+            background: linear-gradient(135deg, #ffc6df, #ff8fbc);
+            box-shadow: 0 0 20px rgba(255,150,200,0.7);
+            transform: scale(1.02);
+        }
+
+        .btn-back {
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,200,220,0.4);
+            color: #ffd9eb;
+        }
+
+        .btn-back:hover {
+            background: rgba(255, 150, 200, 0.2);
+            transform: scale(1.01);
+        }
+
+        /* MODAL */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.8);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(10px);
+            z-index: 100;
+        }
+
+        .success-modal {
+            background: rgba(0,0,0,0.7);
+            border: 2px solid #ffb6d5;
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 0 40px rgba(255, 182, 213, 0.4);
+            position: relative;
+            animation: modalBounce 0.5s ease;
+        }
+
+        @keyframes modalBounce {
+            0% { scale: 0.9; opacity: 0; }
+            50% { scale: 1.02; }
+            100% { scale: 1; opacity: 1; }
+        }
+
+        .success-modal::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -150%;
+            width: 60%;
+            height: 100%;
+            background: linear-gradient(120deg, transparent 0%, rgba(255,255,255,0.7) 50%, transparent 100%);
+            transform: skewX(-25deg);
+            animation: shine 2.5s infinite;
+        }
+
+        @keyframes shine {
+            0% { left: -150%; }
+            100% { left: 160%; }
+        }
+
+        .check-icon {
+            font-size: 4rem;
+            color: #ffb6d5;
+            text-shadow: 0 0 20px rgba(255, 182, 213, 0.7);
+            margin-bottom: 15px;
+        }
+
+        /* MOBIL UYUMLULUK */
+        @media (max-width: 900px) {
+            .appointment-wrapper {
+                flex-direction: column;
+                width: 95%;
+                padding: 20px;
+                margin-top: 80px;
+            }
+            .wizard-container {
+                transform: scale(0.95);
+            }
+            .price-panel-container {
+                position: static;
+            }
+            .section-title {
+                font-size: 1.3rem;
+            }
+            .btn-nav {
+                padding: 10px 16px;
+                font-size: 0.8rem;
+            }
+            .navbar {
+                padding: 10px 20px;
+            }
+            .nav-links a {
+                margin: 0 10px;
+                font-size: 0.8rem;
+            }
+        }
+
+        body {
+            /* Arka plan resmini ekler ve sabitler */
+            background-image: url('{{ url_for("static", filename="images/arkaplan8.jpg.jpeg") }}'); 
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+            background-color: #1a0811;
+            
+            color: #ffe6f2;
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        /* --- TASARIM SEÇENEKLERİ --- */
+        .nail-art-options-grid {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+            margin-bottom: 25px;
+            justify-content: space-between;
+        }
+
+        .choice-card {
+            flex: 1; 
+            min-width: 40%;
+            max-width: 50%;
+            text-align: center;
+            padding: 20px 15px;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.1); 
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(255, 170, 210, 0.4);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .choice-card:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 8px 30px rgba(255, 150, 200, 0.5);
+            border-color: #ffb6d5;
+        }
+
+        .choice-card i {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            background: linear-gradient(45deg, #461529, #ff8fbc);
+            -webkit-background-clip: text;
+            background-clip: [DEĞER];
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 10px rgba(255, 150, 200, 0.5);
+        }
+        .choice-card h4 {
+            font-size: 1.1rem !important; 
+            font-weight: 700;
+            color: #ffb6d5 !important;
+            margin: 5px 0 5px 0 !important;
+        }
+        .choice-card p {
+            font-size: 0.8rem;
+            color: #ffccea;
+        }
+
+        .options-visual-box {
+            padding: 20px;
+            border-radius: 15px;
+            background: rgba(255, 235, 245, 0.1); 
+            border: 1px solid rgba(255, 170, 210, 0.4); 
+            box-shadow: 0 0 10px rgba(255, 170, 210, 0.1);
+            margin-top: 15px;
+            color:#442233;
+        }
+
+        .step-navigation {
+            justify-content: flex-end; 
+        }
+
+        /* --- ÖDEME KUTULARI --- */
+        .payment-options-radios {
+            display: flex;
+            gap: 20px;
+            margin-top: 25px;
+            margin-bottom: 25px;
+        }
+
+        .payment-option-tile {
+            flex: 1;
+            cursor: pointer;
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            background: rgba(255, 255, 255, 0.1); 
+            border: 2px solid rgba(255, 170, 210, 0.4); 
+            box-shadow: 0 5px 15px rgba(255, 160, 210, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .payment-option-tile label {
+            display: block;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #ffe6f2;
+            margin-top: 5px;
+            margin-bottom: 5px;
+            cursor: pointer;
+        }
+
+        .payment-option-tile .small-desc {
+            font-size: 0.85rem;
+            color: #ffccea;
+            line-height: 1.4;
+            margin-top: 5px;
+            margin-bottom: 0;
+        }
+
+        .payment-option-tile input[type="radio"] {
+            position: absolute; 
+            opacity: 0; 
+            cursor: pointer;
+            z-index: 2; 
+            height: 100%; 
+            width: 100%;
+            top: 0;
+            left: 0;
+            margin: 0;
+        }
+
+        .payment-option-tile input[type="radio"]:checked ~ label {
+            color: #ffb6d5;
+            text-shadow: 0 0 5px rgba(255, 182, 213, 0.5);
+        }
+
+        .payment-option-tile input[type="radio"]:checked ~ .small-desc {
+            color: #ffb6d5;
+        }
+
+        .payment-option-tile:has(input[type="radio"]:checked) {
+            background: rgba(255, 160, 210, 0.25);
+            border-color: #ffb6d5;
+            box-shadow: 0 0 25px rgba(255, 182, 213, 0.7); 
+            transform: scale(1.02);
+        }
+
+        .payment-option-tile:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255, 150, 200, 0.4);
+        }
+
+        #card-details-form {
+            display: none; 
+            margin-top: 20px;
+            padding: 10px 0;
+            color: #442233;
+        }
+        
+        #card-details-form label {
+            color: #442233;
+        }
+</style>
+
+
+</head>
+    <body>
+
+<header class="navbar">
+    <nav class="nav-links">
+        <a href="{{ url_for('index') }}">Anasayfa</a>
+        <a href="{{ url_for('tasarimlar_page') }}">Tasarimlar</a>
+        <a href="{{ url_for('index') }}#hizmetler">Hizmetlerimiz</a>
+        <a href="{{ url_for('index') }}#iletisim">İletişim</a>
+
+        {% if session.logged_in %}
+            <a href="{{ url_for('profile_page') }}" class="profile-link">
+                {% if session.profile_image %}
+                    <img src="{{ url_for('static', filename=session.profile_image) }}" class="nav-profile-img">
+                {% else %}
+                    <i class="fas fa-user-circle" style="font-size: 1.8rem;"></i>
+                {% endif %}
+            </a>
+            <a href="{{ url_for('logout') }}" class="login-button">Çıkış Yap</a>
+        {% else %}
+            <a href="{{ url_for('auth_page') }}" class="login-button">Giriş Yap</a>
+        {% endif %}
+    </nav>
+</header>
+
+
+
+<section class="appointment-wrapper">
+    <div class="wizard-container">
+
+        <h3 class="section-title" id="wizard-title">Randevu Oluşturma Sihirbazı</h3>
+        <p id="wizard-subtitle" style="text-align:center; margin-bottom: 20px;">Adım 1: Hizmet ve Detay Seçimi</p>
+
+        <div class="progress-bar-container">
+            <div class="step-dot active" data-step="1">1</div>
+            <div class="step-dot" data-step="2">2</div>
+            <div class="step-dot" data-step="3">3</div>
+        </div>
+
+        {% if is_update %}
+        <form id="appointmentForm" 
+              action="{{ url_for('update_appointment', appointment_id=appointment_id) }}" 
+              method="POST" 
+              enctype="multipart/form-data">
+        {% else %}
+        <form id="appointmentForm" 
+              action="{{ url_for('randevu_page') }}" 
+              method="POST" 
+              enctype="multipart/form-data">
+        {% endif %}
+
+            <input type="hidden" name="current_step" id="current_step" value="1">
+            <input type="hidden" name="selected_design" id="selected_design_input">
+            <input type="hidden" id="final_price_input" name="total_price" value="0.00">
+            <input type="hidden" name="appointment_time" id="appointment_time_hidden" required>
+            <input type="hidden" id="custom_design_price_input" value="300.00"> 
+
+            <div id="step-1" class="step-content active">
+                
+                <label>Hizmet Seçimi </label>
+                <div class="service-checkbox-grid">
+                    {% for service in services %}
+                    <label class="service-option-label">
+                        <input type="checkbox"
+                        name="selected_services"
+                        data-name="{{ service.name }}"
+                        data-price="{{ service.base_price | float }}"
+                        value="{{ service.service_id }}"
+                        onchange="updateForm()"
+                        {% if is_update and service.service_id in selected_service_ids %} checked {% endif %}
+                        >
+                        
+                        {{ service.name }} 
+                        {% if service.name != 'Nail Art' %}
+                            ({{ service.base_price | round(2) }} TL)
+                        {% endif %}
+                    </label>
+                    {% endfor %}
+                </div>
+
+                <div id="nailArtOptions" style="display:none; margin-top:15px;">
+                    
+                    <label style="font-weight: 700;">Tasarım Seçeneği (Adım 1.1)</label>
+                    <div class="nail-art-options-grid">
+                        <div class="choice-card" onclick="choosePreMade()">
+                            <i class="fas fa-palette"></i>
+                            <h4>Hazır Tasarımlardan Seç</h4>
+                            <p>Galeriye yönlendirilirsiniz. Fiyatlar tasarıma göre otomatik eklenir.</p>
+                        </div>
+                        <div class="choice-card" onclick="uploadCustomDesign()">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                            <h4>Özel Tasarım Yükle</h4>
+                            <p>Yükleme yapın. Taban ücreti 300 TL'dir.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="customUpload" style="display:none; margin-top:10px;">
+                    <label>Özel Tasarım Yükle (Taban Ücret: 300.00 TL)</label>
+                    <input type="hidden" id="custom_design_price_input" value="300.00">
+                    <input type="file" id="customDesignFile" name="custom_design_file" accept="image/*">
+                    <p class="custom-warning">
+                    ⚠️ Yüklenen tasarımın detay ve zorluğuna göre stüdyoda **nihai fiyat** farklılık gösterebilir.
+                    </p>
+                </div>
+                <img id="selected_design_preview" src="" style="max-width:100px; display:none; margin-top:10px;">
+
+
+                <h4 style="margin-top:25px; font-size:1.3rem;">Tırnak Detayları </h4>
+                <div style="display:flex; gap:18px;">
+                    <div style="flex:1;">
+                        <label>Tırnak Uzunluğu</label>
+                        <select id="nail_length" name="nail_length" required onchange="updateSummaryPanel()">
+                            <option value="">Uzunluk Seçin</option>
+                            <option value="kisa" {% if appointment and appointment.nail_length == 'kisa' %} selected {% endif %}>Kısa</option>
+                            <option value="orta" {% if appointment and appointment.nail_length == 'orta' %} selected {% endif %}>Orta</option>
+                            <option value="uzun" {% if appointment and appointment.nail_length == 'uzun' %} selected {% endif %}>Uzun</option>
+                            <option value="ekstra_uzun" {% if appointment and appointment.nail_length == 'ekstra_uzun' %} selected {% endif %}>Ekstra Uzun (+100 TL)</option>
+                        </select>
+                    </div>
+                    <div style="flex:1;">
+                        <label>Tırnak Şekli</label>
+                        <select id="nail_shape" name="nail_shape" required onchange="updateSummaryPanel()">
+                            <option value="">Şekil Seçin</option>
+                            <option value="kut" {% if appointment and appointment.nail_shape == 'kut' %} selected {% endif %}>Küt (Kare)</option>
+                            <option value="yuvarlak" {% if appointment and appointment.nail_shape == 'yuvarlak' %} selected {% endif %}>Yuvarlak (Oval)</option>
+                            <option value="badem" {% if appointment and appointment.nail_shape == 'badem' %} selected {% endif %}>Badem (Almond)</option>
+                            <option value="balerin" {% if appointment and appointment.nail_shape == 'balerin' %} selected {% endif %}>Balerin (Coffin)</option>
+                            <option value="sivri" {% if appointment and appointment.nail_shape == 'sivri' %} selected {% endif %}>Sivri (Stiletto)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="input-group" style="margin-top: 15px;">
+                    <label class="label-title">Charm / Nail Art Aksesuarı (+100 TL)</label>
+                    <select id="charmSelect" name="charm_selection" class="form-select" onchange="updateSummaryPanel()">
+                        <option value="0" selected>İstemiyorum</option>
+                        <option value="100">💎 Zirkon & Taş (Gemstone)</option>
+                        <option value="100">✨ Metal (Gold/Silver) Charmlar</option>
+                        <option value="100">🧸 3D Figür & Fiyonk (Resin Art)</option>
+                        <option value="100">⛓️ Zincir & Piercing Detayları</option>
+                        <option value="100">⚪ İnci & Vintage Aksesuarlar</option>
+                    </select>
+                </div>
+
+                <div class="step-navigation">
+                    <button type="button" disabled class="btn-nav btn-back" style="visibility:hidden;">Geri</button>
+                    <button type="button" onclick="nextStep(2)" class="btn-nav btn-forward">İlerle</button>
+                </div>
+            </div>
+
+            <div id="step-2" class="step-content">
+                <h4 style="margin-top:0;">Randevu Tarihi ve Saati Seçimi</h4>
+                
+                <label>Tarih</label>
+                <input type="date" id="appointment_date" name="appointment_date" required min="{{ today.strftime('%Y-%m-%d') }}" value="{{ initial_date or '' }}">
+
+                <label>Saat</label>
+                <div id="time-blocks" style="display:flex; flex-wrap:wrap; gap:10px;"></div>
+
+                <div class="step-navigation">
+                    <button type="button" onclick="prevStep(1)" class="btn-nav btn-back">Geri</button>
+                    <button type="button" onclick="nextStep(3)" class="btn-nav btn-forward">İlerle</button>
+                </div>
+            </div>
+
+            <div id="step-3" class="step-content">
+                <h4 style="margin-top:0;">Ödeme Yöntemi ve Randevu Özeti</h4>
+
+                <div class="live-price-panel">
+                    <h4>Randevu Özeti</h4>
+                    <p>Hizmetler: <span id="summary-services">---</span></p>
+                    <p>Detaylar: <span id="summary-details">---</span></p>
+                    <p>Tarih & Saat: <span id="summary-date-time">---</span></p>
+                    <div class="price-total">Toplam Tutar: <span id="final-price-summary">0.00 TL</span></div>
+                </div>
+                
+                <h4 style="margin-top: 25px;">Ödeme Yöntemi</h4>
+                <div class="payment-options-radios">
+                    <div class="payment-option-tile">
+                        <input type="radio" id="pay_studio" name="payment_method" value="studio" checked onchange="toggleCardDetails()">
+                        <label for="pay_studio">Stüdyoda Ödeme</label>
+                        <p class="small-desc">Ödeme randevu günü alınacaktır.</p>
+                    </div>
+                    <div class="payment-option-tile">
+                        <input type="radio" id="pay_card" name="payment_method" value="card" onchange="toggleCardDetails()">
+                        <label for="pay_card">Kart İle Ödeme</label>
+                        <p class="small-desc">(Online simülasyon)</p>
+                    </div>
+                </div>
+
+                <div id="card-details-form">
+                    <label>Kart Üzerindeki İsim</label>
+                    <input type="text" id="card_holder" name="card_holder" placeholder="Ad Soyad">
+                    
+                    <label>Kart Numarası</label>
+                    <input type="text" id="card_number" name="card_number" placeholder="XXXX XXXX XXXX XXXX" required>
+                    <div style="display:flex; gap:20px;">
+                        <div style="flex:1;">
+                            <label>Son Kullanma</label>
+                            <input type="text" id="card_expiry" name="card_expiry" placeholder="AA/YY" required>
+                        </div>
+                        <div style="flex:1;">
+                            <label>CVC</label>
+                            <input type="text" id="card_cvc" name="card_cvc" placeholder="CVC" required>
+                        </div>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-nav btn-confirm">Randevuyu Onayla</button>
+                
+                <div class="step-navigation">
+                    <button type="button" onclick="prevStep(2)" class="btn-nav btn-back">Geri</button>
+                    <div style="width: 100px;"></div> 
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div class="price-panel-container">
+        <div class="live-price-panel">
+            <h3>💸 Canlı Hesaplama</h3>
+            
+            <div id="price-rows">
+                <div class="price-detail-row">Hizmetler: <span id="price-services">0.00 TL</span></div>
+                <div class="price-detail-row">Tırnak Uzunluğu: <span id="price-length">0.00 TL</span></div>
+                <div class="price-detail-row">Tasarım (Hazır/Özel): <span id="price-design">0.00 TL</span></div>
+                <div class="summary-row">
+                    <span>Charm / Aksesuar:</span>
+                    <span id="summary-charm">0.00 TL</span>
+                </div>
+            </div>
+            
+            <div class="price-total">
+                Toplam Tutar: <span id="price-final">0.00 TL</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<div id="successModal" class="modal-overlay">
+    <div class="success-modal">
+        <i class="fas fa-check-circle check-icon"></i>
+        <h2 style="color: #ff3399;">Randevunuz Başarıyla Oluşturuldu!</h2>
+        <p>Onay durumu için profil sayfanızı kontrol ediniz.</p>
+        <a href="{{ url_for('profile_page', user_id=session.get('user_id')) }}" class="btn-nav btn-forward">Profil Sayfasına Git</a>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+
+    // 1. DOM ELEMANLARI VE SABİTLER
+    let currentStep = 1;
+    const urlParams = new URLSearchParams(window.location.search);
+    const selectedDesign = urlParams.get('selected_design'); // URL'den
+    const selectedDesignId = localStorage.getItem('selected_design'); // Local Storage'dan ID
+    const selectedDesignPath = localStorage.getItem('selected_design_path'); // Local Storage'dan Path
+    
+    // ... (Diğer tüm DOM sabitleri) ...
+    const serviceCheckboxes = document.querySelectorAll('input[name="selected_services"]');
+    const nailLengthSelect = document.getElementById('nail_length');
+    const dateInput = document.getElementById('appointment_date');
+    const form = document.getElementById('appointmentForm');
+
+    const nailArtServiceNames = ["Nail Art"];
+    const nailArtOptions = document.getElementById('nailArtOptions');
+    const customUpload = document.getElementById('customUpload');
+    const nailArtCheckbox = Array.from(serviceCheckboxes).find(cb => cb.getAttribute('data-name') === 'Nail Art');
+    
+    // KRİTİK: Kart detay form inputlarını al
+    const cardNumberInput = document.getElementById('card_number');
+    const cardExpiryInput = document.getElementById('card_expiry');
+    const cardCVCInput = document.getElementById('card_cvc');
+    // YENİ: Kart Sahibi Inputu
+    const cardHolderInput = document.getElementById('card_holder');
+
+
+    // ---------------------------------------------------
+    // A. WIZARD MANTIĞI (Aşama İlerleme ve Doğrulama)
+    // ---------------------------------------------------
+
+    window.showStep = function(step) {
+        document.querySelectorAll('.step-content').forEach(el => el.classList.remove('active'));
+        document.getElementById(`step-${step}`).classList.add('active');
+        document.getElementById('current_step').value = step;
+
+        document.querySelectorAll('.step-dot').forEach(dot => dot.classList.remove('active'));
+        document.querySelector(`.step-dot[data-step="${step}"]`).classList.add('active');
+
+        const titles = {
+            1: {title: "Randevu Oluşturma Sihirbazı", subtitle: "Adım 1: Hizmet ve Detay Seçimi"},
+            2: {title: "Randevu Oluşturma Sihirbazı", subtitle: "Adım 2: Tarih ve Saat Seçimi"},
+            3: {title: "Randevu Oluşturma Sihirbazı", subtitle: "Adım 3: Ödeme Yöntemi ve Onay"}
+        };
+        document.getElementById('wizard-title').textContent = titles[step].title;
+        document.getElementById('wizard-subtitle').textContent = titles[step].subtitle;
+        
+        currentStep = step;
+        updateSummaryPanel();
+        
+        if (step === 3) {
+            window.toggleCardDetails();
+        }
+    }
+
+    function validateStep(step) {
+        let isValid = true;
+        const stepElement = document.getElementById(`step-${step}`);
+        const requiredInputs = stepElement.querySelectorAll('[required]');
+
+        requiredInputs.forEach(input => {
+            if (input.style.display !== 'none' && !input.value) { 
+                isValid = false;
+            }
+        });
+
+        if (step === 1 && document.querySelectorAll('input[name="selected_services"]:checked').length === 0) {
+            isValid = false;
+        }
+
+        if (step === 2 && (!dateInput.value || !document.getElementById('appointment_time_hidden').value)) {
+            isValid = false;
+        }
+        
+        // KRİTİK: Adım 3 için kartla ödeme seçiliyse zorunluluk kontrolü (İSİM DAHİL)
+        if (step === 3 && document.getElementById('pay_card').checked) {
+            if (!cardHolderInput.value || !cardNumberInput.value || !cardExpiryInput.value || !cardCVCInput.value) {
+                isValid = false;
+            }
+        }
+
+        if (!isValid) {
+            alert("Lütfen bu adımdaki tüm zorunlu alanları doldurun.");
+        }
+        return isValid;
+    }
+
+    window.nextStep = function(next) {
+        if (validateStep(currentStep)) {
+            showStep(next);
+        }
+    }
+
+    window.prevStep = function(prev) {
+        showStep(prev);
+    }
+    
+    // ---------------------------------------------------
+    // B. FİYAT VE ÖZET MANTIĞI
+    // ---------------------------------------------------
+
+    function calculatePrices() {
+        let priceServices = 0;
+        let priceDesign = 0;
+        let priceLength = 0;
+        
+        serviceCheckboxes.forEach(cb => {
+            if(cb.checked) {
+                if (cb.getAttribute('data-name') !== 'Nail Art') {
+                    priceServices += parseFloat(cb.getAttribute('data-price') || 0);
+                }
+            }
+        });
+
+        if(nailLengthSelect.value === 'ekstra_uzun') {
+            priceLength = 100;
+        }
+        
+        const designPriceFromStorage = parseFloat(localStorage.getItem('selected_design_price') || 0);
+        const customPriceEl = document.getElementById('custom_design_price_input');
+        let customPrice = 0;
+        
+        if (customUpload.style.display !== 'none' && customPriceEl) {
+            customPrice = parseFloat(customPriceEl.value || 0);
+        }
+
+        if (designPriceFromStorage > 0) {
+            priceDesign = designPriceFromStorage;
+        } else if (customPrice > 0) {
+            priceDesign = customPrice;
+        }
+
+        const charmSelect = document.getElementById('charmSelect');
+        let charmPrice = 0;
+        if (charmSelect) {
+            charmPrice = parseFloat(charmSelect.value) || 0;
+        }
+
+        const totalPrice = priceServices + priceDesign + priceLength + charmPrice;
+
+        return {priceServices, priceDesign, priceLength, totalPrice, charmPrice};
+    }
+
+    window.updateForm = function() {
+        const nailArtChecked = Array.from(serviceCheckboxes).some(c => 
+            nailArtServiceNames.includes(c.getAttribute('data-name')) && c.checked
+        );
+
+        const requiresNailDetails = ["Protez Tırnak", "Jel Tırnak", "Nail Art"]; 
+        const detailRequired = Array.from(serviceCheckboxes).some(c => 
+            c.checked && requiresNailDetails.includes(c.getAttribute('data-name'))
+        );
+        
+        const nailLengthEl = document.getElementById('nail_length');
+        const nailShapeEl = document.getElementById('nail_shape');
+        
+        if (detailRequired) {
+            nailLengthEl.setAttribute('required', true);
+            nailShapeEl.setAttribute('required', true);
+        } else {
+            nailLengthEl.removeAttribute('required');
+            nailShapeEl.removeAttribute('required');
+        }
+
+        if (nailArtChecked) {
+           nailArtOptions.style.cssText = 'display: flex !important; flex-direction: column; gap: 15px; margin-top: 15px;';
+        } else {
+           nailArtOptions.style.cssText = 'display: none !important;';
+           document.getElementById('customUpload').style.display = 'none';
+           localStorage.removeItem('selected_design_price');
+           
+           const previewEl = document.getElementById('selected_design_preview');
+           if (previewEl) {
+               previewEl.style.display = 'none';
+               previewEl.src = '';
+           }
+        }
+
+        updateSummaryPanel();
+    };
+    
+    window.updateSummaryPanel = function() {
+        const prices = calculatePrices();
+        
+        document.getElementById('price-services').textContent = prices.priceServices.toFixed(2) + ' TL';
+        document.getElementById('price-length').textContent = prices.priceLength.toFixed(2) + ' TL';
+        document.getElementById('price-design').textContent = prices.priceDesign.toFixed(2) + ' TL';
+        document.getElementById('summary-charm').textContent = prices.charmPrice.toFixed(2) + ' TL';
+        document.getElementById('price-final').textContent = prices.totalPrice.toFixed(2) + ' TL';
+        
+        document.getElementById('final_price_input').value = prices.totalPrice.toFixed(2);
+        document.getElementById('final-price-summary').textContent = prices.totalPrice.toFixed(2) + ' TL';
+
+        const selectedServices = Array.from(serviceCheckboxes).filter(cb => cb.checked).map(cb => cb.getAttribute('data-name'));
+        document.getElementById('summary-services').textContent = selectedServices.join(', ') || 'Yok';
+        
+        const lengthText = nailLengthSelect.options[nailLengthSelect.selectedIndex].text;
+        document.getElementById('summary-details').textContent = `${lengthText}, Şekil: ${document.getElementById('nail_shape').value || 'Seçilmedi'}`;
+        
+        const timeVal = document.getElementById('appointment_time_hidden').value;
+        const dateVal = dateInput.value;
+        document.getElementById('summary-date-time').textContent = (dateVal && timeVal) ? `${dateVal} - ${timeVal}` : 'Seçilmedi';
+
+    }
+
+    // ---------------------------------------------------
+    // C. RANDEVU VE ÖDEME MANTIKLARI
+    // ---------------------------------------------------
+
+    window.choosePreMade = function() {
+        localStorage.removeItem('selected_design');
+        localStorage.removeItem('selected_design_price');
+        localStorage.removeItem('selected_design_is_nailart');
+        window.location.href = '/tasarimlar?return_to=randevu';
+    }
+
+    window.uploadCustomDesign = function() {
+        localStorage.removeItem('selected_design_price');
+        document.getElementById('customUpload').style.display = 'block';
+        window.updateForm();
+    }
+    
+    // KRİTİK: Kart Detaylarını Göster/Gizle ve Zorunluluk Ayarı (İSİM DAHİL)
+    window.toggleCardDetails = function() {
+        const isCard = document.getElementById('pay_card').checked;
+        const formEl = document.getElementById('card-details-form');
+        
+        formEl.style.display = isCard ? 'block' : 'none';
+
+        cardHolderInput.required = isCard;
+        cardNumberInput.required = isCard;
+        cardExpiryInput.required = isCard;
+        cardCVCInput.required = isCard;
+        
+        if (!isCard) {
+            cardHolderInput.value = '';
+            cardNumberInput.value = '';
+            cardExpiryInput.value = '';
+            cardCVCInput.value = '';
+        }
+    }
+    
+    form.addEventListener('submit', function(e) {
+        e.preventDefault(); 
+
+        if (!validateStep(3)) return; 
+
+        const formData = new FormData(this);
+        const actionUrl = this.action;
+
+        fetch(actionUrl, {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => {
+            if (response.ok) {
+                document.getElementById('successModal').style.display = 'flex';
+                localStorage.clear(); 
+            } else {
+                response.json().then(data => {
+                    alert('Hata: ' + (data.message || 'Randevu oluşturulamadı.'));
+                });
+            }
+        })
+        .catch(error => {
+            console.error('Submit Hatası:', error);
+            alert('Ağ hatası veya sunucu bağlantı hatası oluştu.');
+        });
+    });
+
+    // ---------------------------------------------------
+    // D. SAATLER VE BAŞLANGIÇ
+    // ---------------------------------------------------
+
+    window.dateChangeHandler = function() {
+        const selectedDate = dateInput.value;
+        const timeBlocksContainer = document.getElementById('time-blocks');
+        timeBlocksContainer.innerHTML = '';
+        if (!selectedDate) return;
+
+        fetch(`/api/booked-hours?date=${selectedDate}`) 
+            .then(res => res.json())
+            .then(bookedHours => {
+                const startHour = 9;
+                const endHour = 18;
+                const interval = 2; 
+                document.getElementById('appointment_time_hidden').value = ''; 
+
+                for(let h = startHour; h <= endHour; h += interval){
+                    let hourStr = h.toString().padStart(2,'0') + ":00";
+                    const block = document.createElement('button');
+                    block.type = 'button';
+                    block.textContent = hourStr;
+                    block.className = 'btn-nav';
+
+                    if(bookedHours.includes(hourStr)){
+                        block.disabled = true;
+                        block.style.cssText = 'background: #ffdcdc; color: #888; cursor: not-allowed;';
+                    } else {
+                         block.style.cssText = 'background: #fff0fa; color: #ff3399; border: 1px solid #ffccea;';
+                    }
+
+                    block.addEventListener('click', () => {
+                        if(block.disabled) return; 
+                        document.querySelectorAll('#time-blocks button').forEach(b => {
+                            if(!b.disabled) b.style.cssText = 'background: #fff0fa; color: #ff3399; border: 1px solid #ffccea;';
+                        });
+                        
+                        block.style.cssText = 'background: #ff3399; color: white; border: 1px solid #ff3399;';
+                        document.getElementById('appointment_time_hidden').value = hourStr;
+                        updateSummaryPanel();
+                    });
+                    timeBlocksContainer.appendChild(block);
+                }
+                updateSummaryPanel();
+            })
+            .catch(error => {
+                console.error('Fetch hatası:', error);
+                timeBlocksContainer.innerHTML = '<p style="color:red;">Saatler yüklenemedi.</p>';
+            });
+    }
+
+    // --- BAŞLANGIÇ YÜKLEME ---
+    
+    const hasDesignPrice = parseFloat(localStorage.getItem('selected_design_price') || 0) > 0;
+    if (selectedDesignPath) { 
+        const previewEl = document.getElementById('selected_design_preview');
+        previewEl.src = '/static/' + selectedDesignPath; 
+        previewEl.style.display = 'block';
+    }
+    if (nailArtCheckbox && (selectedDesignId || hasDesignPrice)) {
+        nailArtCheckbox.checked = true; 
+
+        if(selectedDesignId){
+            document.getElementById('selected_design_input').value = selectedDesignId;
+        }
+
+        if(selectedDesignPath) {
+            const previewEl = document.getElementById('selected_design_preview');
+            previewEl.src = '/static/' + selectedDesignPath; 
+            previewEl.style.display = 'block';
+        }
+        window.updateForm(); 
+    }
+
+    // --- EVENT LISTENERS ---
+    serviceCheckboxes.forEach(cb => cb.addEventListener('change', window.updateForm));
+    nailLengthSelect.addEventListener('change', updateSummaryPanel);
+    dateInput.addEventListener('change', window.dateChangeHandler);
+    document.getElementById('nail_shape').addEventListener('change', updateSummaryPanel);
+    
+    showStep(1);
+    window.dateChangeHandler(); 
+    window.toggleCardDetails(); 
+
+});
+</script>
+</body>
+</html>

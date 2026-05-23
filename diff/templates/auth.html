@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PIXIE NAILS | Giriş Yap</title>
+    
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+/* ---- GENEL AYARLAR ---- */
+        body {
+            /* Arka plan resim yolunu kontrol et */
+            background-image: url('{{ url_for("static", filename="images/arkaplan12.jpg") }}'); 
+            background-size: cover; 
+            background-position: center;  
+            background-attachment: fixed;
+            background-repeat: no-repeat; 
+            min-height: 100vh;
+            color: #fff; 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* ---- NAVBAR ---- */
+        .navbar {
+            background: rgba(0, 0, 0, 0.6);
+            padding: 15px 40px;
+            display: flex;
+            justify-content: flex-end;
+        }
+        
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            margin-left: 20px;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+        .nav-links a:hover {
+            color: #ff007f;
+        }
+
+        /* ---- ORTA BÖLÜM ---- */
+        .auth-page-section {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        /* ---- PANTER (MASCOT) ---- */
+        .mascot-container {
+            position: relative;
+            width: 100%;
+             /* Konteyneri genişlettik */
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            
+            /* Panterin kutunun üstünde görünmesi için en kritik ayar */
+            z-index: 50; 
+            
+            /* BU AYAR PANTERİ KUTUNUN İÇİNE SOKAR
+               -190px: Panterin gövdesi kutunun içine 190 piksel girer. 
+               Böylece kolları yazının üstüne sarkar. */
+            margin-bottom: -150px; 
+        }
+
+        .mascot-img {
+            /* Panter bayağı BÜYÜK oldu */
+            width: 400px; 
+            height: auto;
+            /* Derinlik gölgesi */
+            filter: drop-shadow(0 20px 20px rgba(0,0,0,0.8)); 
+        }
+
+        /* ---- GRİMSİ FORM KUTUSU ---- */
+        .auth-form-container {
+            /* Koyu Grimsi Şeffaf Arka Plan */
+            background: rgba(30, 30, 30, 0.7); 
+            
+            backdrop-filter: blur(15px); 
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.3); 
+            border-radius: 20px;
+            
+            /* ÜST BOŞLUK (PADDING):
+               Panter 190px içeri girdiği için, yazının panterin altında kalması lazım.
+               Bu yüzden üstten 200px boşluk bıraktık. */
+            padding: 50px 40px 50px 40px; 
+            
+            width: 100%;
+            max-width: 380px;
+            text-align: center;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.7);
+            position: relative;
+            z-index: 1; /* Kutu altta */
+        }
+
+        /* ---- YAZILAR VE FORM ---- */
+        .section-title {
+            color: #ff69b4; /* Hot Pink */
+            font-size: 2em;
+            margin-bottom: 5px;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.5);
+        }
+
+        .section-subtitle {
+            color: #ccc; 
+            font-size: 0.9em;
+            margin-bottom: 25px;
+        }
+
+        .form-heading {
+            color: #ff69b4;
+            margin-bottom: 15px;
+            font-size: 1.2em;
+        }
+
+        input[type="email"], 
+        input[type="password"], 
+        input[type="text"] {
+            width: 100%;
+            padding: 12px 15px;
+            margin-bottom: 15px;
+            border: none;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.95);
+            font-size: 14px;
+            box-sizing: border-box;
+            outline: none;
+        }
+        
+        input:focus {
+            box-shadow: 0 0 0 2px #ff69b4;
+        }
+
+        .auth-submit-button {
+            width: 100%;
+            padding: 12px;
+            background: #ff007f;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: 0.3s;
+            margin-top: 5px;
+        }
+
+        .auth-submit-button:hover {
+            background: #d6006b;
+            transform: scale(1.02);
+        }
+
+        .auth-links {
+            margin-top: 20px;
+            font-size: 0.85em;
+        }
+        .forgot-link {
+            color: #ddd;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 10px;
+        }
+        .register-text { color: #bbb; }
+        .link-pink { color: #ff69b4; font-weight: bold; text-decoration: none; }
+        .hidden { display: none; }
+
+        @media (max-width: 500px) {
+            .auth-form-container { margin: 0 20px; }
+            .mascot-img { width: 250px; } /* Mobilde çok devasa olmasın */
+        }
+    </style>
+
+
+</head>
+<body>
+
+    <header class="navbar">
+        <nav class="nav-links">
+            <a href="{{ url_for('index') }}">Anasayfa</a>
+            <a href="{{ url_for('tasarimlar_page') }}">Tasarimlar</a>
+            <a href="{{ url_for('index') }}#hizmetler">Hizmetlerimiz</a>
+            <a href="{{ url_for('index') }}#iletisim">İletişim</a>
+
+            {% if session.get('logged_in') %}
+                <a href="{{ url_for('profile_page', user_id=session['user_id']) }}" class="profile-link">
+                    <i class="fas fa-user-circle"></i> {{ session['user_name'] }}
+                </a>
+                <a href="{{ url_for('logout') }}" class="login-button secondary">Çıkış Yap</a>
+            {% else %}
+                <a href="{{ url_for('auth_page') }}" class="login-button">Giriş Yap</a>
+            {% endif %}
+        </nav>
+    </header>
+
+    <section class="section auth-page-section">
+        
+        <div class="mascot-container">
+            <img src="{{ url_for('static', filename='images/mascot.jpg') }}" alt="Mascot" class="mascot-img">
+        </div>
+
+        <div class="auth-form-container">
+            
+            <h1 class="section-title">Hesabınıza Giriş Yapın</h1>
+            <p class="section-subtitle">Randevularınızı yönetmek için güvenli giriş.</p>
+            
+            <form id="login-form" action="{{ url_for('login', next=request.args.get('next', '')) }}" method="POST">
+                <input type="hidden" name="next" value="{{ request.args.get('next', '') }}">
+
+                <h3 class="form-heading">Üye Girişi</h3>
+
+                <input type="email" name="email" placeholder="Kullanıcı Adı / E-posta" required>
+                <input type="password" name="password" placeholder="Şifre" required>
+
+                <button type="submit" class="appointment-button auth-submit-button">GİRİŞ YAP</button>
+
+                <div class="auth-links">
+                    <a href="#sifre" class="forgot-link">Şifremi Unuttum</a>
+                    <p class="register-text">
+                        Hesabınız yok mu? 
+                        <a href="#" id="show-register" class="link-pink">Hemen Kayıt Ol</a>
+                    </p>
+                </div>
+            </form>
+            
+            <form id="register-form" action="{{ url_for('register') }}" method="POST" class="hidden">
+                 <h3 class="form-heading">Yeni Hesap Oluştur</h3>
+                 <input type="text" name="full_name" placeholder="Adınız Soyadınız" required> 
+                 <input type="email" name="email" placeholder="E-posta Adresi" required>
+                 <input type="password" name="password" placeholder="Şifre (min 6 karakter)" required>
+                 <input type="password" name="confirm_password" placeholder="Şifre Tekrar" required>
+                 
+                 <button type="submit" class="appointment-button auth-submit-button secondary">KAYIT OL</button>
+                 
+                 <div class="auth-links">
+                    <a href="#" id="show-login" class="link-pink">Zaten hesabım var (Giriş)</a>
+                 </div>
+            </form>
+
+        </div>
+        
+    </section>
+
+    <script>
+        // JS Kodunuz: Giriş ve Kayıt formları arasında geçiş sağlar
+        document.getElementById('show-register').addEventListener('click', function(e) {
+            e.preventDefault();
+            document.getElementById('login-form').classList.add('hidden');
+            document.getElementById('register-form').classList.remove('hidden');
+        });
+        
+        document.getElementById('show-login').addEventListener('click', function(e) {
+            e.preventDefault();
+            document.getElementById('register-form').classList.add('hidden');
+            document.getElementById('login-form').classList.remove('hidden');
+        });
+    </script>
+</body>
+</html>

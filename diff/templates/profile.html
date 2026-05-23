@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PIXIE NAILS | Profilim</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+/* =============================================
+    PIXIE NAILS — SON HALİ (KOMPAKT, ORTALANMIŞ, ARKA PLAN RESMİ)
+    ============================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+:root {
+    --primary-color: #ff3399; 
+    --secondary-color: #ffccea;
+    --background-dark: #160710;
+    --background-light: #2a0f1f;
+    --glass-bg: rgba(255, 255, 255, 0.08); 
+    --glass-border: rgba(255, 255, 255, 0.15);
+}
+
+/* ---- GLOBAL ARKA PLAN ---- */
+body {
+    background-image: url('{{ url_for("static", filename="images/arkaplan1.jpg.jpeg") }}'); 
+    background-size: cover; 
+    background-position: center; 
+    background-attachment: fixed; 
+    background-repeat: no-repeat; 
+    background-blend-mode: multiply; 
+    background-color: rgba(0, 0, 0, 0.6); 
+
+    min-height: 100vh;
+    color: #f0f0f0; 
+    padding: 0;
+    position: relative;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.navbar {
+    position: fixed; 
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 80px; 
+    display: flex; 
+    justify-content: flex-end; 
+    align-items: center;
+    padding: 0 40px;
+    box-sizing: border-box;
+    z-index: 100; 
+    
+    background: rgba(255, 255, 255, 0.2); 
+    backdrop-filter: blur(8px); 
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+}
+
+.nav-links a {
+    color: #333; 
+    text-decoration: none;
+    margin-left: 25px;
+    font-weight: 500;
+    font-size: 1rem;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover {
+    color: #ff3399; 
+}
+
+/* Giriş Yap Butonu */
+.login-button {
+    background-color: #ff3399;
+    padding: 8px 15px;
+    border-radius: 4px;
+    margin-left: 35px !important;
+    font-weight: bold !important;
+}
+
+.login-button:hover {
+    background-color: #e52c88;
+    color: white !important;
+}
+
+/* =============================================
+    CAM PANEL VE AYRIŞTIRMA (GLASSMORPHISM)
+    ============================================= */
+.glass-panel, .profile-sidebar, .admin-section, .appointment-toggle-header {
+    background: var(--glass-bg);
+    backdrop-filter: blur(15px);
+    border-radius: 18px;
+    border: 1px solid var(--glass-border);
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.4);
+    transition: all 0.3s ease;
+}
+
+/* =============================================
+    ANA BAŞLIK VE YERLEŞİM DÜZELTMELERİ
+    ============================================= */
+.profile-section {
+    padding-top: 90px;
+    padding-bottom: 40px;
+    width: 100%;
+}
+
+.section-title-wrapper {
+    max-width: 1000px; 
+    width: 90%;
+    margin: 0 auto 20px; 
+    padding-left: 10px;
+}
+
+.section-title {
+    font-size: 2rem; 
+    font-weight: 700;
+    color: var(--secondary-color);
+    margin-bottom: 3px;
+    display: inline-block;
+}
+
+.title-underline {
+    width: 100%;
+    max-width: 140px; 
+    height: 3px;
+    background-color: var(--primary-color);
+    display: block;
+    margin-bottom: 0;
+}
+
+.profile-container {
+    max-width: 1000px; 
+    width: 90%;
+    display: flex;
+    gap: 20px; 
+    margin: 0 auto;
+    align-items: flex-start;
+}
+
+/* =============================================
+    SOL PROFIL PANELI (SIDEBAR)
+    ============================================= */
+.profile-sidebar {
+    flex: 0 0 260px; 
+    padding: 20px 15px; 
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 400px; 
+}
+
+.profile-photo-wrapper {
+    width: 120px; 
+    height: 120px;
+    margin: 0 auto 15px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 4px solid var(--primary-color);
+    box-shadow: 0 0 0 4px rgba(255, 51, 153, 0.3);
+}
+
+.profile-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.photo-upload-label {
+    display: block;
+    cursor: pointer;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    padding: 6px 10px;
+    border-radius: 15px;
+    margin-top: 10px;
+    font-size: 0.85rem;
+    transition: background 0.3s;
+}
+
+.photo-upload-input {
+    display: none;
+}
+
+.sidebar-name {
+    font-size: 1.4rem; 
+    font-weight: 600;
+    margin-bottom: 5px;
+    color: white;
+}
+
+.sidebar-email {
+    font-size: 0.9rem; 
+    margin-bottom: 15px;
+    color: var(--secondary-color);
+}
+
+.appointment-button {
+    display: inline-block;
+    background: var(--primary-color);
+    color: white !important;
+    text-decoration: none;
+    padding: 10px 20px; 
+    border-radius: 30px;
+    font-weight: 600;
+    transition: background 0.3s;
+    border: none;
+    width: 100%;
+    margin-top: auto !important; 
+}
+
+.small-button {
+    padding: 7px 14px;
+    font-size: 0.9rem;
+    border-radius: 20px;
+    margin-top: 10px;
+}
+
+/* =============================================
+    SAĞ PANEL – FORM VE INPUT YERLEŞİMİ
+    ============================================= */
+.profile-dashboard {
+    flex-grow: 1;
+}
+
+.admin-section {
+    padding: 25px; 
+    margin-bottom: 25px;
+}
+
+.admin-section h4 {
+    font-size: 1.3rem; 
+    margin-bottom: 15px;
+    border-bottom: 2px solid var(--primary-color);
+    display: inline-block;
+    padding-bottom: 5px;
+    color: white;
+}
+
+.admin-section form {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px 20px;
+}
+
+.info-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.info-group label {
+    font-size: 0.9em;
+    margin-bottom: 3px;
+    color: var(--secondary-color);
+    font-weight: 500;
+}
+
+.info-group input {
+    padding: 10px; 
+    border-radius: 8px;
+    border: 1px solid var(--glass-border);
+    background: rgba(0, 0, 0, 0.4);
+    color: white;
+    font-size: 1em;
+    transition: border-color 0.3s;
+}
+
+.admin-section form button[type="submit"] {
+    grid-column: span 2;
+    margin-top: 10px;
+}
+
+
+/* =============================================
+    RANDEVU TABLOLARI VE ACCORDION DÜZELTMESİ
+    ============================================= */
+
+.appointment-toggle-header {
+    margin-bottom: 10px;
+    padding: 15px 20px; 
+    border-radius: 18px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.toggle-icon {
+    transition: transform 0.3s;
+}
+
+.appointment-toggle-header.open .toggle-icon {
+    transform: rotate(180deg);
+}
+
+.appointment-list-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease-out; 
+}
+
+.appointment-list-content.open {
+    padding: 15px; 
+    margin-bottom: 20px;
+    max-height: 2000px;
+}
+
+.appointment-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 12px;
+    overflow: hidden;
+    color: white;
+}
+
+.appointment-table th {
+    padding: 10px;
+    font-size: 0.8em;
+    text-align: left;
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.appointment-table td {
+    padding: 12px 10px;
+    font-size: 0.9em;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    vertical-align: middle;
+}
+
+.design-preview-cell {
+    width: 90px;
+}
+
+.appt-design-full {
+    width: 80px;
+    height: 50px;
+}
+
+/* YENİ: YORUM MODAL VE BUTON STİLLERİ */
+.btn-review {
+    background: linear-gradient(135deg, #ff8fbc, #ffc6df);
+    border: none;
+    padding: 6px 12px;
+    border-radius: 8px;
+    color: #4b1a2e;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 0.8rem;
+    margin-left: 5px;
+    box-shadow: 0 2px 8px rgba(255, 150, 200, 0.3);
+    text-decoration: none;
+    display: inline-block;
+}
+.btn-review:hover { transform: scale(1.05); }
+
+/* Modal Arka Planı */
+.review-modal-overlay {
+    display: none; /* Başlangıçta gizli */
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.85);
+    z-index: 9999;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(8px);
+}
+
+/* Modal Kutusu */
+.review-modal-content {
+    background: rgba(42, 15, 31, 0.95);
+    border: 2px solid #ffb6d5;
+    padding: 30px;
+    border-radius: 20px;
+    width: 90%;
+    max-width: 400px;
+    text-align: center;
+    position: relative;
+    box-shadow: 0 0 30px rgba(255, 182, 213, 0.3);
+}
+
+/* Kapatma Çarpısı */
+.close-review {
+    position: absolute;
+    right: 20px;
+    top: 10px;
+    font-size: 2rem;
+    color: #ffb6d5;
+    cursor: pointer;
+}
+
+/* Yıldızlar */
+.star-rating {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+    gap: 5px;
+    margin-bottom: 20px;
+}
+.star-rating input { display: none; }
+.star-rating label {
+    font-size: 2.5rem;
+    color: #555;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+.star-rating input:checked ~ label,
+.star-rating label:hover,
+.star-rating label:hover ~ label {
+    color: #ffb6d5;
+    text-shadow: 0 0 15px rgba(255, 182, 213, 0.8);
+}
+
+.review-modal-content textarea {
+    width: 100%;
+    height: 100px;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid #ffb6d5;
+    border-radius: 10px;
+    padding: 10px;
+    color: white;
+    resize: none;
+    outline: none;
+}
+
+.submit-review-btn {
+    width: 100%;
+    margin-top: 15px;
+    padding: 12px;
+    background: #ff007f;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 1rem;
+}
+.submit-review-btn:hover { background: #d6006b; }
+
+
+/* Responsive */
+@media (max-width: 768px) {
+    .profile-container {
+        flex-direction: column;
+        width: 90%;
+    }
+    .profile-sidebar {
+        min-height: auto;
+        justify-content: flex-start; 
+        margin-bottom: 20px;
+    }
+    .appointment-button {
+        margin-top: 20px !important; 
+    }
+    .admin-section form {
+        grid-template-columns: 1fr;
+    }
+    .admin-section form button[type="submit"] {
+        grid-column: span 1;
+    }
+    .appointment-table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+}
+    </style>
+</head>
+<body>
+
+<header class="navbar">
+    <nav class="nav-links">
+        <a href="{{ url_for('index') }}">Anasayfa</a>
+        <a href="{{ url_for('tasarimlar_page') }}">Tasarimlar</a>
+        <a href="{{ url_for('index') }}#hizmetler">Hizmetlerimiz</a>
+        <a href="{{ url_for('index') }}#iletisim">İletişim</a>
+
+        {% if session.logged_in %}
+            <a href="{{ url_for('profile_page') }}" class="profile-link">
+                {% if session.profile_image %}
+                    <img src="{{ url_for('static', filename=session.profile_image) }}"
+                         alt="Profil"
+                         class="nav-profile-img">
+                {% else %}
+                    <i class="fas fa-user-circle" style="font-size: 1.8rem; color: #333;"></i>
+                {% endif %}
+            </a>
+
+            <a href="{{ url_for('logout') }}" class="login-button secondary" style="color: #333 !important;">Çıkış Yap</a>
+        {% else %}
+            <a href="{{ url_for('auth_page') }}" class="login-button">Giriş Yap</a>
+        {% endif %}
+    </nav>
+</header>
+
+
+<section class="section profile-section">
+    <h1 class="section-title">Hesap Yönetimi</h1>
+
+    <div class="profile-container">
+
+        <div class="profile-sidebar">
+
+            <div class="profile-photo-wrapper">
+                <img src="{{ url_for('static', filename=user_info.profile_image or 'default_profile.png') }}"
+                     alt="{{ user_info.full_name }}"
+                     class="profile-photo">
+            </div>
+
+            <form action="{{ url_for('upload_profile_image', user_id=user_info.user_id) }}"
+                  method="POST"
+                  enctype="multipart/form-data">
+
+                <input type="file"
+                       name="profile_image_file"
+                       id="profile_image_file"
+                       accept="image/*"
+                       class="photo-upload-input"
+                       onchange="this.form.submit()">
+
+                <label for="profile_image_file" class="photo-upload-label">
+                    <i class="fas fa-camera"></i> Fotoğrafı Değiştir
+                </label>
+            </form>
+
+            <p style="font-size: 1.2em; font-weight: bold; margin-bottom: 5px;">
+                {{ user_info.full_name }}
+            </p>
+
+            <p style="color: #ff3399; margin-top: 0;">
+                {{ user_info.username }}
+            </p>
+
+            <a href="{{ url_for('randevu_page') }}"
+               class="appointment-button"
+               style="width: 100%; margin-top: 50px !important; padding: 10px;">
+                Yeni Randevu Al
+            </a>
+
+        </div>
+<div class="profile-dashboard">
+
+    <div class="admin-section" style="margin-top: 0;">
+        <h4>Bilgilerimi Güncelle</h4>
+
+        <form action="{{ url_for('update_profile_info') }}" method="POST">
+
+            <div class="info-group">
+                <label>Adınız Soyadınız:</label>
+                <input type="text" name="full_name" value="{{ user_info.full_name or '' }}" required>
+            </div>
+
+            <div class="info-group">
+                <label>E-posta (Kullanıcı Adı):</label>
+                <input type="email" name="username" value="{{ user_info.username or '' }}" required>
+            </div>
+
+            <div class="info-group">
+                <label>Telefon Numaranız:</label>
+                <input type="tel" name="phone" value="{{ user_info.phone or '' }}" required>
+            </div>
+
+            <div class="info-group">
+                <label>Doğum Tarihi:</label>
+                <input type="date"
+                       name="birth_date"
+                       value="{{ user_info.birth_date.strftime('%Y-%m-%d') if user_info.birth_date else '' }}"
+                       required>
+            </div>
+
+            <button type="submit" class="appointment-button small-button">Bilgileri Kaydet</button>
+        </form>
+    </div>
+
+
+
+    <div class="appointment-toggle-header" data-target="future-appointments">
+        <h4 style="color: green; margin: 0;">
+            Planlanan Randevularınız (Gelecek)
+            <span class="count">({{ future_appointments | length }})</span>
+        </h4>
+        <i class="fas fa-chevron-down toggle-icon"></i>
+    </div>
+
+    <div id="future-appointments" class="appointment-list-content open">
+
+        {% if future_appointments %}
+            <table class="appointment-table">
+                <thead>
+                    <tr style="background-color: #f8f8f8;">
+                        <th>Servis</th>
+                        <th>Tarih & Saat</th>
+                        <th>Tasarım</th>
+                        <th>Fiyat</th>
+                        <th>Durum</th>
+                        <th>İşlem</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {% for appt in future_appointments %}
+                    <tr>
+                        <td>{{ appt.service_name }}</td>
+
+                        <td>{{ appt.appointment_date.strftime('%d.%m.%Y %H:%M') }}</td>
+
+                        <td class="design-preview-cell">
+
+                            {% if appt.appointment_image_path and appt.appointment_image_path != 'NULL' %}
+                                <img src="{{ url_for('static', filename=appt.appointment_image_path) }}"
+                                     class="appt-design-full">
+
+                            {% elif appt.design_image and appt.design_image != 'NULL' %}
+                                <img src="{{ url_for('static', filename=appt.design_image) }}"
+                                     class="appt-design-full">
+
+                            {% else %}
+                                <span class="design-text">Tasarım Yok</span>
+                            {% endif %}
+                        </td>
+
+                        <td>{{ appt.total_price }} TL</td>
+
+                        <td class="status-pending">RANDEVU ALINDI</td>
+
+                        <td>
+                            <a href="{{ url_for('update_appointment', appointment_id=appt.appointment_id) }}"
+                               class="button small-button"
+                               style="background: #ffb3d9; padding: 5px 10px;">
+                                Düzenle
+                            </a>
+
+                            <form action="{{ url_for('delete_appointment', appointment_id=appt.appointment_id) }}"
+                                  method="POST"
+                                  style="display:inline;"
+                                  onsubmit="return confirm('Bu randevuyu iptal etmek istediğinizden emin misiniz?')">
+
+                                <button type="submit"
+                                        style="background: #ff3399; color:white; padding:5px 10px; border-radius:4px;">
+                                    İptal Et
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+        {% else %}
+            <p>Yakın zamanda planlanmış bir randevunuz bulunmamaktadır.</p>
+        {% endif %}
+    </div>
+
+
+
+
+    <div class="appointment-toggle-header" data-target="past-appointments">
+        <h4 style="color: #ff3399; margin: 0;">
+            Geçmiş Tırnak Randevularınız
+            <span class="count">({{ past_appointments | length }})</span>
+        </h4>
+        <i class="fas fa-chevron-down toggle-icon"></i>
+    </div>
+
+    <div id="past-appointments" class="appointment-list-content">
+
+        {% if past_appointments %}
+            <table class="appointment-table">
+                <thead>
+                    <tr style="background-color: #f8f8f8;">
+                        <th>Servis</th>
+                        <th>Tarih & Saat</th>
+                        <th>Tasarım</th>
+                        <th>Fiyat</th>
+                        <th>Durum</th>
+                        <th>İşlem</th> 
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {% for appt in past_appointments %}
+                    <tr>
+                        <td>{{ appt.service_name }}</td>
+
+                        <td>{{ appt.appointment_date.strftime('%d.%m.%Y %H:%M') }}</td>
+
+                        <td class="design-preview-cell">
+
+                            {% if appt.appointment_image_path and appt.appointment_image_path != 'NULL' %}
+                                <img src="{{ url_for('static', filename=appt.appointment_image_path) }}"
+                                     class="appt-design-full">
+
+                            {% elif appt.design_image and appt.design_image != 'NULL' %}
+                                <img src="{{ url_for('static', filename=appt.design_image) }}"
+                                     class="appt-design-full">
+
+                            {% else %}
+                                <span class="design-text">Tasarım Yok</span>
+                            {% endif %}
+                        </td>
+
+                        <td>{{ appt.total_price }} TL</td>
+
+                        <td style="color:#777;">GEÇMİŞ</td>
+                        
+                       <td>
+    <button class="btn-review" onclick="openReviewModal()">
+        <i class="fas fa-star"></i> Yorum Yap
+    </button>
+</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+
+            </table>
+
+        {% else %}
+            <p>Henüz tamamlanmış bir randevunuz bulunmamaktadır.</p>
+        {% endif %}
+    </div>
+
+</div> </div> </section>
+
+<div id="reviewModal" class="review-modal-overlay">
+    <div class="review-modal-content">
+        <span class="close-review" onclick="closeReviewModal()">&times;</span>
+        
+        <h3 style="color: #ffb6d5; margin-bottom: 10px;">Deneyimini Puanla 💖</h3>
+        <p style="color: #ffccea; font-size: 0.9rem; margin-bottom: 20px;">Hizmetimizden memnun kaldın mı?</p>
+        
+        <form action="{{ url_for('submit_review') }}" method="POST">
+            
+            <div class="star-rating">
+                <input type="radio" id="star5" name="rating" value="5" required /><label for="star5" title="Mükemmel">★</label>
+                <input type="radio" id="star4" name="rating" value="4" /><label for="star4" title="Çok İyi">★</label>
+                <input type="radio" id="star3" name="rating" value="3" /><label for="star3" title="İdare Eder">★</label>
+                <input type="radio" id="star2" name="rating" value="2" /><label for="star2" title="Kötü">★</label>
+                <input type="radio" id="star1" name="rating" value="1" /><label for="star1" title="Berbat">★</label>
+            </div>
+            
+            <textarea name="content" placeholder="Düşüncelerini buraya yazabilirsin..." required></textarea>
+            
+            <button type="submit" class="submit-review-btn">Gönder</button>
+        </form>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+
+    const headers = document.querySelectorAll('.appointment-toggle-header');
+
+    headers.forEach(header => {
+        header.addEventListener('click', () => {
+
+            const targetId = header.getAttribute('data-target');
+            const content = document.getElementById(targetId);
+
+            if (content.classList.contains('open')) {
+                content.classList.remove('open');
+                header.classList.remove('open');
+                content.style.maxHeight = 0;
+            } else {
+                content.style.maxHeight = content.scrollHeight + "px";
+                content.classList.add('open');
+                header.classList.add('open');
+            }
+        });
+    });
+
+    // Sayfa açıldığında gelecekteki randevular otomatik açık kalsın
+    const futureHeader = document.querySelector('.appointment-toggle-header[data-target="future-appointments"]');
+    if (futureHeader) {
+        futureHeader.click();
+    }
+});
+
+// YORUM MODALI SCRIPTLERI
+function openReviewModal() {
+    document.getElementById('reviewModal').style.display = 'flex';
+}
+function closeReviewModal() {
+    document.getElementById('reviewModal').style.display = 'none';
+}
+
+// Modal dışına tıklayınca kapatma
+window.onclick = function(event) {
+    var modal = document.getElementById('reviewModal');
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+</script>
+
+</body>
+</html>

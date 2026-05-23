@@ -1,0 +1,5401 @@
+style.css
+
+/* Font Awesome v6.5.0 Kütüphanesini Kullanır */
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css');
+/* Genel Ayarlar ve Font */
+body {
+    margin: 0;
+    font-family: sans-serif; 
+    color: #333; /* Sayfanın geri kalanı için varsayılan metin rengi */
+    overflow-x: hidden;
+}
+
+/* === NAVİGASYON ŞERİTİ (HEADER) === */
+/* style.css dosyanızdaki .navbar bloğunu kontrol edin: */
+.navbar {
+    position: fixed; 
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 80px; 
+    display: flex; 
+    justify-content: flex-end; 
+    align-items: center;
+    padding: 0 40px;
+    box-sizing: border-box;
+    z-index: 100; 
+    
+    /* ÖNEMLİ: Bu stil, her iki sayfada da blur'u tutar */
+    background: rgba(255, 255, 255, 0.2); /* Hafif beyaz şeffaflık */
+    backdrop-filter: blur(8px); /* Blur efektini biraz güçlendirdik */
+    box-shadow 0 1px 5px rgba(0, 0, 0, 0.1);
+}
+
+.nav-links a {
+    /* Eski: color: white; */
+    color: #333; /* Varsayılanı koyu yapalım */
+    text-decoration: none;
+    margin-left: 25px;
+    font-weight: 500;
+    font-size: 1rem;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover {
+    color: #ff3399; 
+}
+
+/* Giriş Yap Butonu */
+.login-button {
+    background-color: #ff3399;
+    padding: 8px 15px;
+    border-radius: 4px;
+    margin-left: 35px !important;
+    font-weight: bold !important;
+}
+
+.login-button:hover {
+    background-color: #e52c88;
+    color: white !important;
+}
+
+/* === HERO SECTION (ANA TASARIMINIZ) === */
+.hero-section {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    padding: 40px;
+    box-sizing: border-box;
+    /* KRİTİK: Butonun kalkıp büyümesi için dışarı taşmayı serbest bırakıyoruz */
+    overflow: visible;
+
+    background-image: url('PERİ NAİL STUDİO.jpg'); 
+    background-size: cover; 
+    background-position: center;
+    background-repeat: no-repeat;
+    
+    color: white; 
+}
+
+
+
+/* Logo */
+.logo-text {
+    position: absolute;
+    top: 100px; 
+    left: 40px;
+    font-size: clamp(3rem, 7vw, 6rem);
+    font-weight: 900;
+    color: #ff3399;
+    margin: 0;
+    line-height: 1;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5); 
+    z-index: 5;
+}
+
+/* Ana Slogan */
+.main-content {
+    position: absolute;
+    top: 50%;
+    left: 55%; 
+    transform: translate(-50%, -50%);
+    width: 90%;
+    max-width: 700px;
+}
+
+.main-heading {
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    font-weight: 700;
+    line-height: 1.15;
+    margin: 0;
+    text-align: right;
+    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.8);
+}
+
+/* Alıntı Metni */
+.quote {
+    font-size: clamp(1.4rem, 2.5vw, 2.2rem); 
+    font-style: italic;
+    font-weight: 500; 
+    line-height: 1.3;
+    margin: 0;
+    max-width: 500px;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.9);
+}
+
+/* Alt Bölüm (Alıntı ve Buton Konteyneri) */
+/* style.css dosyanızdaki .footer-content bloğunu bulun ve değiştirin: */
+.footer-content {
+    position: absolute;
+    bottom: 40px; 
+    left: 40px; 
+    right: 40px; 
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end; 
+    /* KRİTİK: Buton kesilmesin diye */
+    overflow: visible; 
+    z-index: 50; /* Butonu her zaman diğer içeriğin üstünde tutar */
+}
+
+/* Randevu Al Butonu */
+.appointment-button {
+    text-decoration: none; 
+    background-color: #FF3399; 
+    color: white; 
+    padding: 20px 50px; 
+    border-radius: 8px; 
+    font-size: 1.2rem; 
+    font-weight: bold;
+    text-transform: uppercase;
+    
+    margin-right: 50px; 
+    margin-bottom: 20px; 
+    
+    box-shadow: 0 4px 15px rgba(255, 51, 153, 0.6); 
+    transition: all 0.4s ease; 
+    text-align: center;
+    border: 3px solid transparent; 
+}
+
+.appointment-button:hover {
+    background-color: #E52C88 !important; /* Arka planı zorla */
+    
+    /* YÜKSELME VE BÜYÜME EFEKTİ */
+    transform: translateY(-5px) scale(1.02) !important; /* TRANSFORM'U ZORLA */
+    
+    /* GÖLGE EFEKTİ */
+    box-shadow: 0 8px 25px rgba(255, 51, 153, 0.9),
+                0 0 0 5px rgba(255, 255, 255, 0.5) !important; /* SHADOW'U ZORLA */
+    border-color: white !important; 
+}
+
+
+/* === DİĞER BÖLÜMLERİN TEMEL STİLİ === */
+.section {
+    padding: 80px 40px;
+    text-align: center;
+    min-height: 30vh;
+    position: relative; 
+}
+
+/* Hizmetler Bölümü (Arka Plan ve Overlay) */
+.services-section {
+    background-image: url('tırnakk.jpeg'); 
+    background-size: cover; 
+    background-position: center;
+    background-attachment: fixed; 
+    background-color: #fcfcfc; 
+    
+    position: relative; 
+    overflow: hidden;
+
+    padding-top: 60px;
+    padding-bottom: 60px;
+}
+
+/* Arka Plan BELİRGİNLİĞİNİ ARTIRAN Yarı Saydam Renk Katmanı */
+.services-section::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 240, 250, 0.45); 
+    z-index: 1; 
+}
+
+/* İçeriği (Başlık ve Kartları) öne çıkar */
+.section-title, .section-subtitle, .circular-service-container {
+    position: relative;
+    z-index: 2;
+}
+
+/* Hizmet Bölümü Başlıkları (ŞIK ÇİZGİLİ TASARIM) */
+.section-title {
+    font-size: 3rem; 
+    font-weight: 700;
+    color: #ff3399; 
+    margin-bottom: 30px; 
+    display: inline-block; 
+    position: relative;
+    padding-bottom: 10px; 
+    z-index: 10;
+}
+
+/* Başlığa İki Katmanlı Şık Alt Çizgi */
+.section-title::after, .section-title::before {
+    content: "";
+    position: absolute;
+    bottom: 0; 
+    left: 50%;
+    transform: translateX(-50%); 
+    background-color: #ff3399;
+    border-radius: 2px;
+    z-index: 1;
+}
+
+/* Altıncı (Alttaki) Katman: Daha ince ve kısa */
+.section-title::before {
+    width: 100px; 
+    height: 2px; 
+    bottom: 5px; 
+    background-color: #ffb3d9; 
+}
+
+/* Üstteki Katman: Daha kalın ve uzun */
+.section-title::after {
+    width: 200px; 
+    height: 3px; 
+    background-color: #ff3399; 
+}
+
+.section-subtitle {
+    font-size: 1.2rem;
+    color: #666;
+    margin-bottom: 60px; 
+    position: relative;
+    z-index: 10;
+}
+
+/* YENİ DAİRESEL HİZMET KARTLARI */
+.circular-service-container {
+    display: flex;
+    justify-content: center;
+    gap: 40px; 
+    flex-wrap: wrap; 
+    margin-bottom: 40px;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.circle-item {
+    width: 320px; 
+    height: 320px; 
+    border-radius: 50%; 
+    position: relative;
+    overflow: hidden; 
+    cursor: pointer;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15); 
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    background-size: cover; 
+    background-position: center; 
+    border: 5px solid #f0e6f2; 
+}
+
+/* Hover Efekti */
+.circle-item:hover {
+    transform: scale(1.05) translateY(-10px); 
+    box-shadow: 0 15px 45px rgba(255, 51, 153, 0.4); 
+    border-color: #ff3399; 
+}
+
+/* Daire İçeriği (Başlık, Açıklama, Buton) */
+.circle-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.7); 
+    color: white;
+    opacity: 0; 
+    transition: opacity 0.4s ease;
+    padding: 20px; 
+    box-sizing: border-box;
+}
+
+.circle-item:hover .circle-content {
+    opacity: 1; 
+}
+
+.circle-title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #ff3399; 
+    margin-bottom: 10px;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+}
+
+.circle-description {
+    font-size: 0.95rem;
+    line-height: 1.4;
+    margin-bottom: 20px;
+    max-width: 80%; 
+}
+
+.circle-link {
+    display: inline-block;
+    color: white;
+    text-decoration: none;
+    background-color: #ff3399;
+    padding: 10px 20px;
+    border-radius: 25px; 
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: background-color 0.3s, transform 0.3s;
+    box-shadow: 0 5px 15px rgba(255, 51, 153, 0.4);
+}
+
+.circle-link:hover {
+    background-color: #e52c88;
+    transform: scale(1.05); 
+}
+
+/* GÖRSEL ARKA PLANLARI (Dairesel Kartlar için) */
+.bakim-bg {
+    background-image: url('bakim.jpg'); 
+}
+.spa-bg {
+    background-image: url('spa.jpg');
+}
+.shape-bg {
+    background-image: url('shape.jpg');
+}
+
+/* === TASARIMLAR/GALERİ BÖLÜMÜ STİLLERİ === */
+
+.designs-section {
+    background-color: transparent; 
+    padding-top: 60px;
+    padding-bottom: 80px;
+    margin-left: -20px; 
+    margin-right: -20px;
+}
+
+/* Başlıkları Hizmetler bölümündeki şık stille aynı yapalım */
+.design-section-title {
+    
+}
+.design-section-subtitle {
+    /
+}
+
+.design-gallery-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 0; 
+    max-width: none; 
+    width: 100vw; 
+    margin: 0; 
+    padding-top: 20px; 
+    box-sizing: border-box; 
+}
+
+.gallery-item {
+    width: 100%;
+    height: 450px; 
+    
+    background-size: cover; 
+    background-color: transparent; 
+    background-position: center;
+    background-repeat: no-repeat;
+    
+    border-radius: 0; 
+    overflow: hidden; 
+    
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); 
+    transition: transform 0.4s ease, box-shadow 0.4s ease, background-size 0.4s ease; 
+    cursor: pointer;
+
+    border: none; 
+    box-sizing: border-box; 
+}
+
+/* Hover Efekti: Tam Hali ve Dışa Doğru Yükselerek Büyüme */
+.gallery-item:hover {
+    transform: translateY(-8px) scale(1.02); 
+    
+    background-size: contain; 
+    background-color: white; 
+    
+    box-shadow: 0 15px 40px rgba(255, 51, 153, 0.6); 
+    
+    z-index: 10; 
+}
+
+/* Randevu Butonu */
+.design-button {
+    background-color: #e52c88 !important; 
+    box-shadow: none !important;
+    transform: none !important;
+    padding: 15px 30px;
+    margin-top: 20px;
+}
+.design-button:hover {
+    background-color: #ff3399 !important;
+}
+
+/* --- GÖRSEL ARKA PLANLARI (6 Resim) --- */
+.design-1 { background-image: url('tırnak1.jpeg'); }
+.design-2 { background-image: url('tırnak2.jpeg'); }
+.design-3 { background-image: url('tırnak3.jpeg'); }
+.design-4 { background-image: url('tırnak4.jpeg'); }
+.design-5 { background-image: url('tırnak5.jpeg'); }
+.design-6 { background-image: url('tırnak6.jpeg'); }
+
+/* Yeni Buton Konteyneri - Sağ En Sona Yaslama */
+.design-button-container {
+    max-width: 100%; 
+    
+    margin-top: 50px; 
+    margin-bottom: 0; 
+    
+    text-align: right; 
+    
+    padding-right: 0px; 
+    padding-left: 40px; 
+    
+    box-sizing: border-box; 
+}
+
+/* Mobil Uyumlu Düzenleme */
+@media (max-width: 768px) {
+    .design-button-container {
+        text-align: center; 
+        padding: 0 20px;
+        margin-top: 30px; 
+    }
+    .design-more-button {
+        width: 100%; 
+    }
+}
+
+/* === MOBİL UYUMLULUK (TÜM MOBİL STİLLER) === */
+@media (max-width: 1050px) {
+    .design-gallery-container {
+        grid-template-columns: repeat(2, 1fr); 
+        max-width: 700px;
+    }
+}
+
+@media (max-width: 768px) {
+    /* Navbar Mobil */
+    .navbar {
+        padding: 0 20px;
+        justify-content: center;
+        background: rgba(0, 0, 0, 0.8); 
+        backdrop-filter: none;
+    }
+
+    .nav-links a {
+        color: white; 
+        margin-left: 10px;
+        font-size: 0.8rem;
+    }
+    
+    /* Hero Section Mobil */
+    .logo-text {
+        top: 80px; 
+        left: 20px;
+        font-size: 10vw; 
+    }
+    
+    .hero-section {
+        padding: 20px;
+    }
+
+    /* Ana Metin Mobil */
+    .main-content {
+        top: 55%; 
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+    }
+
+    .main-heading {
+        text-align: center;
+        font-size: 8vw;
+    }
+    
+    /* Footer ve Buton Mobil */
+    .footer-content {
+        bottom: 20px;
+        left: 20px; 
+        right: 20px;
+        flex-direction: column; 
+        align-items: flex-start;
+    }
+    
+    .quote {
+        max-width: 100%;
+        margin-bottom: 15px;
+        font-size: 1.2rem;
+    }
+    
+    .appointment-button {
+        width: 100%;
+        box-sizing: border-box;
+        margin-right: 0; 
+        margin-bottom: 0; 
+        transform: none; 
+        box-shadow: none;
+        padding: 15px 30px; 
+    }
+    
+    /* Başlık Mobil */
+    .section-title {
+        font-size: 2rem;
+    }
+
+    .section-title::after, .section-title::before {
+        display: none; 
+    }
+
+    /* Dairesel Hizmet Kartları Mobil */
+    .circular-service-container {
+        gap: 20px; 
+        padding: 0 15px;
+    }
+
+    .circle-item {
+        width: 280px; 
+        height: 280px;
+        border: 3px solid #f0e6f2; 
+    }
+
+    .circle-item:hover {
+        transform: none; 
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15); 
+        border-color: #f0e6f2;
+    }
+    
+    .circle-content {
+        opacity: 1; 
+        background: rgba(0, 0, 0, 0.6); 
+        padding: 15px;
+    }
+
+    .circle-title {
+        font-size: 1.4rem;
+    }
+
+    .circle-description {
+        font-size: 0.85rem;
+    }
+
+    .circle-link {
+        padding: 8px 15px;
+        font-size: 0.9rem;
+    }
+
+    /* Tasarımlar Mobil */
+    .design-gallery-container {
+        grid-template-columns: 1fr; 
+        padding: 0 20px;
+    }
+    .gallery-item {
+        height: 300px;
+    }
+}
+
+/* === FİNAL İLETİŞİM BÖLÜMÜ (KOYU GRİ VE ORTALANMIŞ) === */
+
+.contact-section { /* HTML'inizdeki DIV veya SECTION sınıfını hedefliyor */
+    background-color: #2e2e2e; /* KOYU GRİ ARKA PLAN */
+    padding: 50px 0;
+    width: 100%;
+}
+
+.contact-align-left-container { /* Çevresindeki SECTION veya DIV */
+    max-width: 400px; /* Görseldeki gibi dar ve ortalanmış */
+    margin: 0 auto; 
+    padding: 0 40px; 
+}
+
+/* BAŞLIK STİLİ */
+.contact-section h3 { 
+    color: white; 
+    font-size: 1.8rem;
+    font-weight: bold; 
+    margin-bottom: 25px;
+    text-transform: uppercase;
+    text-align: left; /* BAŞLIĞI SOLA YASLAR */
+}
+
+/* BİLGİ GRUPLARI VE ORTALAMA */
+.contact-item {
+    display: flex; 
+    /* Metin hizalamasını engellemek için sola yasla */
+    justify-content: flex-start; 
+    /* Uzun metinlerde ikonun üstte kalmasını sağlar */
+    align-items: flex-start; 
+    margin-bottom: 25px;
+    font-size: 1.1rem;
+    color: white; 
+    width: 100%; 
+}
+
+/* İKON KUTUSU (Görseldeki gibi kenar boşluğunu kontrol eder) */
+.contact-item .icon {
+    width: 30px;
+    height: 30px;
+    background: none;
+    margin-right: 20px;
+    text-align: center;
+    flex-shrink: 0; /* İkonun sıkışmasını engeller */
+}
+
+/* İKONLARIN GÖRÜNMESİNİ VE HİZALANMASINI SAĞLAYAN KRİTİK STİL */
+.contact-item i {
+    font-size: 1.8rem;
+    color: white; 
+    /* Bu, HTML'inizdeki <i class="fas fa-..."> etiketini hedef alır */
+}
+
+/* Metin Stili */
+.contact-item p, .contact-item a {
+    display: inline; 
+    margin: 0;
+    color: white; 
+    text-decoration: none;
+    line-height: 1.3;
+    font-weight: 400;
+}
+
+/* Pembe Vurgulu Linkler */
+.contact-item a {
+    color: #ff3399 !important; 
+    font-weight: 500;
+}
+
+/* SOSYAL MEDYA ORTALAMASI */
+.contact-item.social {
+    margin-top: 30px;
+    justify-content: flex-start;
+}
+.social-links a {
+    margin-right: 15px; 
+    color: white;
+    font-size: 1.5rem;
+}
+
+/* === TELİF HAKKI METNİ (AÇIK PEMBE ŞERİT VE KESİN ORTALAMA) === */
+
+.copyright-bar-final { 
+    background-color: #F0E6F2 !important; /* AÇIK PEMBE ARKA PLAN (ZORLAMA) */
+    padding: 20px 0;
+    width: 100%; 
+    box-sizing: border-box;
+}
+
+.copyright-align-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 40px;
+    
+    /* KRİTİK: Metni ve içeriği yatayda ortalar */
+    text-align: center !important; 
+}
+
+.copyright-align-container p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: #666; 
+
+}
+
+
+
+
+
+/* === FULL KATALOG SAYFASI STİLLERİ (tasarimlar.html için) === */
+
+.full-catalog-section {
+    background-color: #fcfcfc; /* Açık arka plan */
+    padding-top: 150px; /* Navbar'dan sonra başlaması için */
+    padding-bottom: 80px;
+}
+
+.full-gallery-grid {
+    display: grid;
+    /* Otomatik sığan, 280px minimum genişlikli kartlar (genellikle 4-5 kart yan yana) */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 40px; 
+}
+
+.design-card {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    text-align: center;
+    transition: transform 0.3s;
+    overflow: hidden;
+}
+
+.design-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 30px rgba(255, 51, 153, 0.3); 
+}
+
+.design-image-placeholder {
+    width: 100%;
+    height: 350px; 
+    background-size: cover;
+    background-position: center;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #f0f0f0; 
+}
+
+.design-name {
+    font-size: 1.3rem;
+    color: #ff3399; 
+    margin-bottom: 5px;
+    margin-top: 10px;
+    font-weight: 600;
+}
+
+.design-price {
+    font-size: 1.1rem;
+    color: #333;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.small-button {
+    /* Ana buton stilini küçültüyoruz */
+    padding: 10px 20px !important;
+    font-size: 0.9rem !important;
+    box-shadow: 0 2px 8px rgba(255, 51, 153, 0.4);
+}
+
+/* Mobil Düzenleme */
+@media (max-width: 768px) {
+    .full-gallery-grid {
+        padding: 0 20px;
+    }
+    .design-image-placeholder {
+        height: 280px;
+    }
+}
+
+
+
+
+/* === RANDEVU SAYFASI STİLLERİ === */
+
+.booking-section {
+    background-color: #fcfcfc;
+    padding-top: 150px; /* Navbar altından başla */
+    text-align: center;
+}
+
+.booking-form-container {
+    max-width: 650px;
+    margin: 40px auto;
+    padding: 30px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    text-align: left;
+}
+
+/* ADIM GÖSTERGESİ (Step Indicator) */
+.step-indicator {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+    position: relative;
+}
+
+.step {
+    flex: 1;
+    text-align: center;
+    color: #999;
+    font-weight: 600;
+    font-size: 0.95rem;
+    padding-bottom: 10px;
+    border-bottom: 3px solid #eee;
+    transition: color 0.3s, border-color 0.3s;
+}
+
+.step.active {
+    color: #ff3399;
+    border-color: #ff3399;
+}
+
+/* FORM ADIMLARI */
+.form-step {
+    display: none; /* Varsayılan olarak gizli */
+}
+
+.form-step.active {
+    display: block;
+}
+
+.form-step h3 {
+    color: #333;
+    margin-top: 0;
+    margin-bottom: 25px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+}
+
+.form-step input[type="text"],
+.form-step input[type="email"],
+.form-step input[type="tel"],
+.form-step input[type="date"],
+.form-step select {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    box-sizing: border-box;
+}
+
+/* BUTONLAR */
+.appointment-button {
+    margin-top: 10px;
+    margin-right: 10px !important; /* Yan yana durmaları için boşluk */
+    /* Diğer stiller index.html'den gelir */
+}
+
+.appointment-button.secondary {
+    background-color: #aaa !important;
+    box-shadow: none !important;
+}
+
+/* TASARIM ÖNİZLEMESİ */
+.design-preview-box {
+    display: flex;
+    align-items: center;
+    background: #f9f9f9;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+.design-preview-box img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 5px;
+    margin-right: 15px;
+}
+.summary-list {
+    list-style: none;
+    padding: 0;
+    border: 1px solid #ff3399;
+    border-radius: 8px;
+    padding: 20px;
+}
+.summary-list li {
+    margin-bottom: 10px;
+    font-size: 1.1rem;
+}
+.summary-list li span {
+    font-weight: bold;
+    color: #ff3399;
+}
+
+
+
+/* === GİRİŞ/KAYIT SAYFASI STİLLERİ (auth.html için) === */
+
+.auth-form-container {
+    max-width: 400px;
+    margin: 40px auto;
+    padding: 30px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.auth-form-container input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.form-heading {
+    color: #ff3399;
+    font-size: 1.5rem;
+    margin-top: 0;
+    margin-bottom: 25px;
+}
+
+.auth-links {
+    margin-top: 20px;
+}
+
+.auth-links .forgot-link {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 0.9rem;
+    color: #333;
+    text-decoration: none;
+}
+.auth-links .forgot-link:hover {
+    color: #ff3399;
+    text-decoration: underline;
+}
+
+.register-text {
+    font-size: 0.95rem;
+    color: #666;
+    margin: 10px 0 0 0;
+}
+
+.link-pink {
+    color: #ff3399 !important;
+    font-weight: bold;
+    text-decoration: none;
+}
+.link-pink:hover {
+    text-decoration: underline;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* Buton Stili */
+.auth-submit-button {
+    width: 100%;
+    margin-top: 15px;
+}
+.auth-submit-button.secondary {
+    background-color: #f0e6f2 !important; 
+    color: #ff3399 !important; 
+}
+
+
+
+
+/* style.css dosyanızdaki .profile-link bloğunu bulun ve DÜZELTİN: */
+.profile-link {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    margin-left: 25px;
+    
+    /* KRİTİK DÜZELTME: İkonun rengini garanti ediyoruz */
+    color: white !important; 
+    
+    z-index: 1001 !important; /* Navbar'dan bile üstte olsun */
+    text-decoration: none;
+    transition: color 0.3s;
+}
+.profile-link:hover {
+    color: #ff3399 !important; /* Hover'da pembe */
+}
+
+
+
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Menü solda, user-section sağda */
+}
+
+.user-section {
+    display: flex;
+    align-items: center;
+    gap: 15px; /* Profil ve çıkış arası boşluk */
+}
+
+.profile-link {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+}
+
+.profile-link i {
+    font-size: 1.5rem;
+    margin-right: 5px;
+    color: #000; /* Kullanıcı ikonunu siyah yapar */
+}
+
+
+
+.login-button.secondary {
+    background-color: #f1f1f1;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+
+/* profil içinnnnn */
+
+.profile-image-wrapper {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 15px;
+}
+
+.profile-img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 0 8px rgba(0,0,0,0.2);
+}
+
+.upload-form {
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.upload-form input[type="file"] {
+  margin: 8px 0;
+}
+
+.upload-form button {
+  background: #d67ba8;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+.upload-form button:hover {
+  background: #b65b8e;
+}
+
+.header-profile-img {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.header-profile-icon {
+  font-size: 35px;
+  color: #000; /* siyah kullanıcı ikonu */
+}
+
+
+/* style.css dosyasındaki .profile-photo bloğu */
+.profile-photo {
+    width: 150px; 
+    height: 150px; 
+    border-radius: 50%; 
+    
+    /* KRİTİK DÜZELTME: Resmi çerçeveye sığdırır */
+    object-fit: cover; 
+    
+    border: 4px solid #ffb3d9; 
+}
+
+/* Navbar'daki profil fotoğrafı için de kontrol edin */
+.nav-profile-img {
+    width: 35px; 
+    height: 35px;
+    border-radius: 50%; 
+    
+    /* KRİTİK DÜZELTME: Resmi çerçeveye sığdırır */
+    object-fit: cover; 
+    
+    margin-left: 20px; 
+    border: 2px solid #ffb3d9; 
+}
+
+/* style.css dosyanıza ekleyin */
+
+/* style.css dosyanıza ekleyin veya güncelleyin */
+
+/* Bu, profil sayfasındaki YENİ RANDEVU AL butonunu hedef alır. */
+.profile-sidebar .appointment-button {
+    /* Mevcut margin-top: 35px; değerini biraz artırarak butonu aşağı itiyoruz */
+    margin-top: 40px !important; /* KRİTİK: Butonu aşağı kaydırır ve önceliği artırır */
+    margin-bottom: 15px; /* Alttan da biraz boşluk bırakır */
+    
+    /* Gerekirse, fotoğrafın altındaki 'Telefon/Eposta' div'ine de boşluk verebiliriz */
+}
+
+
+
+
+
+
+
+
+
+
+admin_dashboard.html
+
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yönetici Paneli | PIXIE NAILS</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* =============================================
+           PIXIE ADMIN — DARK LUXURY THEME
+           ============================================= */
+        
+        * { box-sizing: border-box; }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('{{ url_for("static", filename="images/arkaplan17.jpg") }}');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-color: #1a0b15; /* Yedek renk */
+            background-blend-mode: multiply;
+            background-color: rgba(0, 0, 0, 0.7); /* Biraz daha koyu overlay */
+            color: #f0f0f0;
+            min-height: 100vh;
+        }
+
+        /* NAVBAR */
+        .navbar {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            padding: 15px 40px;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 51, 153, 0.2);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .admin-logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: #ff3399;
+            text-shadow: 0 0 10px rgba(255, 51, 153, 0.4);
+        }
+
+        .nav-links a {
+            color: #ccc;
+            text-decoration: none;
+            margin-left: 20px;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+        .nav-links a:hover { color: #fff; text-shadow: 0 0 5px #fff; }
+
+        /* CONTAINER */
+        .dashboard-container {
+            max-width: 1400px;
+            margin: 100px auto 40px; /* Navbar payı */
+            padding: 0 20px;
+        }
+
+        .dashboard-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding-bottom: 15px;
+        }
+
+        .dashboard-title {
+            font-size: 2rem;
+            font-weight: 700;
+            background: linear-gradient(45deg, #ff9a9e, #ff3399);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .user-welcome {
+            color: #ffccea;
+            font-size: 1rem;
+        }
+
+        /* ORTAK KART STİLİ (GLASSMORPHISM) */
+        .admin-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .card-header {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #ff69b4;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .card-header i { color: #ff3399; }
+
+        /* --- TABLO STİLLERİ --- */
+        .table-responsive {
+            overflow-x: auto;
+        }
+
+        .admin-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            margin-top: 10px;
+            font-size: 0.95rem;
+        }
+
+        .admin-table th {
+            background: rgba(255, 51, 153, 0.15);
+            color: #ffb6d5;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+            border-bottom: 2px solid rgba(255, 51, 153, 0.3);
+            white-space: nowrap;
+        }
+
+        .admin-table td {
+            padding: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            color: #eee;
+            vertical-align: middle;
+        }
+
+        .admin-table tr:hover td {
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        /* STATÜ ROZETLERİ */
+        .status-badge {
+            padding: 6px 12px;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .status-pending { background: rgba(255, 193, 7, 0.2); color: #ffca2c; border: 1px solid rgba(255, 193, 7, 0.3); }
+        .status-confirmed { background: rgba(25, 135, 84, 0.2); color: #20c997; border: 1px solid rgba(25, 135, 84, 0.3); }
+        .status-completed { background: rgba(13, 202, 240, 0.2); color: #0dcaf0; border: 1px solid rgba(13, 202, 240, 0.3); }
+
+        /* --- FİLTRE BUTONLARI --- */
+        .filter-buttons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 25px;
+        }
+
+        .btn-filter {
+            background: rgba(255, 255, 255, 0.05);
+            color: #ff99cc;
+            border: 1px solid rgba(255, 51, 153, 0.3);
+            padding: 8px 18px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-family: 'Poppins', sans-serif;
+            transition: all 0.3s;
+            font-weight: 500;
+        }
+
+        .btn-filter:hover, .btn-filter.active {
+            background: #ff3399;
+            color: white;
+            box-shadow: 0 0 15px rgba(255, 51, 153, 0.4);
+            border-color: #ff3399;
+        }
+
+        /* --- TASARIM EKLEME FORMU --- */
+        .design-form-container {
+            background: rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .design-upload-form {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr auto;
+            gap: 20px;
+            align-items: end;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .form-group label {
+            font-size: 0.85rem;
+            color: #ffccea;
+        }
+
+        .form-input {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 10px;
+            border-radius: 8px;
+            color: white;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        .form-input:focus {
+            outline: none;
+            border-color: #ff3399;
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        /* Dosya yükleme inputu özel stil */
+        input[type="file"]::file-selector-button {
+            background: #ff3399;
+            border: none;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            margin-right: 10px;
+            cursor: pointer;
+        }
+
+        .btn-add {
+            background: linear-gradient(45deg, #ff3399, #d6006b);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(255, 51, 153, 0.3);
+            transition: transform 0.2s;
+            height: 42px; /* Inputlarla aynı hizada olması için */
+        }
+        .btn-add:hover { transform: scale(1.05); }
+
+        /* --- TASARIM GALERİSİ GRID --- */
+        .design-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 20px;
+        }
+
+        .design-item {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 10px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: transform 0.3s;
+        }
+        .design-item:hover { transform: translateY(-5px); border-color: #ff3399; }
+
+        .design-item img {
+            width: 100%;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+
+        .design-title { font-weight: 600; color: #fff; font-size: 0.95rem; margin-bottom: 5px; }
+        .design-price { color: #ff99cc; font-size: 0.9rem; margin-bottom: 10px; }
+
+        .btn-delete {
+            background: rgba(255, 77, 77, 0.15);
+            color: #ff4d4d;
+            border: 1px solid rgba(255, 77, 77, 0.3);
+            padding: 5px 12px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: 0.3s;
+        }
+        .btn-delete:hover { background: #ff4d4d; color: white; }
+
+        /* ALERT MESAJLARI */
+        .alert { padding: 15px; border-radius: 10px; margin-bottom: 20px; }
+        .alert-success { background: rgba(25, 135, 84, 0.2); color: #20c997; border: 1px solid rgba(25, 135, 84, 0.3); }
+        .alert-error { background: rgba(220, 53, 69, 0.2); color: #ff6b6b; border: 1px solid rgba(220, 53, 69, 0.3); }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .design-upload-form { grid-template-columns: 1fr; }
+            .btn-add { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="admin-logo">PIXIE ADMIN</div>
+        <div class="nav-links">
+            <a href="{{ url_for('index') }}">Siteye Dön <i class="fas fa-external-link-alt"></i></a>
+            <a href="{{ url_for('logout') }}" style="color: #ff3399; font-weight:bold;">Çıkış Yap</a>
+        </div>
+    </nav>
+
+    <div class="dashboard-container">
+        
+        <div class="dashboard-header">
+            <div class="dashboard-title">Yönetici Paneli</div>
+            <div class="user-welcome">Hoşgeldin, {{ session.full_name }} 👑</div>
+        </div>
+
+        <!-- Flash Mesajları -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <!-- 1. BÖLÜM: RANDEVULAR -->
+        <div class="admin-card">
+            <div class="card-header">
+                <i class="fas fa-calendar-check"></i>
+                Bekleyen Randevular ve Geçmiş
+            </div>
+
+            <div class="filter-buttons">
+                <!-- 'all' değerini özellikle küçük harfle yazdık -->
+                <button class="btn-filter" onclick="filterTable('all', this)">Tüm Randevular</button>
+                <!-- Diğerlerinde Türkçe karakterlere dikkat ederek yazdık -->
+                <button class="btn-filter" onclick="filterTable('nail art', this)">Nail Art</button>
+                <button class="btn-filter" onclick="filterTable('jel tırnak', this)">Jel Tırnak</button>
+                <button class="btn-filter" onclick="filterTable('protez tırnak', this)">Protez Tırnak</button>
+                <button class="btn-filter" onclick="filterTable('manikür', this)">Manikür Pedikür</button>
+                <button class="btn-filter" onclick="filterTable('spa', this)">El ve Ayak Spası</button>
+                <button class="btn-filter" onclick="filterTable('çıkarma', this)">Tırnak Çıkarma</button>
+            </div>
+
+            <div class="table-responsive">
+                <table class="admin-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Müşteri</th>
+                            <th>Servisler</th>
+                            <th>Tarih / Saat</th>
+                            <th>Fiyat</th>
+                            <th>Ödeme</th>
+                            <th>Durum</th>
+                            <th>İşlem</th>
+                        </tr>
+                    </thead>
+                    <tbody id="appointmentsTableBody">
+                        {% if appointments %}
+                            {% for appt in appointments %}
+                            <tr class="appointment-row">
+                                <td style="color: #ff99cc;">#{{ appt.appointment_id }}</td>
+                                <td><strong>{{ appt.user_name }}</strong></td>
+                                <td class="service-cell">{{ appt.service_names | default('-') }}</td>
+                                <td>{{ appt.appointment_date.strftime('%d.%m.%Y %H:%M') }}</td>
+                                <td style="font-weight:bold; color:#0dcaf0;">{{ appt.total_price }} TL</td>
+                                <td>
+                                    {% if appt.payment_method == 'card' %}
+                                        <i class="fas fa-credit-card" title="Kart"></i>
+                                    {% else %}
+                                        <i class="fas fa-money-bill-wave" title="Nakit"></i>
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    <span class="status-badge status-{{ appt.status }}">
+                                        {{ appt.status }}
+                                    </span>
+                                </td>
+                                <td>
+                                    <form action="{{ url_for('delete_appointment', appointment_id=appt.appointment_id) }}" method="POST" onsubmit="return confirm('Bu randevuyu silmek istediğine emin misin?')">
+                                        <button type="submit" class="btn-delete" style="padding:5px 10px;">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        {% else %}
+                            <tr>
+                                <td colspan="8" style="text-align:center; padding:30px; color:#888;">
+                                    Henüz hiç randevu kaydı yok.
+                                </td>
+                            </tr>
+                        {% endif %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- 2. BÖLÜM: TASARIM YÖNETİMİ -->
+        <div class="admin-card">
+            <div class="card-header">
+                <i class="fas fa-paint-brush"></i>
+                Tasarım Galerisi Yönetimi
+            </div>
+
+            <!-- Ekleme Formu -->
+            <div class="design-form-container">
+                <form action="{{ url_for('admin_add_design') }}" method="POST" enctype="multipart/form-data" class="design-upload-form">
+                    <div class="form-group">
+                        <label>Görsel Dosyası</label>
+                        <input type="file" name="file" class="form-input" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Tasarım Adı</label>
+                        <input type="text" name="design_name" class="form-input" placeholder="Örn: Kırmızı Stiletto" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Ek Ücret (TL)</label>
+                        <input type="number" name="design_price" class="form-input" placeholder="0.00" step="0.01" required>
+                    </div>
+                    <button type="submit" class="btn-add">
+                        <i class="fas fa-plus"></i> Ekle
+                    </button>
+                </form>
+            </div>
+
+            <!-- Tasarım Listesi -->
+            <div class="design-grid">
+                {% if designs %}
+                    {% for design in designs %}
+                    <div class="design-item">
+                        <img src="{{ url_for('static', filename=design.design_image) }}" alt="{{ design.design_name }}">
+                        <div class="design-title">{{ design.design_name }}</div>
+                        <div class="design-price">+{{ design.design_price }} TL</div>
+                        
+                        <form action="{{ url_for('admin_delete_design', design_id=design.design_id) }}" method="POST" onsubmit="return confirm('Bu tasarımı silmek istediğinize emin misiniz?')">
+                            <button type="submit" class="btn-delete">Sil</button>
+                        </form>
+                    </div>
+                    {% endfor %}
+                {% else %}
+                    <div style="grid-column: 1/-1; text-align:center; color:#888; padding:20px;">
+                        Henüz galeriye tasarım eklenmemiş.
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- 3. BÖLÜM: PROFİL AYARLARI -->
+        <div class="admin-card">
+            <div class="card-header">
+                <i class="fas fa-user-cog"></i>
+                Profil ve Hesap Ayarları
+            </div>
+
+            <div class="design-form-container" style="display:flex; flex-wrap:wrap; gap:30px; align-items:flex-start;">
+                
+                <!-- Fotoğraf Değiştirme -->
+                <div style="flex:1; min-width:250px; text-align:center;">
+                    <div style="width:120px; height:120px; border-radius:50%; overflow:hidden; margin:0 auto 15px; border:3px solid #ff3399;">
+                        {% if session.profile_image %}
+                            <img src="{{ url_for('static', filename=session.profile_image) }}" style="width:100%; height:100%; object-fit:cover;">
+                        {% else %}
+                            <div style="width:100%; height:100%; background:#333; display:flex; align-items:center; justify-content:center; color:#ff3399; font-size:3rem;">
+                                <i class="fas fa-user"></i>
+                            </div>
+                        {% endif %}
+                    </div>
+                    
+                    <form action="{{ url_for('upload_profile_image', user_id=session.user_id) }}" method="POST" enctype="multipart/form-data">
+                        <input type="file" name="profile_image_file" id="admin_photo_input" style="display:none;" onchange="this.form.submit()">
+                        <label for="admin_photo_input" class="btn-filter" style="display:inline-block; width:auto;">
+                            <i class="fas fa-camera"></i> Fotoğraf Değiştir
+                        </label>
+                    </form>
+                </div>
+
+                <!-- Bilgi Güncelleme -->
+                <div style="flex:2; min-width:300px;">
+                    <form action="{{ url_for('update_profile_info') }}" method="POST" class="design-upload-form" style="grid-template-columns: 1fr 1fr;">
+                        <div class="form-group">
+                            <label>Ad Soyad</label>
+                            <input type="text" name="full_name" class="form-input" value="{{ session.full_name }}">
+                        </div>
+                        <div class="form-group">
+                            <label>Kullanıcı Adı (Email)</label>
+                            <input type="email" name="username" class="form-input" value="{{ session.username }}" disabled title="Email değiştirilemez">
+                        </div>
+                        <div class="form-group">
+                            <label>Telefon</label>
+                            <input type="tel" name="phone" class="form-input" placeholder="0555...">
+                        </div>
+                        <div class="form-group">
+                            <label>Doğum Tarihi</label>
+                            <input type="date" name="birth_date" class="form-input">
+                        </div>
+                        <button type="submit" class="btn-add" style="grid-column: span 2; margin-top:10px;">
+                            <i class="fas fa-save"></i> Kaydet
+                        </button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+<script>
+    // Sayfa açılışında tüm satırları GİZLİ başlat
+    document.addEventListener("DOMContentLoaded", function() {
+        const rows = document.querySelectorAll('.appointment-row');
+        rows.forEach(row => {
+            row.style.display = 'none';
+        });
+    });
+
+    function filterTable(category, btn) {
+        // 1. Buton aktiflik durumu
+        document.querySelectorAll('.filter-btn, .btn-filter').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        const rows = document.querySelectorAll('.appointment-row');
+        
+        rows.forEach(row => {
+            const serviceCell = row.querySelector('.service-cell');
+            if (serviceCell) {
+                // DÜZELTME: innerText yerine textContent kullanıyoruz.
+                // Çünkü satır gizliyken (display: none) innerText boş gelebilir.
+                // textContent ise gizli olsa bile metni okur.
+                const serviceText = serviceCell.textContent.trim().toLocaleLowerCase('tr-TR');
+                const searchKey = category.trim().toLocaleLowerCase('tr-TR');
+                
+                // Mantık: 'all' ise hepsini göster, değilse ve metin içeriyorsa göster
+                if (category === 'all') {
+                    row.style.display = ''; 
+                } else if (serviceText.includes(searchKey)) {
+                    row.style.display = ''; 
+                } else {
+                    row.style.display = 'none'; 
+                }
+            }
+        });
+    }
+</script>
+</body>
+</html>
+
+
+
+
+
+
+ayth.html
+
+
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PIXIE NAILS | Giriş Yap</title>
+    
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+/* ---- GENEL AYARLAR ---- */
+        body {
+            /* Arka plan resim yolunu kontrol et */
+            background-image: url('{{ url_for("static", filename="images/arkaplan12.jpg") }}'); 
+            background-size: cover; 
+            background-position: center;  
+            background-attachment: fixed;
+            background-repeat: no-repeat; 
+            min-height: 100vh;
+            color: #fff; 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* ---- NAVBAR ---- */
+        .navbar {
+            background: rgba(0, 0, 0, 0.6);
+            padding: 15px 40px;
+            display: flex;
+            justify-content: flex-end;
+        }
+        
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            margin-left: 20px;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+        .nav-links a:hover {
+            color: #ff007f;
+        }
+
+        /* ---- ORTA BÖLÜM ---- */
+        .auth-page-section {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        /* ---- PANTER (MASCOT) ---- */
+        .mascot-container {
+            position: relative;
+            width: 100%;
+             /* Konteyneri genişlettik */
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            
+            /* Panterin kutunun üstünde görünmesi için en kritik ayar */
+            z-index: 50; 
+            
+            /* BU AYAR PANTERİ KUTUNUN İÇİNE SOKAR
+               -190px: Panterin gövdesi kutunun içine 190 piksel girer. 
+               Böylece kolları yazının üstüne sarkar. */
+            margin-bottom: -150px; 
+        }
+
+        .mascot-img {
+            /* Panter bayağı BÜYÜK oldu */
+            width: 400px; 
+            height: auto;
+            /* Derinlik gölgesi */
+            filter: drop-shadow(0 20px 20px rgba(0,0,0,0.8)); 
+        }
+
+        /* ---- GRİMSİ FORM KUTUSU ---- */
+        .auth-form-container {
+            /* Koyu Grimsi Şeffaf Arka Plan */
+            background: rgba(30, 30, 30, 0.7); 
+            
+            backdrop-filter: blur(15px); 
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.3); 
+            border-radius: 20px;
+            
+            /* ÜST BOŞLUK (PADDING):
+               Panter 190px içeri girdiği için, yazının panterin altında kalması lazım.
+               Bu yüzden üstten 200px boşluk bıraktık. */
+            padding: 50px 40px 50px 40px; 
+            
+            width: 100%;
+            max-width: 380px;
+            text-align: center;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.7);
+            position: relative;
+            z-index: 1; /* Kutu altta */
+        }
+
+        /* ---- YAZILAR VE FORM ---- */
+        .section-title {
+            color: #ff69b4; /* Hot Pink */
+            font-size: 2em;
+            margin-bottom: 5px;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.5);
+        }
+
+        .section-subtitle {
+            color: #ccc; 
+            font-size: 0.9em;
+            margin-bottom: 25px;
+        }
+
+        .form-heading {
+            color: #ff69b4;
+            margin-bottom: 15px;
+            font-size: 1.2em;
+        }
+
+        input[type="email"], 
+        input[type="password"], 
+        input[type="text"] {
+            width: 100%;
+            padding: 12px 15px;
+            margin-bottom: 15px;
+            border: none;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.95);
+            font-size: 14px;
+            box-sizing: border-box;
+            outline: none;
+        }
+        
+        input:focus {
+            box-shadow: 0 0 0 2px #ff69b4;
+        }
+
+        .auth-submit-button {
+            width: 100%;
+            padding: 12px;
+            background: #ff007f;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: 0.3s;
+            margin-top: 5px;
+        }
+
+        .auth-submit-button:hover {
+            background: #d6006b;
+            transform: scale(1.02);
+        }
+
+        .auth-links {
+            margin-top: 20px;
+            font-size: 0.85em;
+        }
+        .forgot-link {
+            color: #ddd;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 10px;
+        }
+        .register-text { color: #bbb; }
+        .link-pink { color: #ff69b4; font-weight: bold; text-decoration: none; }
+        .hidden { display: none; }
+
+        @media (max-width: 500px) {
+            .auth-form-container { margin: 0 20px; }
+            .mascot-img { width: 250px; } /* Mobilde çok devasa olmasın */
+        }
+    </style>
+
+
+</head>
+<body>
+
+    <header class="navbar">
+        <nav class="nav-links">
+            <a href="{{ url_for('index') }}">Anasayfa</a>
+            <a href="{{ url_for('tasarimlar_page') }}">Tasarimlar</a>
+            <a href="{{ url_for('index') }}#hizmetler">Hizmetlerimiz</a>
+            <a href="{{ url_for('index') }}#iletisim">İletişim</a>
+
+            {% if session.get('logged_in') %}
+                <a href="{{ url_for('profile_page', user_id=session['user_id']) }}" class="profile-link">
+                    <i class="fas fa-user-circle"></i> {{ session['user_name'] }}
+                </a>
+                <a href="{{ url_for('logout') }}" class="login-button secondary">Çıkış Yap</a>
+            {% else %}
+                <a href="{{ url_for('auth_page') }}" class="login-button">Giriş Yap</a>
+            {% endif %}
+        </nav>
+    </header>
+
+    <section class="section auth-page-section">
+        
+        <div class="mascot-container">
+            <img src="{{ url_for('static', filename='images/mascot.jpg') }}" alt="Mascot" class="mascot-img">
+        </div>
+
+        <div class="auth-form-container">
+            
+            <h1 class="section-title">Hesabınıza Giriş Yapın</h1>
+            <p class="section-subtitle">Randevularınızı yönetmek için güvenli giriş.</p>
+            
+            <form id="login-form" action="{{ url_for('login', next=request.args.get('next', '')) }}" method="POST">
+                <input type="hidden" name="next" value="{{ request.args.get('next', '') }}">
+
+                <h3 class="form-heading">Üye Girişi</h3>
+
+                <input type="email" name="email" placeholder="Kullanıcı Adı / E-posta" required>
+                <input type="password" name="password" placeholder="Şifre" required>
+
+                <button type="submit" class="appointment-button auth-submit-button">GİRİŞ YAP</button>
+
+                <div class="auth-links">
+                    <a href="#sifre" class="forgot-link">Şifremi Unuttum</a>
+                    <p class="register-text">
+                        Hesabınız yok mu? 
+                        <a href="#" id="show-register" class="link-pink">Hemen Kayıt Ol</a>
+                    </p>
+                </div>
+            </form>
+            
+            <form id="register-form" action="{{ url_for('register') }}" method="POST" class="hidden">
+                 <h3 class="form-heading">Yeni Hesap Oluştur</h3>
+                 <input type="text" name="full_name" placeholder="Adınız Soyadınız" required> 
+                 <input type="email" name="email" placeholder="E-posta Adresi" required>
+                 <input type="password" name="password" placeholder="Şifre (min 6 karakter)" required>
+                 <input type="password" name="confirm_password" placeholder="Şifre Tekrar" required>
+                 
+                 <button type="submit" class="appointment-button auth-submit-button secondary">KAYIT OL</button>
+                 
+                 <div class="auth-links">
+                    <a href="#" id="show-login" class="link-pink">Zaten hesabım var (Giriş)</a>
+                 </div>
+            </form>
+
+        </div>
+        
+    </section>
+
+    <script>
+        // JS Kodunuz: Giriş ve Kayıt formları arasında geçiş sağlar
+        document.getElementById('show-register').addEventListener('click', function(e) {
+            e.preventDefault();
+            document.getElementById('login-form').classList.add('hidden');
+            document.getElementById('register-form').classList.remove('hidden');
+        });
+        
+        document.getElementById('show-login').addEventListener('click', function(e) {
+            e.preventDefault();
+            document.getElementById('register-form').classList.add('hidden');
+            document.getElementById('login-form').classList.remove('hidden');
+        });
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+base.html
+
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Pixie Nails{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+<header class="navbar">
+    <nav class="nav-links">
+        <a href="{{ url_for('index') }}">Anasayfa</a>
+        <a href="{{ url_for('tasarimlar_page') }}">Tasarimlar</a>
+        <a href="{{ url_for('index') }}#hizmetler">Hizmetlerimiz</a>
+        <a href="{{ url_for('index') }}#iletisim">İletişim</a>
+
+        <!-- Kullanıcı giriş yaptıysa -->
+        {% if session.logged_in %}
+            <a href="{{ url_for('profile_page', user_id=session.user_id) }}" class="profile-link">
+                {% if g.user and g.user.profile_image %}
+                    <img src="{{ url_for('static', filename='uploads/' + g.user.profile_image) }}" class="header-profile-img">
+                {% else %}
+                    <i class="fas fa-user-circle header-profile-icon"></i>
+                {% endif %}
+            </a>
+            <a href="{{ url_for('logout') }}" class="login-button secondary">Çıkış Yap</a>
+        {% else %}
+            <a href="{{ url_for('auth_page') }}" class="login-button">Giriş Yap</a>
+        {% endif %}
+    </nav>
+</header>
+
+<!-- Sayfaya özel içerik buraya gelecek -->
+<main>
+    {% block content %}
+    {% endblock %}
+</main>
+
+</body>
+</html>
+
+
+
+
+index.html
+
+
+
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PIXIENAILS - Zarafeti Tırnaklarınıza İşliyoruz</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+ <style>
+       
+
+        /* --- MÜŞTERİ YORUMLARI BÖLÜMÜ STİLLERİ --- */
+        
+        .reviews-section {
+            padding: 80px 20px;
+            background-color: #fff; /* Arka plan beyaz */
+            text-align: center;
+        }
+
+        .reviews-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            max-width: 1200px;
+            margin: 40px auto 0;
+        }
+
+        /* KART TASARIMI - KOYU CAM EFEKTİ */
+        .review-card {
+            flex: 1;
+            min-width: 300px;
+            max-width: 350px;
+            
+            /* ZORUNLU KOYU RENK (!important eklendi) */
+            background: #912b6f !important; /* Tamamen koyu mor/siyah arka plan */
+            background-color: #b39aaa !important;
+            
+            /* Kenarlık */
+            border: 1px solid #ff3399 !important; 
+            
+            border-radius: 20px;
+            padding: 30px;
+            position: relative;
+            transition: all 0.3s ease;
+            
+            /* Gölge */
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4) !important; 
+            text-align: left;
+        }
+
+        .review-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(255, 51, 153, 0.3) !important; 
+        }
+
+        .review-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding-bottom: 15px;
+        }
+
+        .reviewer-img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #ff8fbc, #ffc6df);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #4b1a2e;
+            font-size: 1.2rem;
+            overflow: hidden;
+        }
+        
+        .reviewer-img img { width: 100%; height: 100%; object-fit: cover; }
+
+        /* İsim Rengi - Pembe */
+        .reviewer-info h4 {
+            margin: 0;
+            font-size: 1.1rem;
+            color: #ff69b4 !important; /* Hot Pink */
+            font-weight: 700;
+        }
+
+        .stars {
+            color: #ffd700; /* Altın Sarısı */
+            font-size: 0.9rem;
+            margin-top: 4px;
+        }
+
+        /* Yorum Metni - Beyaz */
+        .review-body p {
+            font-style: italic;
+            color: #ffffff !important; /* Bembeyaz Yazı */
+            line-height: 1.6;
+            font-size: 0.95rem;
+            margin: 0;
+        }
+
+        .quote-icon {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            font-size: 2rem;
+            color: rgba(255, 255, 255, 0.1) !important;
+        }
+        
+        .no-reviews {
+            color: #888;
+            font-size: 1.1rem;
+            margin-top: 20px;
+        }
+    </style>
+    </head>
+<body>
+
+   <header class="navbar">
+    <nav class="nav-links">
+        <a href="{{ url_for('index') }}">Anasayfa</a>
+        
+        <a href="{{ url_for('tasarimlar_page') }}">Tasarimlar</a>
+        
+        <a href="{{ url_for('index') }}#hizmetler">Hizmetlerimiz</a>
+        <a href="{{ url_for('index') }}#iletisim">İletişim</a>
+
+       {% if session.logged_in %}
+            <a href="{{ url_for('profile_page') }}" class="profile-link">
+                {% if session.profile_image %}
+                    <img src="{{ url_for('static', filename=session.profile_image) }}" 
+                         alt="Profil" 
+                         class="nav-profile-img">
+                {% else %}
+                    <i class="fas fa-user-circle" style="font-size: 1.8rem; color: #333;"></i> 
+                {% endif %}
+            </a>
+            <a href="{{ url_for('logout') }}" class="login-button secondary" style="color: #333 !important;">Çıkış Yap</a>
+        {% else %}
+            <a href="{{ url_for('auth_page') }}" class="login-button">Giriş Yap</a>
+        {% endif %}
+
+
+
+
+        
+    </nav>
+</header>
+
+
+ 
+
+
+    <section class="hero-section" id="anasayfa">
+        <h1 class="logo-text">PIXIENAILS</h1>
+
+        <div class="main-content">
+            <h2 class="main-heading">ZARAFETİ TIRNAKLARINIZA İŞLİYORUZ...</h2>
+        </div>
+
+        <div class="footer-content">
+            <p class="quote">"Güzelliğin için her dokunuşu düşündük."</p>
+            <a href= "{{ url_for('randevu_page') }}" class="appointment-button">RANDEVU AL</a>
+        </div>
+    </section>
+
+<section class="section services-section" id="hizmetler">
+    <h3 class="section-title">Özel Hizmetlerimiz</h3>
+    <p class="section-subtitle">Güzellik rutininizi tamamlayacak, size özel lüks bakımlarımız.</p>
+
+    <div class="circular-service-container">
+        
+        <div class="circle-item bakim-bg">
+            <div class="circle-content">
+                <h4 class="circle-title">MANİKÜR VE PEDİKÜR</h4>
+                <p class="circle-description">Kusursuz eller ve ayaklar için kapsamlı manikür ve pedikür hizmeti.</p>
+                <a href="{{ url_for('randevu_page') }}" class="circle-link">Randevu Al</a>
+            </div>
+        </div>
+
+        <div class="circle-item spa-bg">
+            <div class="circle-content">
+                <h4 class="circle-title">EL VE AYAK SPASI</h4>
+                <p class="circle-description">Yoğun nemlendirme ve masaj ile derinlemesine rahatlama ve yenilenme.</p>
+                <a href="#randevu-formu" class="circle-link">Randevu Al</a>
+            </div>
+        </div>
+
+        <div class="circle-item shape-bg">
+            <div class="circle-content">
+                <h4 class="circle-title">TIRNAK ŞEKİLLENDİRME & OJE</h4>
+                <p class="circle-description">Hızlı tırnak dizaynı ve en trend renklerle kalıcı oje uygulamaları.</p>
+                <a href="#randevu-formu" class="circle-link">Randevu Al</a>
+            </div>
+        </div>
+
+    </div>
+    
+</section>
+        
+        </div>
+</section>
+
+   <section class="section designs-section" id="tasarimlar">
+    <h3 class="design-section-title section-title">Galeri ve Tasarımlarımız</h3>
+    <p class="design-section-subtitle section-subtitle">En güncel ve yaratıcı tırnak sanatı koleksiyonumuzu keşfedin.</p>
+
+    <div class="design-gallery-container">
+        
+        <div class="gallery-item design-1"></div>
+        <div class="gallery-item design-2"></div>
+        <div class="gallery-item design-3"></div>
+
+        <div class="gallery-item design-4"></div>
+        <div class="gallery-item design-5"></div>
+        <div class="gallery-item design-6"></div>
+        <div class="design-button-container">
+    <a href="{{ url_for('tasarimlar_page') }}" class="appointment-button design-more-button">DAHA FAZLA TASARIM</a>
+</div>
+</section>
+        
+   <section class="section reviews-section">
+    <h2 class="section-title" style="text-align: center; margin-bottom: 10px;">Sizden Gelenler 💖</h2>
+    <p style="text-align: center; color: #ec058c; margin-bottom: 40px;">Mutlu müşterilerimizin deneyimleri...</p>
+
+    <div class="reviews-container">
+        {% if reviews %}
+            {% for review in reviews %}
+            <div class="review-card">
+                <div class="review-header">
+                    <div class="reviewer-img">
+                        {% if review.profile_image and review.profile_image != 'default_profile.png' %}
+                            <img src="{{ url_for('static', filename=review.profile_image) }}" alt="User">
+                        {% else %}
+                            <i class="fas fa-user"></i>
+                        {% endif %}
+                    </div>
+                    <div class="reviewer-info">
+                        <h4>{{ review.full_name }}</h4>
+                        <div class="stars">
+                            {% for i in range(review.rating) %}★{% endfor %}
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="review-body">
+                    <p>"{{ review.content }}"</p>
+                </div>
+                
+                <i class="fas fa-quote-right quote-icon"></i>
+            </div>
+            {% endfor %}
+        {% else %}
+            <div class="no-reviews">
+                <i class="far fa-smile-wink" style="font-size: 3rem; color: #ffb6d5;"></i>
+                <p>Henüz yorum yapılmamış. İlk yorumu sen yap! 💅</p>
+            </div>
+        {% endif %}
+    </div>
+</section>
+
+
+
+    
+<div class="contact-section">
+  <h3>BİZE ULAŞIN</h3>
+  <div class="contact-item">
+    <div class="icon"><i class="fas fa-map-marker-alt"></i></div>
+    <p>Bağlarbaşı Mah, ömür sokak no-26A Maltepe<br>İstanbul</p>
+  </div>
+
+  <div class="contact-item">
+    <div class="icon"><i class="fas fa-phone"></i></div>
+    <p><a href="tel:05437141874">0543 714 18 74</a></p>
+  </div>
+
+  <div class="contact-item">
+    <div class="icon"><i class="fas fa-envelope"></i></div>
+    <p><a href="mailto:bilgi@velvas.com">bilgi@velvas.com</a></p>
+  </div>
+
+  <div class="contact-item social">
+    <div class="icon"><i class="fas fa-share-alt"></i></div>
+    <div class="social-links">
+      <a href="#"><i class="fab fa-facebook-f"></i></a>
+      <a href="#"><i class="fab fa-x-twitter"></i></a>
+      <a href="#"><i class="fab fa-instagram"></i></a>
+    </div>
+  </div>
+</div>
+<footer class="copyright-bar-final">
+    <div class="copyright-align-container">
+        <p>&copy; 2025 PIXIENAILS. Tüm Hakları Saklıdır</p>
+    </div>
+</footer>
+
+</body>
+</html>
+
+
+
+
+
+
+profile_stup.html
+
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <title>Profil Kurulumu</title>
+<style>
+/* =============================================
+    PROFİL KURULUM FORMU (NİHAİ DÜZENLEME) STİLİ
+    ============================================= */
+
+:root {
+    --primary-color: #ff3399; /* Parlak Pembe */
+    --secondary-color: #000000; /* Açık Pembe */
+    --glass-bg: rgba(255, 255, 255, 0.25); /* KRİTİK: Daha şeffaf cam */
+    --glass-border: rgba(255, 255, 255, 0.4); /* Sınır görünürlüğü artırıldı */
+}
+
+/* ---- KRİTİK: ARKA PLAN VE ORTALAMA AYARLARI ---- */
+body {
+    /* Lütfen resim yolunu kendi projenize göre güncelleyin! */
+    background-image: url('{{ url_for("static", filename="images/arkaplan5.jpg.jpeg") }}'); /* UZANTIYI KONTROL EDİN */
+    background-size: cover; 
+    background-position: center;  
+    background-attachment: fixed;
+    background-repeat: no-repeat; 
+    
+    /* KRİTİK DÜZELTME: Overlay opaklığı 0.40'a düşürüldü (Daha az karartma) */
+    background-blend-mode: multiply; 
+    background-color: rgba(0, 0, 0, 0.40); 
+
+    min-height: 100vh;
+    color: #000000; 
+    
+    /* FORMU DİKEY VE YATAYDA TAM ORTALAMA */
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    padding: 0;
+    margin: 0;
+}
+
+/* Ana Form Konteyneri (Cam Panel) */
+.profile-form-container {
+    /* KRİTİK DÜZELTME: Arka plan şeffaflığı artırıldı, arka plan resmi daha iyi görünecek */
+    background: var(--glass-bg); 
+    backdrop-filter: blur(12px); /* Bulanıklık biraz azaltıldı */
+    border-radius: 20px;
+    border: 1px solid var(--glass-border);
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.6);
+    
+    padding: 35px;
+    width: 100%;
+    max-width: 450px; 
+    text-align: center;
+    /* Merkezi konumlandırma body tarafından yapıldığı için margin kaldırıldı */
+}
+
+/* Başlık ve Alt Başlık */
+.profile-form-container h3 {
+    font-size: 1.6rem;
+    font-weight: 600;
+    margin-bottom: 5px;
+    color: black;
+}
+.profile-form-container p {
+    font-size: 0.95rem;
+    color: var(--secondary-color);
+    margin-bottom: 25px;
+}
+
+/* Form Elemanları */
+.profile-form-container form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; 
+}
+
+.profile-form-container label {
+    text-align: left;
+    font-size: 0.9em;
+    font-weight: 500;
+    color: var(--secondary-color);
+    margin-bottom: -10px;
+}
+
+/* Input ve Select Stilleri */
+.profile-form-container input[type="date"],
+.profile-form-container input[type="tel"],
+.profile-form-container select {
+    padding: 12px 15px;
+    border-radius: 10px;
+    border: 1px solid var(--glass-border);
+    /* Input arka planı daha şeffaf yapıldı */
+    background: rgba(0, 0, 0, 0.3);
+    color: rgb(228, 59, 163);
+    font-size: 1em;
+    width: 100%;
+    transition: border-color 0.3s;
+    color-scheme: dark; 
+}
+
+/* Buton Stili */
+.appointment-button {
+    background: var(--primary-color);
+    color: rgb(0, 0, 0) !important;
+    text-decoration: none;
+    padding: 12px 25px;
+    border-radius: 30px;
+    font-weight: 700;
+    transition: background 0.3s;
+    border: none;
+    margin-top: 15px;
+}
+
+.appointment-button:hover {
+    background: #e04ea3;
+}
+</style>
+</head>
+<body class="setup-page"> 
+
+<div class="profile-form-container">
+    
+    <h3 style="color: var(--primary-color);">Hoş Geldiniz, {{ session.full_name }}!</h3>
+    
+    <p>Randevuya devam etmeden önce yaşınızı ve telefon numaranızı girmelisiniz.</p>
+    
+    <form action="{{ url_for('save_profile_setup') }}" method="POST">
+        
+        <input type="hidden" name="user_id" value="{{ session.user_id }}"> 
+
+        <label for="birth_date">Doğum Tarihiniz:</label>
+        <input type="date" name="birth_date" id="birth_date" required>
+        
+        <label for="phone">Telefon Numaranız:</label>
+        <input type="tel" name="phone" id="phone" placeholder="05xx xxx xx xx" required>
+        
+        <label for="continue_to_appointment">Tırnak randevusu almaya devam etmek istiyor musunuz?</label>
+        <select name="continue_to_appointment" id="continue_to_appointment" required>
+            <option value="yes">Evet, randevu almaya devam et</option>
+            <option value="no">Hayır, sadece profilimi gör</option>
+        </select>
+        
+        <button type="submit" class="appointment-button">BİLGİLERİ KAYDET VE DEVAM ET</button>
+    </form>
+</div>
+
+</body>
+</html>
+
+
+
+
+profile.html
+
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PIXIE NAILS | Profilim</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+/* =============================================
+    PIXIE NAILS — SON HALİ (KOMPAKT, ORTALANMIŞ, ARKA PLAN RESMİ)
+    ============================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+:root {
+    --primary-color: #ff3399; 
+    --secondary-color: #ffccea;
+    --background-dark: #160710;
+    --background-light: #2a0f1f;
+    --glass-bg: rgba(255, 255, 255, 0.08); 
+    --glass-border: rgba(255, 255, 255, 0.15);
+}
+
+/* ---- GLOBAL ARKA PLAN ---- */
+body {
+    background-image: url('{{ url_for("static", filename="images/arkaplan1.jpg.jpeg") }}'); 
+    background-size: cover; 
+    background-position: center; 
+    background-attachment: fixed; 
+    background-repeat: no-repeat; 
+    background-blend-mode: multiply; 
+    background-color: rgba(0, 0, 0, 0.6); 
+
+    min-height: 100vh;
+    color: #f0f0f0; 
+    padding: 0;
+    position: relative;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.navbar {
+    position: fixed; 
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 80px; 
+    display: flex; 
+    justify-content: flex-end; 
+    align-items: center;
+    padding: 0 40px;
+    box-sizing: border-box;
+    z-index: 100; 
+    
+    background: rgba(255, 255, 255, 0.2); 
+    backdrop-filter: blur(8px); 
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+}
+
+.nav-links a {
+    color: #333; 
+    text-decoration: none;
+    margin-left: 25px;
+    font-weight: 500;
+    font-size: 1rem;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover {
+    color: #ff3399; 
+}
+
+/* Giriş Yap Butonu */
+.login-button {
+    background-color: #ff3399;
+    padding: 8px 15px;
+    border-radius: 4px;
+    margin-left: 35px !important;
+    font-weight: bold !important;
+}
+
+.login-button:hover {
+    background-color: #e52c88;
+    color: white !important;
+}
+
+/* =============================================
+    CAM PANEL VE AYRIŞTIRMA (GLASSMORPHISM)
+    ============================================= */
+.glass-panel, .profile-sidebar, .admin-section, .appointment-toggle-header {
+    background: var(--glass-bg);
+    backdrop-filter: blur(15px);
+    border-radius: 18px;
+    border: 1px solid var(--glass-border);
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.4);
+    transition: all 0.3s ease;
+}
+
+/* =============================================
+    ANA BAŞLIK VE YERLEŞİM DÜZELTMELERİ
+    ============================================= */
+.profile-section {
+    padding-top: 90px;
+    padding-bottom: 40px;
+    width: 100%;
+}
+
+.section-title-wrapper {
+    max-width: 1000px; 
+    width: 90%;
+    margin: 0 auto 20px; 
+    padding-left: 10px;
+}
+
+.section-title {
+    font-size: 2rem; 
+    font-weight: 700;
+    color: var(--secondary-color);
+    margin-bottom: 3px;
+    display: inline-block;
+}
+
+.title-underline {
+    width: 100%;
+    max-width: 140px; 
+    height: 3px;
+    background-color: var(--primary-color);
+    display: block;
+    margin-bottom: 0;
+}
+
+.profile-container {
+    max-width: 1000px; 
+    width: 90%;
+    display: flex;
+    gap: 20px; 
+    margin: 0 auto;
+    align-items: flex-start;
+}
+
+/* =============================================
+    SOL PROFIL PANELI (SIDEBAR)
+    ============================================= */
+.profile-sidebar {
+    flex: 0 0 260px; 
+    padding: 20px 15px; 
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 400px; 
+}
+
+.profile-photo-wrapper {
+    width: 120px; 
+    height: 120px;
+    margin: 0 auto 15px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 4px solid var(--primary-color);
+    box-shadow: 0 0 0 4px rgba(255, 51, 153, 0.3);
+}
+
+.profile-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.photo-upload-label {
+    display: block;
+    cursor: pointer;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    padding: 6px 10px;
+    border-radius: 15px;
+    margin-top: 10px;
+    font-size: 0.85rem;
+    transition: background 0.3s;
+}
+
+.photo-upload-input {
+    display: none;
+}
+
+.sidebar-name {
+    font-size: 1.4rem; 
+    font-weight: 600;
+    margin-bottom: 5px;
+    color: white;
+}
+
+.sidebar-email {
+    font-size: 0.9rem; 
+    margin-bottom: 15px;
+    color: var(--secondary-color);
+}
+
+.appointment-button {
+    display: inline-block;
+    background: var(--primary-color);
+    color: white !important;
+    text-decoration: none;
+    padding: 10px 20px; 
+    border-radius: 30px;
+    font-weight: 600;
+    transition: background 0.3s;
+    border: none;
+    width: 100%;
+    margin-top: auto !important; 
+}
+
+.small-button {
+    padding: 7px 14px;
+    font-size: 0.9rem;
+    border-radius: 20px;
+    margin-top: 10px;
+}
+
+/* =============================================
+    SAĞ PANEL – FORM VE INPUT YERLEŞİMİ
+    ============================================= */
+.profile-dashboard {
+    flex-grow: 1;
+}
+
+.admin-section {
+    padding: 25px; 
+    margin-bottom: 25px;
+}
+
+.admin-section h4 {
+    font-size: 1.3rem; 
+    margin-bottom: 15px;
+    border-bottom: 2px solid var(--primary-color);
+    display: inline-block;
+    padding-bottom: 5px;
+    color: white;
+}
+
+.admin-section form {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px 20px;
+}
+
+.info-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.info-group label {
+    font-size: 0.9em;
+    margin-bottom: 3px;
+    color: var(--secondary-color);
+    font-weight: 500;
+}
+
+.info-group input {
+    padding: 10px; 
+    border-radius: 8px;
+    border: 1px solid var(--glass-border);
+    background: rgba(0, 0, 0, 0.4);
+    color: white;
+    font-size: 1em;
+    transition: border-color 0.3s;
+}
+
+.admin-section form button[type="submit"] {
+    grid-column: span 2;
+    margin-top: 10px;
+}
+
+
+/* =============================================
+    RANDEVU TABLOLARI VE ACCORDION DÜZELTMESİ
+    ============================================= */
+
+.appointment-toggle-header {
+    margin-bottom: 10px;
+    padding: 15px 20px; 
+    border-radius: 18px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.toggle-icon {
+    transition: transform 0.3s;
+}
+
+.appointment-toggle-header.open .toggle-icon {
+    transform: rotate(180deg);
+}
+
+.appointment-list-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease-out; 
+}
+
+.appointment-list-content.open {
+    padding: 15px; 
+    margin-bottom: 20px;
+    max-height: 2000px;
+}
+
+.appointment-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 12px;
+    overflow: hidden;
+    color: white;
+}
+
+.appointment-table th {
+    padding: 10px;
+    font-size: 0.8em;
+    text-align: left;
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.appointment-table td {
+    padding: 12px 10px;
+    font-size: 0.9em;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    vertical-align: middle;
+}
+
+.design-preview-cell {
+    width: 90px;
+}
+
+.appt-design-full {
+    width: 80px;
+    height: 50px;
+}
+
+/* YENİ: YORUM MODAL VE BUTON STİLLERİ */
+.btn-review {
+    background: linear-gradient(135deg, #ff8fbc, #ffc6df);
+    border: none;
+    padding: 6px 12px;
+    border-radius: 8px;
+    color: #4b1a2e;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 0.8rem;
+    margin-left: 5px;
+    box-shadow: 0 2px 8px rgba(255, 150, 200, 0.3);
+    text-decoration: none;
+    display: inline-block;
+}
+.btn-review:hover { transform: scale(1.05); }
+
+/* Modal Arka Planı */
+.review-modal-overlay {
+    display: none; /* Başlangıçta gizli */
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.85);
+    z-index: 9999;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(8px);
+}
+
+/* Modal Kutusu */
+.review-modal-content {
+    background: rgba(42, 15, 31, 0.95);
+    border: 2px solid #ffb6d5;
+    padding: 30px;
+    border-radius: 20px;
+    width: 90%;
+    max-width: 400px;
+    text-align: center;
+    position: relative;
+    box-shadow: 0 0 30px rgba(255, 182, 213, 0.3);
+}
+
+/* Kapatma Çarpısı */
+.close-review {
+    position: absolute;
+    right: 20px;
+    top: 10px;
+    font-size: 2rem;
+    color: #ffb6d5;
+    cursor: pointer;
+}
+
+/* Yıldızlar */
+.star-rating {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+    gap: 5px;
+    margin-bottom: 20px;
+}
+.star-rating input { display: none; }
+.star-rating label {
+    font-size: 2.5rem;
+    color: #555;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+.star-rating input:checked ~ label,
+.star-rating label:hover,
+.star-rating label:hover ~ label {
+    color: #ffb6d5;
+    text-shadow: 0 0 15px rgba(255, 182, 213, 0.8);
+}
+
+.review-modal-content textarea {
+    width: 100%;
+    height: 100px;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid #ffb6d5;
+    border-radius: 10px;
+    padding: 10px;
+    color: white;
+    resize: none;
+    outline: none;
+}
+
+.submit-review-btn {
+    width: 100%;
+    margin-top: 15px;
+    padding: 12px;
+    background: #ff007f;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 1rem;
+}
+.submit-review-btn:hover { background: #d6006b; }
+
+
+/* Responsive */
+@media (max-width: 768px) {
+    .profile-container {
+        flex-direction: column;
+        width: 90%;
+    }
+    .profile-sidebar {
+        min-height: auto;
+        justify-content: flex-start; 
+        margin-bottom: 20px;
+    }
+    .appointment-button {
+        margin-top: 20px !important; 
+    }
+    .admin-section form {
+        grid-template-columns: 1fr;
+    }
+    .admin-section form button[type="submit"] {
+        grid-column: span 1;
+    }
+    .appointment-table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+}
+    </style>
+</head>
+<body>
+
+<header class="navbar">
+    <nav class="nav-links">
+        <a href="{{ url_for('index') }}">Anasayfa</a>
+        <a href="{{ url_for('tasarimlar_page') }}">Tasarimlar</a>
+        <a href="{{ url_for('index') }}#hizmetler">Hizmetlerimiz</a>
+        <a href="{{ url_for('index') }}#iletisim">İletişim</a>
+
+        {% if session.logged_in %}
+            <a href="{{ url_for('profile_page') }}" class="profile-link">
+                {% if session.profile_image %}
+                    <img src="{{ url_for('static', filename=session.profile_image) }}"
+                         alt="Profil"
+                         class="nav-profile-img">
+                {% else %}
+                    <i class="fas fa-user-circle" style="font-size: 1.8rem; color: #333;"></i>
+                {% endif %}
+            </a>
+
+            <a href="{{ url_for('logout') }}" class="login-button secondary" style="color: #333 !important;">Çıkış Yap</a>
+        {% else %}
+            <a href="{{ url_for('auth_page') }}" class="login-button">Giriş Yap</a>
+        {% endif %}
+    </nav>
+</header>
+
+
+<section class="section profile-section">
+    <h1 class="section-title">Hesap Yönetimi</h1>
+
+    <div class="profile-container">
+
+        <div class="profile-sidebar">
+
+            <div class="profile-photo-wrapper">
+                <img src="{{ url_for('static', filename=user_info.profile_image or 'default_profile.png') }}"
+                     alt="{{ user_info.full_name }}"
+                     class="profile-photo">
+            </div>
+
+            <form action="{{ url_for('upload_profile_image', user_id=user_info.user_id) }}"
+                  method="POST"
+                  enctype="multipart/form-data">
+
+                <input type="file"
+                       name="profile_image_file"
+                       id="profile_image_file"
+                       accept="image/*"
+                       class="photo-upload-input"
+                       onchange="this.form.submit()">
+
+                <label for="profile_image_file" class="photo-upload-label">
+                    <i class="fas fa-camera"></i> Fotoğrafı Değiştir
+                </label>
+            </form>
+
+            <p style="font-size: 1.2em; font-weight: bold; margin-bottom: 5px;">
+                {{ user_info.full_name }}
+            </p>
+
+            <p style="color: #ff3399; margin-top: 0;">
+                {{ user_info.username }}
+            </p>
+
+            <a href="{{ url_for('randevu_page') }}"
+               class="appointment-button"
+               style="width: 100%; margin-top: 50px !important; padding: 10px;">
+                Yeni Randevu Al
+            </a>
+
+        </div>
+<div class="profile-dashboard">
+
+    <div class="admin-section" style="margin-top: 0;">
+        <h4>Bilgilerimi Güncelle</h4>
+
+        <form action="{{ url_for('update_profile_info') }}" method="POST">
+
+            <div class="info-group">
+                <label>Adınız Soyadınız:</label>
+                <input type="text" name="full_name" value="{{ user_info.full_name or '' }}" required>
+            </div>
+
+            <div class="info-group">
+                <label>E-posta (Kullanıcı Adı):</label>
+                <input type="email" name="username" value="{{ user_info.username or '' }}" required>
+            </div>
+
+            <div class="info-group">
+                <label>Telefon Numaranız:</label>
+                <input type="tel" name="phone" value="{{ user_info.phone or '' }}" required>
+            </div>
+
+            <div class="info-group">
+                <label>Doğum Tarihi:</label>
+                <input type="date"
+                       name="birth_date"
+                       value="{{ user_info.birth_date.strftime('%Y-%m-%d') if user_info.birth_date else '' }}"
+                       required>
+            </div>
+
+            <button type="submit" class="appointment-button small-button">Bilgileri Kaydet</button>
+        </form>
+    </div>
+
+
+
+    <div class="appointment-toggle-header" data-target="future-appointments">
+        <h4 style="color: green; margin: 0;">
+            Planlanan Randevularınız (Gelecek)
+            <span class="count">({{ future_appointments | length }})</span>
+        </h4>
+        <i class="fas fa-chevron-down toggle-icon"></i>
+    </div>
+
+    <div id="future-appointments" class="appointment-list-content open">
+
+        {% if future_appointments %}
+            <table class="appointment-table">
+                <thead>
+                    <tr style="background-color: #f8f8f8;">
+                        <th>Servis</th>
+                        <th>Tarih & Saat</th>
+                        <th>Tasarım</th>
+                        <th>Fiyat</th>
+                        <th>Durum</th>
+                        <th>İşlem</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {% for appt in future_appointments %}
+                    <tr>
+                        <td>{{ appt.service_name }}</td>
+
+                        <td>{{ appt.appointment_date.strftime('%d.%m.%Y %H:%M') }}</td>
+
+                        <td class="design-preview-cell">
+
+                            {% if appt.appointment_image_path and appt.appointment_image_path != 'NULL' %}
+                                <img src="{{ url_for('static', filename=appt.appointment_image_path) }}"
+                                     class="appt-design-full">
+
+                            {% elif appt.design_image and appt.design_image != 'NULL' %}
+                                <img src="{{ url_for('static', filename=appt.design_image) }}"
+                                     class="appt-design-full">
+
+                            {% else %}
+                                <span class="design-text">Tasarım Yok</span>
+                            {% endif %}
+                        </td>
+
+                        <td>{{ appt.total_price }} TL</td>
+
+                        <td class="status-pending">RANDEVU ALINDI</td>
+
+                        <td>
+                            <a href="{{ url_for('update_appointment', appointment_id=appt.appointment_id) }}"
+                               class="button small-button"
+                               style="background: #ffb3d9; padding: 5px 10px;">
+                                Düzenle
+                            </a>
+
+                            <form action="{{ url_for('delete_appointment', appointment_id=appt.appointment_id) }}"
+                                  method="POST"
+                                  style="display:inline;"
+                                  onsubmit="return confirm('Bu randevuyu iptal etmek istediğinizden emin misiniz?')">
+
+                                <button type="submit"
+                                        style="background: #ff3399; color:white; padding:5px 10px; border-radius:4px;">
+                                    İptal Et
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+        {% else %}
+            <p>Yakın zamanda planlanmış bir randevunuz bulunmamaktadır.</p>
+        {% endif %}
+    </div>
+
+
+
+
+    <div class="appointment-toggle-header" data-target="past-appointments">
+        <h4 style="color: #ff3399; margin: 0;">
+            Geçmiş Tırnak Randevularınız
+            <span class="count">({{ past_appointments | length }})</span>
+        </h4>
+        <i class="fas fa-chevron-down toggle-icon"></i>
+    </div>
+
+    <div id="past-appointments" class="appointment-list-content">
+
+        {% if past_appointments %}
+            <table class="appointment-table">
+                <thead>
+                    <tr style="background-color: #f8f8f8;">
+                        <th>Servis</th>
+                        <th>Tarih & Saat</th>
+                        <th>Tasarım</th>
+                        <th>Fiyat</th>
+                        <th>Durum</th>
+                        <th>İşlem</th> 
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {% for appt in past_appointments %}
+                    <tr>
+                        <td>{{ appt.service_name }}</td>
+
+                        <td>{{ appt.appointment_date.strftime('%d.%m.%Y %H:%M') }}</td>
+
+                        <td class="design-preview-cell">
+
+                            {% if appt.appointment_image_path and appt.appointment_image_path != 'NULL' %}
+                                <img src="{{ url_for('static', filename=appt.appointment_image_path) }}"
+                                     class="appt-design-full">
+
+                            {% elif appt.design_image and appt.design_image != 'NULL' %}
+                                <img src="{{ url_for('static', filename=appt.design_image) }}"
+                                     class="appt-design-full">
+
+                            {% else %}
+                                <span class="design-text">Tasarım Yok</span>
+                            {% endif %}
+                        </td>
+
+                        <td>{{ appt.total_price }} TL</td>
+
+                        <td style="color:#777;">GEÇMİŞ</td>
+                        
+                       <td>
+    <button class="btn-review" onclick="openReviewModal()">
+        <i class="fas fa-star"></i> Yorum Yap
+    </button>
+</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+
+            </table>
+
+        {% else %}
+            <p>Henüz tamamlanmış bir randevunuz bulunmamaktadır.</p>
+        {% endif %}
+    </div>
+
+</div> </div> </section>
+
+<div id="reviewModal" class="review-modal-overlay">
+    <div class="review-modal-content">
+        <span class="close-review" onclick="closeReviewModal()">&times;</span>
+        
+        <h3 style="color: #ffb6d5; margin-bottom: 10px;">Deneyimini Puanla 💖</h3>
+        <p style="color: #ffccea; font-size: 0.9rem; margin-bottom: 20px;">Hizmetimizden memnun kaldın mı?</p>
+        
+        <form action="{{ url_for('submit_review') }}" method="POST">
+            
+            <div class="star-rating">
+                <input type="radio" id="star5" name="rating" value="5" required /><label for="star5" title="Mükemmel">★</label>
+                <input type="radio" id="star4" name="rating" value="4" /><label for="star4" title="Çok İyi">★</label>
+                <input type="radio" id="star3" name="rating" value="3" /><label for="star3" title="İdare Eder">★</label>
+                <input type="radio" id="star2" name="rating" value="2" /><label for="star2" title="Kötü">★</label>
+                <input type="radio" id="star1" name="rating" value="1" /><label for="star1" title="Berbat">★</label>
+            </div>
+            
+            <textarea name="content" placeholder="Düşüncelerini buraya yazabilirsin..." required></textarea>
+            
+            <button type="submit" class="submit-review-btn">Gönder</button>
+        </form>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+
+    const headers = document.querySelectorAll('.appointment-toggle-header');
+
+    headers.forEach(header => {
+        header.addEventListener('click', () => {
+
+            const targetId = header.getAttribute('data-target');
+            const content = document.getElementById(targetId);
+
+            if (content.classList.contains('open')) {
+                content.classList.remove('open');
+                header.classList.remove('open');
+                content.style.maxHeight = 0;
+            } else {
+                content.style.maxHeight = content.scrollHeight + "px";
+                content.classList.add('open');
+                header.classList.add('open');
+            }
+        });
+    });
+
+    // Sayfa açıldığında gelecekteki randevular otomatik açık kalsın
+    const futureHeader = document.querySelector('.appointment-toggle-header[data-target="future-appointments"]');
+    if (futureHeader) {
+        futureHeader.click();
+    }
+});
+
+// YORUM MODALI SCRIPTLERI
+function openReviewModal() {
+    document.getElementById('reviewModal').style.display = 'flex';
+}
+function closeReviewModal() {
+    document.getElementById('reviewModal').style.display = 'none';
+}
+
+// Modal dışına tıklayınca kapatma
+window.onclick = function(event) {
+    var modal = document.getElementById('reviewModal');
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+</script>
+
+</body>
+</html>
+
+
+
+
+
+randevu.html
+
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Randevu | PIXIE NAILS</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+        /* ============================================================
+           ✨ VIP PREMIUM ROSE-GOLD LUXURY EDITION
+           ============================================================ */
+
+        /* GLOBAL */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            background: url('https://via.placeholder.com/1920x1080/2a0f1f/ffe6f2?text=Arka+Plan+Resmi') center/cover no-repeat fixed;
+            background-color: #2a0f1f;
+            color: #442233;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow-x: hidden;
+            animation: bodyFadeIn 1.5s ease-in-out;
+        }
+
+        @keyframes bodyFadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* ARKA PLANA GOLD VİGNET */
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background: radial-gradient(circle at center,
+                        rgba(255, 182, 213, 0.1) 0%,
+                        rgba(42, 15, 31, 0.5) 70%);
+            z-index: -1;
+        }
+
+        /* NAVBAR */
+        .navbar {
+            width: 100%;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: flex-end;
+            background: rgba(0,0,0,0.3);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 182, 213, 0.2);
+            position: fixed;
+            top: 0;
+            z-index: 10;
+            box-shadow: 0 2px 10px rgba(255, 150, 210, 0.2);
+        }
+
+        .nav-links a {
+            margin: 0 15px;
+            color: #ffe6f2;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+            font-size: 0.9rem;
+        }
+
+        .nav-links a:hover {
+            color: #ffb6d5;
+            text-shadow: 0 0 10px rgba(255, 182, 213, 0.8);
+            transform: translateY(-1px);
+        }
+
+        .nav-links a::after {
+            content: "";
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #ffb6d5, #ffe3f3);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* MAIN WRAPPER */
+        .appointment-wrapper {
+            max-width: 1000px;
+            margin: 100px auto 40px auto;
+            display: flex;
+            gap: 25px;
+            padding: 25px;
+            border-radius: 20px;
+            background: rgba(255, 235, 245, 0.1);
+            border: 1px solid rgba(255, 176, 208, 0.3);
+            backdrop-filter: blur(20px);
+            box-shadow: 0 15px 30px rgba(255, 180, 220, 0.3), 0 0 60px rgba(255, 150, 210, 0.15);
+            animation: wrapperSlideIn 1s ease-out;
+        }
+
+        @keyframes wrapperSlideIn {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        /* SOL WIZARD ALANI */
+        .wizard-container {
+            flex: 2;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: linear-gradient(90deg, #ff009d);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+            text-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+        }
+
+        #wizard-subtitle {
+            font-size: 0.9rem;
+            margin-top: -8px;
+            opacity: 0.9;
+            color: #442233;
+        }
+
+        /* PROGRESS BAR */
+        .progress-bar-container {
+            margin: 20px 0 25px;
+            position: relative;
+        }
+
+        .progress-bar-container::before {
+            content: "";
+            position: absolute;
+            top: 12px;
+            left: 0;
+            right: 0;
+            height: 4px;
+            border-radius: 4px;
+            background: linear-gradient(90deg, rgba(255, 150, 210, 0.7), rgba(255, 210, 240, 1));
+            box-shadow: 0 0 8px rgba(255, 0, 144, 0.4);
+        }
+
+        /* Step Dot */
+        .step-dot {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.15);
+            border: 2px solid #ffb6d5;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 12px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: #ffd4e8;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 3px 10px rgba(255, 170, 210, 0.2);
+        }
+
+        .step-dot.active {
+            background: linear-gradient(135deg, #ffb1d3, #ffe2f1);
+            color: #4b1a2e;
+            border-color: #ffe4f3;
+            box-shadow: 0 0 15px rgba(255, 170, 210, 0.7);
+            transform: scale(1.05);
+        }
+
+        .step-dot:hover {
+            transform: scale(1.02);
+        }
+
+        /* ADIM İÇERİK */
+        .step-content {
+            display: none;
+            animation: stepFadeIn 0.5s ease;
+        }
+
+        .step-content.active {
+            display: block;
+        }
+
+        @keyframes stepFadeIn {
+            from { opacity: 0; transform: translateX(-15px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        /* GOLD INPUT */
+        input, select, textarea {
+            width: 100%;
+            padding: 12px 14px;
+            border-radius: 12px;
+            background: rgba(255,255,255,0.2);
+            border: 1px solid rgba(255, 200, 220, 0.5);
+            color: rgb(59, 57, 59);
+            font-size: 0.9rem;
+            outline: none;
+            margin-bottom: 15px;
+            transition: all 0.3s ease;
+            box-shadow: 0 3px 8px rgba(255, 190, 220, 0.15);
+        }
+
+        input:focus, select:focus, textarea:focus {
+            border-color: #ffb4cf;
+            box-shadow: 0 0 12px rgba(255, 190, 220, 0.6), 0 3px 15px rgba(255, 150, 210, 0.3);
+            background: rgba(255,255,255,0.25);
+            transform: translateY(-1px);
+        }
+
+        /* PREMIUM HİZMET KARTLARI */
+        .service-option-label {
+            display: block;
+            padding: 12px 16px;
+            border-radius: 12px;
+            background: rgba(255,255,255,0.15);
+            border: 1px solid rgba(255,180,210,0.4);
+            margin-bottom: 10px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
+            position: relative;
+            box-shadow: 0 4px 12px rgba(255,160,210,0.15);
+        }
+
+        .service-option-label:hover {
+            background: rgba(255, 160, 210, 0.2);
+            box-shadow: 0 6px 20px rgba(255,150,200,0.3);
+            transform: translateY(-2px);
+        }
+
+        .service-option-label input[type="checkbox"] {
+            display: none;
+        }
+
+        .service-option-label input[type="checkbox"]:checked + .service-option-label {
+            background: rgba(255, 160, 210, 0.3);
+            border-color: #ffb6d5;
+            box-shadow: 0 0 18px rgba(255, 182, 213, 0.5);
+        }
+
+        /* PRICE PANEL */
+        .price-panel-container {
+            flex: 1;
+            position: sticky;
+            top: 120px;
+        }
+
+        .live-price-panel {
+            background: rgba(255,255,255,0.15);
+            padding: 20px;
+            border-radius: 18px;
+            border: 1px solid rgba(255,200,220,0.5);
+            box-shadow: 0 8px 25px rgba(255,160,210,0.3);
+            animation: panelGlow 2s infinite alternate;
+        }
+
+        @keyframes panelGlow {
+            from { box-shadow: 0 8px 25px rgba(255,160,210,0.3); }
+            to { box-shadow: 0 8px 35px rgba(255,160,210,0.5); }
+        }
+
+        .live-price-panel h3 {
+            font-size: 1.4rem;
+            background: linear-gradient(90deg, #4b1a2e, #2a0f1f);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 15px;
+        }
+
+        .price-detail-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            font-size: 0.9rem;
+            border-bottom: 1px solid rgba(255, 200, 220, 0.2);
+            color:#442233;
+        }
+        
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            font-size: 0.9rem;
+            border-bottom: 1px solid rgba(255, 200, 220, 0.2);
+            color: #442233;
+            font-weight: 500;
+        }
+
+        .price-total {
+            border-top: 1px solid #ffc6df;
+            margin-top: 15px;
+            padding-top: 15px;
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: #2a0f1f;
+            text-shadow: 0 0 8px rgba(255, 182, 213, 0.4);
+        }
+
+        /* BUTTONS */
+        .btn-nav {
+            padding: 12px 20px;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            cursor: pointer;
+            border: none;
+            transition: all 0.3s ease;
+            margin: 5px;
+            box-shadow: 0 3px 10px rgba(255,150,200,0.2);
+        }
+
+        .btn-forward, .btn-confirm {
+            background: linear-gradient(135deg, #ff8fbc, #ffc6df);
+            color: #4b1a2e;
+            box-shadow: 0 0 15px rgba(255,150,200,0.5);
+        }
+
+        .btn-forward:hover, .btn-confirm:hover {
+            background: linear-gradient(135deg, #ffc6df, #ff8fbc);
+            box-shadow: 0 0 20px rgba(255,150,200,0.7);
+            transform: scale(1.02);
+        }
+
+        .btn-back {
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,200,220,0.4);
+            color: #ffd9eb;
+        }
+
+        .btn-back:hover {
+            background: rgba(255, 150, 200, 0.2);
+            transform: scale(1.01);
+        }
+
+        /* MODAL */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.8);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(10px);
+            z-index: 100;
+        }
+
+        .success-modal {
+            background: rgba(0,0,0,0.7);
+            border: 2px solid #ffb6d5;
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 0 40px rgba(255, 182, 213, 0.4);
+            position: relative;
+            animation: modalBounce 0.5s ease;
+        }
+
+        @keyframes modalBounce {
+            0% { scale: 0.9; opacity: 0; }
+            50% { scale: 1.02; }
+            100% { scale: 1; opacity: 1; }
+        }
+
+        .success-modal::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -150%;
+            width: 60%;
+            height: 100%;
+            background: linear-gradient(120deg, transparent 0%, rgba(255,255,255,0.7) 50%, transparent 100%);
+            transform: skewX(-25deg);
+            animation: shine 2.5s infinite;
+        }
+
+        @keyframes shine {
+            0% { left: -150%; }
+            100% { left: 160%; }
+        }
+
+        .check-icon {
+            font-size: 4rem;
+            color: #ffb6d5;
+            text-shadow: 0 0 20px rgba(255, 182, 213, 0.7);
+            margin-bottom: 15px;
+        }
+
+        /* MOBIL UYUMLULUK */
+        @media (max-width: 900px) {
+            .appointment-wrapper {
+                flex-direction: column;
+                width: 95%;
+                padding: 20px;
+                margin-top: 80px;
+            }
+            .wizard-container {
+                transform: scale(0.95);
+            }
+            .price-panel-container {
+                position: static;
+            }
+            .section-title {
+                font-size: 1.3rem;
+            }
+            .btn-nav {
+                padding: 10px 16px;
+                font-size: 0.8rem;
+            }
+            .navbar {
+                padding: 10px 20px;
+            }
+            .nav-links a {
+                margin: 0 10px;
+                font-size: 0.8rem;
+            }
+        }
+
+        body {
+            /* Arka plan resmini ekler ve sabitler */
+            background-image: url('{{ url_for("static", filename="images/arkaplan8.jpg.jpeg") }}'); 
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+            background-color: #1a0811;
+            
+            color: #ffe6f2;
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        /* --- TASARIM SEÇENEKLERİ --- */
+        .nail-art-options-grid {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+            margin-bottom: 25px;
+            justify-content: space-between;
+        }
+
+        .choice-card {
+            flex: 1; 
+            min-width: 40%;
+            max-width: 50%;
+            text-align: center;
+            padding: 20px 15px;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.1); 
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(255, 170, 210, 0.4);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .choice-card:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 8px 30px rgba(255, 150, 200, 0.5);
+            border-color: #ffb6d5;
+        }
+
+        .choice-card i {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            background: linear-gradient(45deg, #461529, #ff8fbc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 10px rgba(255, 150, 200, 0.5);
+        }
+        .choice-card h4 {
+            font-size: 1.1rem !important; 
+            font-weight: 700;
+            color: #ffb6d5 !important;
+            margin: 5px 0 5px 0 !important;
+        }
+        .choice-card p {
+            font-size: 0.8rem;
+            color: #ffccea;
+        }
+
+        .options-visual-box {
+            padding: 20px;
+            border-radius: 15px;
+            background: rgba(255, 235, 245, 0.1); 
+            border: 1px solid rgba(255, 170, 210, 0.4); 
+            box-shadow: 0 0 10px rgba(255, 170, 210, 0.1);
+            margin-top: 15px;
+            color:#442233;
+        }
+
+        .step-navigation {
+            justify-content: flex-end; 
+        }
+
+        /* --- ÖDEME KUTULARI --- */
+        .payment-options-radios {
+            display: flex;
+            gap: 20px;
+            margin-top: 25px;
+            margin-bottom: 25px;
+        }
+
+        .payment-option-tile {
+            flex: 1;
+            cursor: pointer;
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            background: rgba(255, 255, 255, 0.1); 
+            border: 2px solid rgba(255, 170, 210, 0.4); 
+            box-shadow: 0 5px 15px rgba(255, 160, 210, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .payment-option-tile label {
+            display: block;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #ffe6f2;
+            margin-top: 5px;
+            margin-bottom: 5px;
+            cursor: pointer;
+        }
+
+        .payment-option-tile .small-desc {
+            font-size: 0.85rem;
+            color: #ffccea;
+            line-height: 1.4;
+            margin-top: 5px;
+            margin-bottom: 0;
+        }
+
+        .payment-option-tile input[type="radio"] {
+            position: absolute; 
+            opacity: 0; 
+            cursor: pointer;
+            z-index: 2; 
+            height: 100%; 
+            width: 100%;
+            top: 0;
+            left: 0;
+            margin: 0;
+        }
+
+        .payment-option-tile input[type="radio"]:checked ~ label {
+            color: #ffb6d5;
+            text-shadow: 0 0 5px rgba(255, 182, 213, 0.5);
+        }
+
+        .payment-option-tile input[type="radio"]:checked ~ .small-desc {
+            color: #ffb6d5;
+        }
+
+        .payment-option-tile:has(input[type="radio"]:checked) {
+            background: rgba(255, 160, 210, 0.25);
+            border-color: #ffb6d5;
+            box-shadow: 0 0 25px rgba(255, 182, 213, 0.7); 
+            transform: scale(1.02);
+        }
+
+        .payment-option-tile:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255, 150, 200, 0.4);
+        }
+
+        #card-details-form {
+            display: none; 
+            margin-top: 20px;
+            padding: 10px 0;
+            color: #442233;
+        }
+        
+        #card-details-form label {
+            color: #442233;
+        }
+</style>
+
+
+</head>
+    <body>
+
+<header class="navbar">
+    <nav class="nav-links">
+        <a href="{{ url_for('index') }}">Anasayfa</a>
+        <a href="{{ url_for('tasarimlar_page') }}">Tasarimlar</a>
+        <a href="{{ url_for('index') }}#hizmetler">Hizmetlerimiz</a>
+        <a href="{{ url_for('index') }}#iletisim">İletişim</a>
+
+        {% if session.logged_in %}
+            <a href="{{ url_for('profile_page') }}" class="profile-link">
+                {% if session.profile_image %}
+                    <img src="{{ url_for('static', filename=session.profile_image) }}" class="nav-profile-img">
+                {% else %}
+                    <i class="fas fa-user-circle" style="font-size: 1.8rem;"></i>
+                {% endif %}
+            </a>
+            <a href="{{ url_for('logout') }}" class="login-button">Çıkış Yap</a>
+        {% else %}
+            <a href="{{ url_for('auth_page') }}" class="login-button">Giriş Yap</a>
+        {% endif %}
+    </nav>
+</header>
+
+
+
+<section class="appointment-wrapper">
+    <div class="wizard-container">
+
+        <h3 class="section-title" id="wizard-title">Randevu Oluşturma Sihirbazı</h3>
+        <p id="wizard-subtitle" style="text-align:center; margin-bottom: 20px;">Adım 1: Hizmet ve Detay Seçimi</p>
+
+        <div class="progress-bar-container">
+            <div class="step-dot active" data-step="1">1</div>
+            <div class="step-dot" data-step="2">2</div>
+            <div class="step-dot" data-step="3">3</div>
+        </div>
+
+        {% if is_update %}
+        <form id="appointmentForm" 
+              action="{{ url_for('update_appointment', appointment_id=appointment_id) }}" 
+              method="POST" 
+              enctype="multipart/form-data">
+        {% else %}
+        <form id="appointmentForm" 
+              action="{{ url_for('randevu_page') }}" 
+              method="POST" 
+              enctype="multipart/form-data">
+        {% endif %}
+
+            <input type="hidden" name="current_step" id="current_step" value="1">
+            <input type="hidden" name="selected_design" id="selected_design_input">
+            <input type="hidden" id="final_price_input" name="total_price" value="0.00">
+            <input type="hidden" name="appointment_time" id="appointment_time_hidden" required>
+            <input type="hidden" id="custom_design_price_input" value="300.00"> 
+
+            <div id="step-1" class="step-content active">
+                
+                <label>Hizmet Seçimi </label>
+                <div class="service-checkbox-grid">
+                    {% for service in services %}
+                    <label class="service-option-label">
+                        <input type="checkbox"
+                        name="selected_services"
+                        data-name="{{ service.name }}"
+                        data-price="{{ service.base_price | float }}"
+                        value="{{ service.service_id }}"
+                        onchange="updateForm()"
+                        {% if is_update and service.service_id in selected_service_ids %} checked {% endif %}
+                        >
+                        
+                        {{ service.name }} 
+                        {% if service.name != 'Nail Art' %}
+                            ({{ service.base_price | round(2) }} TL)
+                        {% endif %}
+                    </label>
+                    {% endfor %}
+                </div>
+
+                <div id="nailArtOptions" style="display:none; margin-top:15px;">
+                    
+                    <label style="font-weight: 700;">Tasarım Seçeneği (Adım 1.1)</label>
+                    <div class="nail-art-options-grid">
+                        <div class="choice-card" onclick="choosePreMade()">
+                            <i class="fas fa-palette"></i>
+                            <h4>Hazır Tasarımlardan Seç</h4>
+                            <p>Galeriye yönlendirilirsiniz. Fiyatlar tasarıma göre otomatik eklenir.</p>
+                        </div>
+                        <div class="choice-card" onclick="uploadCustomDesign()">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                            <h4>Özel Tasarım Yükle</h4>
+                            <p>Yükleme yapın. Taban ücreti 300 TL'dir.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="customUpload" style="display:none; margin-top:10px;">
+                    <label>Özel Tasarım Yükle (Taban Ücret: 300.00 TL)</label>
+                    <input type="hidden" id="custom_design_price_input" value="300.00">
+                    <input type="file" id="customDesignFile" name="custom_design_file" accept="image/*">
+                    <p class="custom-warning">
+                    ⚠️ Yüklenen tasarımın detay ve zorluğuna göre stüdyoda **nihai fiyat** farklılık gösterebilir.
+                    </p>
+                </div>
+                <img id="selected_design_preview" src="" style="max-width:100px; display:none; margin-top:10px;">
+
+
+                <h4 style="margin-top:25px; font-size:1.3rem;">Tırnak Detayları </h4>
+                <div style="display:flex; gap:18px;">
+                    <div style="flex:1;">
+                        <label>Tırnak Uzunluğu</label>
+                        <select id="nail_length" name="nail_length" required onchange="updateSummaryPanel()">
+                            <option value="">Uzunluk Seçin</option>
+                            <option value="kisa" {% if appointment and appointment.nail_length == 'kisa' %} selected {% endif %}>Kısa</option>
+                            <option value="orta" {% if appointment and appointment.nail_length == 'orta' %} selected {% endif %}>Orta</option>
+                            <option value="uzun" {% if appointment and appointment.nail_length == 'uzun' %} selected {% endif %}>Uzun</option>
+                            <option value="ekstra_uzun" {% if appointment and appointment.nail_length == 'ekstra_uzun' %} selected {% endif %}>Ekstra Uzun (+100 TL)</option>
+                        </select>
+                    </div>
+                    <div style="flex:1;">
+                        <label>Tırnak Şekli</label>
+                        <select id="nail_shape" name="nail_shape" required onchange="updateSummaryPanel()">
+                            <option value="">Şekil Seçin</option>
+                            <option value="kut" {% if appointment and appointment.nail_shape == 'kut' %} selected {% endif %}>Küt (Kare)</option>
+                            <option value="yuvarlak" {% if appointment and appointment.nail_shape == 'yuvarlak' %} selected {% endif %}>Yuvarlak (Oval)</option>
+                            <option value="badem" {% if appointment and appointment.nail_shape == 'badem' %} selected {% endif %}>Badem (Almond)</option>
+                            <option value="balerin" {% if appointment and appointment.nail_shape == 'balerin' %} selected {% endif %}>Balerin (Coffin)</option>
+                            <option value="sivri" {% if appointment and appointment.nail_shape == 'sivri' %} selected {% endif %}>Sivri (Stiletto)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="input-group" style="margin-top: 15px;">
+                    <label class="label-title">Charm / Nail Art Aksesuarı (+100 TL)</label>
+                    <select id="charmSelect" name="charm_selection" class="form-select" onchange="updateSummaryPanel()">
+                        <option value="0" selected>İstemiyorum</option>
+                        <option value="100">💎 Zirkon & Taş (Gemstone)</option>
+                        <option value="100">✨ Metal (Gold/Silver) Charmlar</option>
+                        <option value="100">🧸 3D Figür & Fiyonk (Resin Art)</option>
+                        <option value="100">⛓️ Zincir & Piercing Detayları</option>
+                        <option value="100">⚪ İnci & Vintage Aksesuarlar</option>
+                    </select>
+                </div>
+
+                <div class="step-navigation">
+                    <button type="button" disabled class="btn-nav btn-back" style="visibility:hidden;">Geri</button>
+                    <button type="button" onclick="nextStep(2)" class="btn-nav btn-forward">İlerle</button>
+                </div>
+            </div>
+
+            <div id="step-2" class="step-content">
+                <h4 style="margin-top:0;">Randevu Tarihi ve Saati Seçimi</h4>
+                
+                <label>Tarih</label>
+                <input type="date" id="appointment_date" name="appointment_date" required min="{{ today.strftime('%Y-%m-%d') }}" value="{{ initial_date or '' }}">
+
+                <label>Saat</label>
+                <div id="time-blocks" style="display:flex; flex-wrap:wrap; gap:10px;"></div>
+
+                <div class="step-navigation">
+                    <button type="button" onclick="prevStep(1)" class="btn-nav btn-back">Geri</button>
+                    <button type="button" onclick="nextStep(3)" class="btn-nav btn-forward">İlerle</button>
+                </div>
+            </div>
+
+            <div id="step-3" class="step-content">
+                <h4 style="margin-top:0;">Ödeme Yöntemi ve Randevu Özeti</h4>
+
+                <div class="live-price-panel">
+                    <h4>Randevu Özeti</h4>
+                    <p>Hizmetler: <span id="summary-services">---</span></p>
+                    <p>Detaylar: <span id="summary-details">---</span></p>
+                    <p>Tarih & Saat: <span id="summary-date-time">---</span></p>
+                    <div class="price-total">Toplam Tutar: <span id="final-price-summary">0.00 TL</span></div>
+                </div>
+                
+                <h4 style="margin-top: 25px;">Ödeme Yöntemi</h4>
+                <div class="payment-options-radios">
+                    <div class="payment-option-tile">
+                        <input type="radio" id="pay_studio" name="payment_method" value="studio" checked onchange="toggleCardDetails()">
+                        <label for="pay_studio">Stüdyoda Ödeme</label>
+                        <p class="small-desc">Ödeme randevu günü alınacaktır.</p>
+                    </div>
+                    <div class="payment-option-tile">
+                        <input type="radio" id="pay_card" name="payment_method" value="card" onchange="toggleCardDetails()">
+                        <label for="pay_card">Kart İle Ödeme</label>
+                        <p class="small-desc">(Online simülasyon)</p>
+                    </div>
+                </div>
+
+                <div id="card-details-form">
+                    <label>Kart Üzerindeki İsim</label>
+                    <input type="text" id="card_holder" name="card_holder" placeholder="Ad Soyad">
+                    
+                    <label>Kart Numarası</label>
+                    <input type="text" id="card_number" name="card_number" placeholder="XXXX XXXX XXXX XXXX" required>
+                    <div style="display:flex; gap:20px;">
+                        <div style="flex:1;">
+                            <label>Son Kullanma</label>
+                            <input type="text" id="card_expiry" name="card_expiry" placeholder="AA/YY" required>
+                        </div>
+                        <div style="flex:1;">
+                            <label>CVC</label>
+                            <input type="text" id="card_cvc" name="card_cvc" placeholder="CVC" required>
+                        </div>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-nav btn-confirm">Randevuyu Onayla</button>
+                
+                <div class="step-navigation">
+                    <button type="button" onclick="prevStep(2)" class="btn-nav btn-back">Geri</button>
+                    <div style="width: 100px;"></div> 
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div class="price-panel-container">
+        <div class="live-price-panel">
+            <h3>💸 Canlı Hesaplama</h3>
+            
+            <div id="price-rows">
+                <div class="price-detail-row">Hizmetler: <span id="price-services">0.00 TL</span></div>
+                <div class="price-detail-row">Tırnak Uzunluğu: <span id="price-length">0.00 TL</span></div>
+                <div class="price-detail-row">Tasarım (Hazır/Özel): <span id="price-design">0.00 TL</span></div>
+                <div class="summary-row">
+                    <span>Charm / Aksesuar:</span>
+                    <span id="summary-charm">0.00 TL</span>
+                </div>
+            </div>
+            
+            <div class="price-total">
+                Toplam Tutar: <span id="price-final">0.00 TL</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<div id="successModal" class="modal-overlay">
+    <div class="success-modal">
+        <i class="fas fa-check-circle check-icon"></i>
+        <h2 style="color: #ff3399;">Randevunuz Başarıyla Oluşturuldu!</h2>
+        <p>Onay durumu için profil sayfanızı kontrol ediniz.</p>
+        <a href="{{ url_for('profile_page', user_id=session.get('user_id')) }}" class="btn-nav btn-forward">Profil Sayfasına Git</a>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+
+    // 1. DOM ELEMANLARI VE SABİTLER
+    let currentStep = 1;
+    const urlParams = new URLSearchParams(window.location.search);
+    const selectedDesign = urlParams.get('selected_design'); // URL'den
+    const selectedDesignId = localStorage.getItem('selected_design'); // Local Storage'dan ID
+    const selectedDesignPath = localStorage.getItem('selected_design_path'); // Local Storage'dan Path
+    
+    // ... (Diğer tüm DOM sabitleri) ...
+    const serviceCheckboxes = document.querySelectorAll('input[name="selected_services"]');
+    const nailLengthSelect = document.getElementById('nail_length');
+    const dateInput = document.getElementById('appointment_date');
+    const form = document.getElementById('appointmentForm');
+
+    const nailArtServiceNames = ["Nail Art"];
+    const nailArtOptions = document.getElementById('nailArtOptions');
+    const customUpload = document.getElementById('customUpload');
+    const nailArtCheckbox = Array.from(serviceCheckboxes).find(cb => cb.getAttribute('data-name') === 'Nail Art');
+    
+    // KRİTİK: Kart detay form inputlarını al
+    const cardNumberInput = document.getElementById('card_number');
+    const cardExpiryInput = document.getElementById('card_expiry');
+    const cardCVCInput = document.getElementById('card_cvc');
+    // YENİ: Kart Sahibi Inputu
+    const cardHolderInput = document.getElementById('card_holder');
+
+
+    // ---------------------------------------------------
+    // A. WIZARD MANTIĞI (Aşama İlerleme ve Doğrulama)
+    // ---------------------------------------------------
+
+    window.showStep = function(step) {
+        document.querySelectorAll('.step-content').forEach(el => el.classList.remove('active'));
+        document.getElementById(`step-${step}`).classList.add('active');
+        document.getElementById('current_step').value = step;
+
+        document.querySelectorAll('.step-dot').forEach(dot => dot.classList.remove('active'));
+        document.querySelector(`.step-dot[data-step="${step}"]`).classList.add('active');
+
+        const titles = {
+            1: {title: "Randevu Oluşturma Sihirbazı", subtitle: "Adım 1: Hizmet ve Detay Seçimi"},
+            2: {title: "Randevu Oluşturma Sihirbazı", subtitle: "Adım 2: Tarih ve Saat Seçimi"},
+            3: {title: "Randevu Oluşturma Sihirbazı", subtitle: "Adım 3: Ödeme Yöntemi ve Onay"}
+        };
+        document.getElementById('wizard-title').textContent = titles[step].title;
+        document.getElementById('wizard-subtitle').textContent = titles[step].subtitle;
+        
+        currentStep = step;
+        updateSummaryPanel();
+        
+        if (step === 3) {
+            window.toggleCardDetails();
+        }
+    }
+
+    function validateStep(step) {
+        let isValid = true;
+        const stepElement = document.getElementById(`step-${step}`);
+        const requiredInputs = stepElement.querySelectorAll('[required]');
+
+        requiredInputs.forEach(input => {
+            if (input.style.display !== 'none' && !input.value) { 
+                isValid = false;
+            }
+        });
+
+        if (step === 1 && document.querySelectorAll('input[name="selected_services"]:checked').length === 0) {
+            isValid = false;
+        }
+
+        if (step === 2 && (!dateInput.value || !document.getElementById('appointment_time_hidden').value)) {
+            isValid = false;
+        }
+        
+        // KRİTİK: Adım 3 için kartla ödeme seçiliyse zorunluluk kontrolü (İSİM DAHİL)
+        if (step === 3 && document.getElementById('pay_card').checked) {
+            if (!cardHolderInput.value || !cardNumberInput.value || !cardExpiryInput.value || !cardCVCInput.value) {
+                isValid = false;
+            }
+        }
+
+        if (!isValid) {
+            alert("Lütfen bu adımdaki tüm zorunlu alanları doldurun.");
+        }
+        return isValid;
+    }
+
+    window.nextStep = function(next) {
+        if (validateStep(currentStep)) {
+            showStep(next);
+        }
+    }
+
+    window.prevStep = function(prev) {
+        showStep(prev);
+    }
+    
+    // ---------------------------------------------------
+    // B. FİYAT VE ÖZET MANTIĞI
+    // ---------------------------------------------------
+
+    function calculatePrices() {
+        let priceServices = 0;
+        let priceDesign = 0;
+        let priceLength = 0;
+        
+        serviceCheckboxes.forEach(cb => {
+            if(cb.checked) {
+                if (cb.getAttribute('data-name') !== 'Nail Art') {
+                    priceServices += parseFloat(cb.getAttribute('data-price') || 0);
+                }
+            }
+        });
+
+        if(nailLengthSelect.value === 'ekstra_uzun') {
+            priceLength = 100;
+        }
+        
+        const designPriceFromStorage = parseFloat(localStorage.getItem('selected_design_price') || 0);
+        const customPriceEl = document.getElementById('custom_design_price_input');
+        let customPrice = 0;
+        
+        if (customUpload.style.display !== 'none' && customPriceEl) {
+            customPrice = parseFloat(customPriceEl.value || 0);
+        }
+
+        if (designPriceFromStorage > 0) {
+            priceDesign = designPriceFromStorage;
+        } else if (customPrice > 0) {
+            priceDesign = customPrice;
+        }
+
+        const charmSelect = document.getElementById('charmSelect');
+        let charmPrice = 0;
+        if (charmSelect) {
+            charmPrice = parseFloat(charmSelect.value) || 0;
+        }
+
+        const totalPrice = priceServices + priceDesign + priceLength + charmPrice;
+
+        return {priceServices, priceDesign, priceLength, totalPrice, charmPrice};
+    }
+
+    window.updateForm = function() {
+        const nailArtChecked = Array.from(serviceCheckboxes).some(c => 
+            nailArtServiceNames.includes(c.getAttribute('data-name')) && c.checked
+        );
+
+        const requiresNailDetails = ["Protez Tırnak", "Jel Tırnak", "Nail Art"]; 
+        const detailRequired = Array.from(serviceCheckboxes).some(c => 
+            c.checked && requiresNailDetails.includes(c.getAttribute('data-name'))
+        );
+        
+        const nailLengthEl = document.getElementById('nail_length');
+        const nailShapeEl = document.getElementById('nail_shape');
+        
+        if (detailRequired) {
+            nailLengthEl.setAttribute('required', true);
+            nailShapeEl.setAttribute('required', true);
+        } else {
+            nailLengthEl.removeAttribute('required');
+            nailShapeEl.removeAttribute('required');
+        }
+
+        if (nailArtChecked) {
+           nailArtOptions.style.cssText = 'display: flex !important; flex-direction: column; gap: 15px; margin-top: 15px;';
+        } else {
+           nailArtOptions.style.cssText = 'display: none !important;';
+           document.getElementById('customUpload').style.display = 'none';
+           localStorage.removeItem('selected_design_price');
+           
+           const previewEl = document.getElementById('selected_design_preview');
+           if (previewEl) {
+               previewEl.style.display = 'none';
+               previewEl.src = '';
+           }
+        }
+
+        updateSummaryPanel();
+    };
+    
+    window.updateSummaryPanel = function() {
+        const prices = calculatePrices();
+        
+        document.getElementById('price-services').textContent = prices.priceServices.toFixed(2) + ' TL';
+        document.getElementById('price-length').textContent = prices.priceLength.toFixed(2) + ' TL';
+        document.getElementById('price-design').textContent = prices.priceDesign.toFixed(2) + ' TL';
+        document.getElementById('summary-charm').textContent = prices.charmPrice.toFixed(2) + ' TL';
+        document.getElementById('price-final').textContent = prices.totalPrice.toFixed(2) + ' TL';
+        
+        document.getElementById('final_price_input').value = prices.totalPrice.toFixed(2);
+        document.getElementById('final-price-summary').textContent = prices.totalPrice.toFixed(2) + ' TL';
+
+        const selectedServices = Array.from(serviceCheckboxes).filter(cb => cb.checked).map(cb => cb.getAttribute('data-name'));
+        document.getElementById('summary-services').textContent = selectedServices.join(', ') || 'Yok';
+        
+        const lengthText = nailLengthSelect.options[nailLengthSelect.selectedIndex].text;
+        document.getElementById('summary-details').textContent = `${lengthText}, Şekil: ${document.getElementById('nail_shape').value || 'Seçilmedi'}`;
+        
+        const timeVal = document.getElementById('appointment_time_hidden').value;
+        const dateVal = dateInput.value;
+        document.getElementById('summary-date-time').textContent = (dateVal && timeVal) ? `${dateVal} - ${timeVal}` : 'Seçilmedi';
+
+    }
+
+    // ---------------------------------------------------
+    // C. RANDEVU VE ÖDEME MANTIKLARI
+    // ---------------------------------------------------
+
+    window.choosePreMade = function() {
+        localStorage.removeItem('selected_design');
+        localStorage.removeItem('selected_design_price');
+        localStorage.removeItem('selected_design_is_nailart');
+        window.location.href = '/tasarimlar?return_to=randevu';
+    }
+
+    window.uploadCustomDesign = function() {
+        localStorage.removeItem('selected_design_price');
+        document.getElementById('customUpload').style.display = 'block';
+        window.updateForm();
+    }
+    
+    // KRİTİK: Kart Detaylarını Göster/Gizle ve Zorunluluk Ayarı (İSİM DAHİL)
+    window.toggleCardDetails = function() {
+        const isCard = document.getElementById('pay_card').checked;
+        const formEl = document.getElementById('card-details-form');
+        
+        formEl.style.display = isCard ? 'block' : 'none';
+
+        cardHolderInput.required = isCard;
+        cardNumberInput.required = isCard;
+        cardExpiryInput.required = isCard;
+        cardCVCInput.required = isCard;
+        
+        if (!isCard) {
+            cardHolderInput.value = '';
+            cardNumberInput.value = '';
+            cardExpiryInput.value = '';
+            cardCVCInput.value = '';
+        }
+    }
+    
+    form.addEventListener('submit', function(e) {
+        e.preventDefault(); 
+
+        if (!validateStep(3)) return; 
+
+        const formData = new FormData(this);
+        const actionUrl = this.action;
+
+        fetch(actionUrl, {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => {
+            if (response.ok) {
+                document.getElementById('successModal').style.display = 'flex';
+                localStorage.clear(); 
+            } else {
+                response.json().then(data => {
+                    alert('Hata: ' + (data.message || 'Randevu oluşturulamadı.'));
+                });
+            }
+        })
+        .catch(error => {
+            console.error('Submit Hatası:', error);
+            alert('Ağ hatası veya sunucu bağlantı hatası oluştu.');
+        });
+    });
+
+    // ---------------------------------------------------
+    // D. SAATLER VE BAŞLANGIÇ
+    // ---------------------------------------------------
+
+    window.dateChangeHandler = function() {
+        const selectedDate = dateInput.value;
+        const timeBlocksContainer = document.getElementById('time-blocks');
+        timeBlocksContainer.innerHTML = '';
+        if (!selectedDate) return;
+
+        fetch(`/api/booked-hours?date=${selectedDate}`) 
+            .then(res => res.json())
+            .then(bookedHours => {
+                const startHour = 9;
+                const endHour = 18;
+                const interval = 2; 
+                document.getElementById('appointment_time_hidden').value = ''; 
+
+                for(let h = startHour; h <= endHour; h += interval){
+                    let hourStr = h.toString().padStart(2,'0') + ":00";
+                    const block = document.createElement('button');
+                    block.type = 'button';
+                    block.textContent = hourStr;
+                    block.className = 'btn-nav';
+
+                    if(bookedHours.includes(hourStr)){
+                        block.disabled = true;
+                        block.style.cssText = 'background: #ffdcdc; color: #888; cursor: not-allowed;';
+                    } else {
+                         block.style.cssText = 'background: #fff0fa; color: #ff3399; border: 1px solid #ffccea;';
+                    }
+
+                    block.addEventListener('click', () => {
+                        if(block.disabled) return; 
+                        document.querySelectorAll('#time-blocks button').forEach(b => {
+                            if(!b.disabled) b.style.cssText = 'background: #fff0fa; color: #ff3399; border: 1px solid #ffccea;';
+                        });
+                        
+                        block.style.cssText = 'background: #ff3399; color: white; border: 1px solid #ff3399;';
+                        document.getElementById('appointment_time_hidden').value = hourStr;
+                        updateSummaryPanel();
+                    });
+                    timeBlocksContainer.appendChild(block);
+                }
+                updateSummaryPanel();
+            })
+            .catch(error => {
+                console.error('Fetch hatası:', error);
+                timeBlocksContainer.innerHTML = '<p style="color:red;">Saatler yüklenemedi.</p>';
+            });
+    }
+
+    // --- BAŞLANGIÇ YÜKLEME ---
+    
+    const hasDesignPrice = parseFloat(localStorage.getItem('selected_design_price') || 0) > 0;
+    if (selectedDesignPath) { 
+        const previewEl = document.getElementById('selected_design_preview');
+        previewEl.src = '/static/' + selectedDesignPath; 
+        previewEl.style.display = 'block';
+    }
+    if (nailArtCheckbox && (selectedDesignId || hasDesignPrice)) {
+        nailArtCheckbox.checked = true; 
+
+        if(selectedDesignId){
+            document.getElementById('selected_design_input').value = selectedDesignId;
+        }
+
+        if(selectedDesignPath) {
+            const previewEl = document.getElementById('selected_design_preview');
+            previewEl.src = '/static/' + selectedDesignPath; 
+            previewEl.style.display = 'block';
+        }
+        window.updateForm(); 
+    }
+
+    // --- EVENT LISTENERS ---
+    serviceCheckboxes.forEach(cb => cb.addEventListener('change', window.updateForm));
+    nailLengthSelect.addEventListener('change', updateSummaryPanel);
+    dateInput.addEventListener('change', window.dateChangeHandler);
+    document.getElementById('nail_shape').addEventListener('change', updateSummaryPanel);
+    
+    showStep(1);
+    window.dateChangeHandler(); 
+    window.toggleCardDetails(); 
+
+});
+</script>
+</body>
+</html>
+
+
+
+tasarimlar.html
+
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PIXIE NAILS | Tüm Tasarımlarımız</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        /* =============================================
+    PIXIE NAILS | Tüm Tasarımlarımız - GÜNCELLENMİŞ VERSİYON
+    ============================================= */
+:root {
+    --primary-color: #ff3399; /* Parlak Pembe */
+    --secondary-color: #ffccea; /* Açık Pembe */
+    --glass-bg: rgba(255, 255, 255, 0.15); /* Hafif beyaz, şeffaf cam */
+    --glass-border: rgba(255, 255, 255, 0.3);
+}
+
+/* =============================================
+    TASARIMLAR SAYFASI ARKA PLAN STİLLERİ (Mevcut kodunuz)
+    ============================================= */
+body {
+    background-image: url('{{ url_for("static", filename="images/arkaplan6.jpg.jpeg") }}'); /* **LÜTFEN UZANTIYI KONTROL EDİN!** */
+    background-size: cover; 
+    background-position: center; 
+    background-attachment: fixed; 
+    background-repeat: no-repeat; 
+    
+    background-blend-mode: multiply; 
+    background-color: rgba(0, 0, 0, 0.6); 
+
+    min-height: 100vh;
+    color: #f0f0f0; /* Genel metin rengi açık olmalı */
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* =============================================
+    NAVBAR ŞEFFAFLIK DÜZELTMESİ
+    ============================================= */
+/* Navbar ve Glass Panellerinizin stilleri okunurluğu korumak için aynı kalmalıdır */
+.navbar {
+    width: 100%;
+    position: fixed;
+    top: 0;
+    z-index: 100;
+    /* KRİTİK DEĞİŞİKLİK: Arka plan şeffaflığı 0.4 olarak ayarlandı */
+    background: rgba(0, 0, 0, 0.4); 
+    /* Bulanıklık biraz artırılarak arkadaki resimle karışım sağlandı */
+    backdrop-filter: blur(15px);
+    
+    padding: 10px 20px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.navbar a {
+    color: var(--secondary-color);
+    /* Diğer stil aynı kalır */
+}
+/* ... geri kalan tüm CSS kodlarınız aynı kalmalıdır ... */
+
+
+/* =============================================
+    Katalog Yapısı ve Kart Stilleri (ARKA PLAN İÇİN DÜZELTİLDİ)
+    ============================================= */
+.full-catalog-section {
+    padding-top: 100px;
+    padding-bottom: 80px;
+    background-color: transparent; /* KRİTİK: Arka plan resmini göstermek için şeffaf yapıldı */
+}
+
+/* Başlık Stili */
+.section-title, .section-subtitle {
+    color: white; /* Başlıklar okunurluk için beyaz yapıldı */
+    text-align: center;
+    margin-bottom: 10px;
+}
+.section-title {
+    font-size: 2.5rem;
+}
+
+
+/* Grid Stilleri */
+.full-gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 40px;
+}
+
+.design-card {
+    /* KRİTİK: GLASSMORPHISM uygulandı */
+    background: var(--glass-bg); 
+    backdrop-filter: blur(10px);
+    border-radius: 18px; /* Daha yuvarlak */
+    border: 1px solid var(--glass-border);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* Daha koyu gölge */
+    
+    padding: 20px;
+    text-align: center;
+    transition: transform 0.3s;
+    overflow: hidden;
+    border-color: transparent; /* Hover'da daha iyi vurgu için */
+}
+
+.design-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(255, 51, 153, 0.5);
+    border-color: var(--primary-color);
+}
+
+.design-image-placeholder {
+    width: 100%;
+    height: 300px;
+    background-size: cover;
+    background-position: center;
+    border-radius: 12px;
+    margin-bottom: 15px;
+}
+
+.design-name {
+    font-size: 1.3rem;
+    color: var(--secondary-color); /* Açık pembe yapıldı */
+    margin: 10px 0 5px;
+}
+
+.design-price {
+    font-size: 1.1rem;
+    color: var(--primary-color);
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.appointment-button.small-button {
+    font-size: 0.9rem;
+    padding: 8px 15px;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.appointment-button.small-button:hover {
+    background-color: #e62e8c;
+}
+    </style>
+</head>
+<body>
+<header class="navbar">
+    <nav class="nav-links">
+        <a href="{{ url_for('index') }}">Anasayfa</a>
+        <a href="{{ url_for('tasarimlar_page') }}">Tasarimlar</a>
+        <a href="{{ url_for('index') }}#hizmetler">Hizmetlerimiz</a>
+        <a href="{{ url_for('index') }}#iletisim">İletişim</a>
+        {% if session.logged_in %}
+            <a href="{{ url_for('profile_page') }}" class="profile-link">
+                {% if session.profile_image %}
+                    <img src="{{ url_for('static', filename=session.profile_image) }}" alt="Profil" class="nav-profile-img">
+                {% else %}
+                    <i class="fas fa-user-circle" style="font-size: 1.8rem; color: #333;"></i>
+                {% endif %}
+            </a>
+            <a href="{{ url_for('logout') }}" class="login-button secondary" style="color: #333 !important;">Çıkış Yap</a>
+        {% else %}
+            <a href="{{ url_for('auth_page') }}" class="login-button">Giriş Yap</a>
+        {% endif %}
+    </nav>
+</header>
+
+<section class="section full-catalog-section">
+    <h1 class="section-title">Tüm Tırnak Tasarımları</h1>
+    <p class="section-subtitle">Beğendiğiniz tasarımlar için anında randevu alın.</p>
+
+    <div class="full-gallery-grid">
+        {% for design in all_designs %}
+        <div class="design-card">
+           <div class="design-image-placeholder"
+     style="background-image: url('/static/{{ design.design_image }}');">
+</div>
+
+            <h4 class="design-name">{{ design.design_name }}</h4>
+            <p class="design-price">Ek Ücret: {{ design.design_price | round(2) }} TL</p>
+            <button onclick="selectDesign('{{ design.design_id }}', '{{ design.design_price }}', '{{ design.design_image }}')" 
+        class="appointment-button small-button">
+    BU TASARIMLA RANDEVU AL
+</button>
+
+        </div>
+        {% endfor %}
+    </div>
+</section>
+
+<script>
+ // tasarimlar.html dosyasının <script> bloğu içinde:
+function selectDesign(designId, price, imagePath) { 
+    localStorage.setItem('selected_design', designId); 
+    localStorage.setItem('selected_design_price', price);
+    localStorage.setItem('selected_design_path', imagePath); // <--- BU YOLU KULLANIYORUZ
+    localStorage.setItem('selected_design_is_nailart', 'true');
+    
+    window.location.href = '/randevu'; 
+}
+
+
+</script>
+</body>
+</html>
+
+
+
+app.py
+
+
+from flask import Flask, render_template, request, redirect, url_for, session, flash, jsonify
+from flask_mysqldb import MySQL
+from werkzeug.security import generate_password_hash, check_password_hash
+from werkzeug.utils import secure_filename 
+from functools import wraps
+from datetime import datetime, timedelta
+import os
+
+# --- GÜVENLİK VE AYARLAR ---
+SECRET_KEY = 'senin_cok_gizli_anahtarin_burada_olmali_bu_cok_onemli'
+# Klasör yollarını proje yapına göre ayarla
+UPLOAD_FOLDER = os.path.join('diff', 'static', 'uploads') 
+ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
+
+app = Flask(__name__,
+            template_folder='diff/templates',
+            static_folder='diff/static')
+app.secret_key = SECRET_KEY
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+
+# MySQL Konfigürasyonu
+app.config['MYSQL_HOST'] = 'localhost'
+app.config['MYSQL_USER'] = 'root'
+app.config['MYSQL_PASSWORD'] = 'Beyza.123' # ŞİFRENİZ
+app.config['MYSQL_DB'] = 'pixienails_db'
+app.config['MYSQL_CURSORCLASS'] = 'DictCursor' # Verileri sözlük olarak çeker (KeyError'u önler)
+mysql = MySQL(app)
+
+# --- YARDIMCI FONKSİYONLAR ---
+def allowed_file(filename):
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
+def is_over_18(dob_str):
+    today = datetime.today()
+    try:
+        birth_date = datetime.strptime(dob_str, '%Y-%m-%d')
+    except ValueError:
+        return False 
+    age = today.year - birth_date.year - ((today.month, today.day) < (birth_date.month, birth_date.day))
+    return age >= 18
+
+def login_required(f):
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        if 'logged_in' not in session or not session['logged_in']:
+            flash('Bu sayfaya erişim için giriş yapmalısınız.', 'error')
+            return redirect(url_for('auth_page', next=request.path))
+        return f(*args, **kwargs)
+    return decorated_function
+
+# --- 1. TEMEL ROTALAR ---
+
+@app.before_request
+def check_profil_setup():
+    if session.get('logged_in'):
+        # Döngüye girmemesi gereken sayfalar
+        allowed_endpoints = ['profile_setup_page', 'save_profile_setup', 'logout', 'static', 'admin_dashboard', 'admin_add_design', 'admin_delete_design']
+        if request.endpoint in allowed_endpoints:
+            return 
+        
+        # Profil tamamlanmış mı kontrol et
+        cur = mysql.connection.cursor()
+        cur.execute("SELECT profile_completed FROM users WHERE user_id = %s", [session['user_id']])
+        user_status = cur.fetchone()
+        cur.close()
+
+        if user_status and not user_status.get('profile_completed'):
+            flash('Lütfen randevu almadan önce profil bilgilerinizi tamamlayın.', 'warning')
+            return redirect(url_for('profile_setup_page'))
+
+@app.route('/')
+@app.route('/index')
+def index():
+    cursor = mysql.connection.cursor()
+
+    # 1. Tasarımları Çek
+    cursor.execute("SELECT design_id, design_image, design_price FROM designs ORDER BY design_id DESC LIMIT 6")
+    designs = cursor.fetchall()
+
+    # 2. Yorumları Çek
+    cursor.execute("""
+        SELECT r.content, r.rating, u.full_name, u.profile_image
+        FROM reviews r 
+        JOIN users u ON r.user_id = u.user_id 
+        ORDER BY r.created_at DESC 
+        LIMIT 3
+    """)
+    reviews_data = cursor.fetchall()
+    cursor.close()
+
+    # 3. Yorumları Düzenle (DictCursor sayesinde row['key'] kullanıyoruz)
+    reviews = []
+    if reviews_data:
+        for row in reviews_data:
+            reviews.append({
+                'content': row['content'],
+                'rating': row['rating'],
+                'full_name': row['full_name'],
+                'profile_image': row['profile_image'] if row['profile_image'] else 'default_profile.png'
+            })
+
+    return render_template('index.html', designs=designs, reviews=reviews)
+
+@app.route('/auth')
+def auth_page():
+    if session.get('logged_in'):
+        # Yönetici ise dashboard'a, değilse profile
+        if session.get('is_admin'):
+            return redirect(url_for('admin_dashboard'))
+        return redirect(url_for('profile_page'))
+    
+    error = request.args.get('error', '')
+    next_url = request.args.get('next', '')
+    return render_template('auth.html', error=error, next=next_url)
+
+@app.route('/tasarimlar')
+def tasarimlar_page():
+    cur = mysql.connection.cursor()
+    cur.execute("SELECT design_id, design_image, design_price, design_name FROM designs ORDER BY design_id DESC")
+    all_designs = cur.fetchall()
+    cur.close()
+    return render_template('tasarimlar.html', all_designs=all_designs)
+
+@app.route('/logout')
+def logout():
+    session.clear()
+    return redirect(url_for('index'))
+
+# --- 2. KULLANICI İŞLEMLERİ (GİRİŞ/KAYIT) ---
+
+@app.route('/login', methods=['POST'])
+def login():
+    if request.method == 'POST':
+        email = request.form.get('email')
+        password_raw = request.form.get('password')
+        next_url = request.args.get('next') 
+
+        cur = mysql.connection.cursor()
+        cur.execute("SELECT user_id, username, password_hash, full_name, is_admin, profile_image FROM users WHERE username = %s", (email,))
+        user = cur.fetchone()
+        cur.close()
+
+        if user and check_password_hash(user['password_hash'], password_raw):
+            session['logged_in'] = True
+            session['user_id'] = user['user_id']
+            session['full_name'] = user['full_name']
+            
+            # Admin bilgisini session'a kaydet (1 ise True)
+            session['is_admin'] = True if user.get('is_admin') == 1 else False
+            session['profile_image'] = user.get('profile_image')
+
+            flash('Giriş başarılı!', 'success')
+
+            # YÖNLENDİRME MANTIĞI
+            if session['is_admin']:
+                return redirect(url_for('admin_dashboard'))
+            elif next_url:
+                return redirect(next_url)
+            else:
+                return redirect(url_for('profile_page'))
+        else:
+            return redirect(url_for('auth_page', error='E-posta veya şifre hatalı.', next=next_url))
+            
+    return redirect(url_for('auth_page'))
+
+@app.route('/register', methods=['POST'])
+def register():
+    if request.method == 'POST':
+        full_name = request.form.get('full_name')
+        email = request.form.get('email')
+        password_raw = request.form.get('password')
+        confirm_password = request.form.get('confirm_password')
+        
+        if password_raw != confirm_password:
+            return redirect(url_for('auth_page', error='Şifreler uyuşmuyor.'))
+
+        password_hashed = generate_password_hash(password_raw)
+        
+        try:
+            cur = mysql.connection.cursor()
+            cur.execute("SELECT user_id FROM users WHERE username = %s", [email])
+            if cur.fetchone():
+                cur.close()
+                return redirect(url_for('auth_page', error='Bu e-posta zaten kayıtlı.'))
+
+            # Yeni kayıtlar varsayılan olarak is_admin = 0 (Müşteri) olur
+            sql = """INSERT INTO users (username, password_hash, full_name, profile_completed, is_admin) 
+                     VALUES (%s, %s, %s, FALSE, 0)"""
+                        
+            cur.execute(sql, (email, password_hashed, full_name))
+            mysql.connection.commit()
+            new_user_id = cur.lastrowid
+            cur.close()
+            
+            session['logged_in'] = True
+            session['user_id'] = new_user_id
+            session['full_name'] = full_name 
+            session['is_admin'] = False # Yeni kayıt yönetici değildir
+            
+            return redirect(url_for('profile_setup_page'))
+        
+        except Exception as e:
+            print(f"SQL HATA: {e}")
+            return redirect(url_for('auth_page', error='Kayıt başarısız oldu.'))
+            
+    return redirect(url_for('auth_page'))
+
+# --- 3. PROFİL İŞLEMLERİ ---
+
+@app.route('/profile_setup')
+def profile_setup_page():
+    if not session.get('logged_in'):
+        return redirect(url_for('auth_page'))
+    return render_template('profile_setup.html')
+
+@app.route('/save_profile_setup', methods=['POST'])
+def save_profile_setup():
+    if not session.get('logged_in'):
+        return redirect(url_for('auth_page'))
+
+    if request.method == 'POST':
+        user_id = session.get('user_id')
+        phone = request.form.get('phone')
+        birth_date_str = request.form.get('birth_date')
+        continue_action = request.form.get('continue_to_appointment')
+
+        if not is_over_18(birth_date_str):
+            flash('18 yaş altı hizmet veremiyoruz.', 'error')
+            return redirect(url_for('profile_setup_page')) 
+
+        try:
+            cur = mysql.connection.cursor()
+            sql = """UPDATE users SET phone = %s, birth_date = %s, profile_completed = TRUE WHERE user_id = %s"""
+            cur.execute(sql, (phone, birth_date_str, user_id))
+            mysql.connection.commit()
+            cur.close()
+            
+            session['profile_completed'] = True
+            flash('Profil tamamlandı!', 'success')
+
+            if continue_action == 'yes':
+                return redirect(url_for('randevu_page'))
+            else:
+                return redirect(url_for('profile_page'))
+
+        except Exception as e:
+            print(f'Hata: {e}')
+            return redirect(url_for('profile_setup_page'))
+            
+    return redirect(url_for('profile_setup_page'))
+
+# PROFİL SAYFASI
+@app.route('/profile')
+@app.route('/profile/<int:user_id>')
+@login_required 
+def profile_page(user_id=None):
+    # 1. YÖNETİCİ KONTROLÜ: Eğer yönetici profil sayfasına girmek isterse, Dashboard'a at.
+    if session.get('is_admin'):
+        return redirect(url_for('admin_dashboard'))
+
+    current_user_id = session.get('user_id')
+    # Başkasının profiline girmeyi engelle (Opsiyonel)
+    target_id = user_id if user_id else current_user_id
+    if target_id != current_user_id:
+         target_id = current_user_id
+
+    cur = mysql.connection.cursor()
+    
+    # Kullanıcı bilgisi
+    cur.execute("SELECT * FROM users WHERE user_id = %s", [target_id])
+    user_info = cur.fetchone()
+    
+    # Randevuları Çek
+    cur.execute("""
+        SELECT a.*, d.design_name, d.design_image, d.design_id
+        FROM appointments a
+        LEFT JOIN designs d ON a.design_id = d.design_id
+        WHERE a.user_id = %s
+        ORDER BY a.appointment_date DESC
+    """, [target_id])
+    
+    all_appointments_base = cur.fetchall()
+    
+    # Hizmet İsimlerini Çek
+    cur.execute("SELECT service_id, name FROM services")
+    services_dict = {row['service_id']: row['name'] for row in cur.fetchall()}
+    
+    future_appointments = []
+    past_appointments = []
+    now = datetime.now()
+    
+    for appt in all_appointments_base:
+        # Randevuya ait hizmetleri bul
+        cur.execute("SELECT service_id FROM appointment_services WHERE appointment_id = %s", [appt['appointment_id']])
+        s_ids = [r['service_id'] for r in cur.fetchall()]
+        appt['service_name'] = ', '.join([services_dict.get(sid, '') for sid in s_ids])
+        
+        # Özel tasarım varsa görsel yolunu ayarla
+        if appt.get('custom_design_path'):
+            appt['appointment_image_path'] = appt['custom_design_path']
+        else:
+            appt['appointment_image_path'] = None
+
+        if appt['appointment_date'] > now:
+            future_appointments.append(appt)
+        else:
+            past_appointments.append(appt)
+    
+    cur.close()
+    return render_template('profile.html', user_info=user_info, future_appointments=future_appointments, past_appointments=past_appointments)
+
+# PROFİL GÜNCELLEME
+@app.route('/profile/update', methods=['POST'])
+@login_required
+def update_profile_info():
+    user_id = session.get('user_id')
+    phone = request.form.get('phone')
+    birth_date_str = request.form.get('birth_date')
+    full_name = request.form.get('full_name')
+    username = request.form.get('username')
+    
+    if not is_over_18(birth_date_str):
+        flash('Yaşınız 18 altı olamaz.', 'error')
+        return redirect(url_for('profile_page'))
+
+    cur = mysql.connection.cursor()
+    try:
+        cur.execute("""
+            UPDATE users SET full_name=%s, username=%s, phone=%s, birth_date=%s WHERE user_id=%s
+        """, (full_name, username, phone, birth_date_str, user_id))
+        mysql.connection.commit()
+        cur.close()
+        session['username'] = username
+        flash('Profil güncellendi.', 'success')
+    except Exception as e:
+        flash(f'Hata: {e}', 'error')
+        
+    return redirect(url_for('profile_page'))
+
+@app.route('/profile/upload_image/<int:user_id>', methods=['POST'])
+@login_required
+def upload_profile_image(user_id):
+    if 'profile_image_file' not in request.files:
+        return redirect(url_for('profile_page'))
+
+    file = request.files['profile_image_file']
+    if file.filename == '' or not allowed_file(file.filename):
+        flash('Geçersiz dosya.', 'error')
+        return redirect(url_for('profile_page'))
+
+    try:
+        filename = secure_filename(file.filename)
+        ext = filename.rsplit('.', 1)[1].lower()
+        filename_unique = f"user_{user_id}_{datetime.now().strftime('%Y%m%d%H%M%S')}.{ext}"
+        file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename_unique))
+        
+        db_path = f"uploads/{filename_unique}"
+        
+        cur = mysql.connection.cursor()
+        cur.execute("UPDATE users SET profile_image = %s WHERE user_id = %s", (db_path, user_id))
+        mysql.connection.commit()
+        cur.close()
+        
+        session['profile_image'] = db_path
+        flash('Fotoğraf güncellendi.', 'success')
+    except Exception as e:
+        print(f"Upload Hata: {e}")
+        flash('Hata oluştu.', 'error')
+
+    return redirect(url_for('profile_page'))
+
+# --- 4. YÖNETİCİ PANELİ (ADMIN DASHBOARD) ---
+
+@app.route('/admin/dashboard')
+def admin_dashboard():
+    # Güvenlik Kontrolü
+    if not session.get('logged_in') or not session.get('is_admin'):
+        flash('Yönetici erişimi gerekli.', 'error')
+        return redirect(url_for('index'))
+
+    cur = mysql.connection.cursor()
+    
+    # GÜNCELLEME BURADA: GROUP_CONCAT ile hizmet isimlerini 'service_names' olarak çekiyoruz
+    cur.execute("""
+        SELECT 
+            a.appointment_id, 
+            u.full_name as user_name, 
+            a.appointment_date, 
+            a.total_price, 
+            a.status, 
+            a.payment_method,
+            GROUP_CONCAT(s.name SEPARATOR ', ') as service_names 
+        FROM appointments a
+        JOIN users u ON a.user_id = u.user_id
+        LEFT JOIN appointment_services aps ON a.appointment_id = aps.appointment_id
+        LEFT JOIN services s ON aps.service_id = s.service_id
+        GROUP BY a.appointment_id
+        ORDER BY a.appointment_date DESC
+    """)
+    appointments = cur.fetchall()
+    
+    # Tasarımları Çekme
+    cur.execute("SELECT * FROM designs ORDER BY design_id DESC")
+    designs = cur.fetchall()
+    cur.close()
+
+    return render_template('admin_dashboard.html', appointments=appointments, designs=designs)
+
+@app.route('/admin/designs/add', methods=['POST'])
+def admin_add_design():
+    if not session.get('is_admin'): return redirect(url_for('index'))
+
+    file = request.files.get('file')
+    name = request.form.get('design_name')
+    price = request.form.get('design_price')
+
+    if file and allowed_file(file.filename):
+        filename = secure_filename(file.filename)
+        ext = filename.rsplit('.', 1)[1].lower()
+        unique_name = f"design_{datetime.now().strftime('%Y%m%d%H%M%S')}.{ext}"
+        
+        # diff/static/uploads/designs klasörüne kaydet
+        design_folder = os.path.join(app.root_path, 'diff', 'static', 'uploads', 'designs')
+        os.makedirs(design_folder, exist_ok=True)
+        
+        file.save(os.path.join(design_folder, unique_name))
+        db_path = f'uploads/designs/{unique_name}'
+
+        cur = mysql.connection.cursor()
+        cur.execute("INSERT INTO designs (design_name, design_price, design_image) VALUES (%s,%s,%s)", (name, price, db_path))
+        mysql.connection.commit()
+        cur.close()
+        flash('Tasarım eklendi.', 'success')
+    
+    return redirect(url_for('admin_dashboard'))
+
+@app.route('/admin/designs/delete/<int:design_id>', methods=['POST'])
+def admin_delete_design(design_id):
+    if not session.get('is_admin'): return redirect(url_for('index'))
+    
+    cur = mysql.connection.cursor()
+    cur.execute("SELECT design_image FROM designs WHERE design_id = %s", [design_id])
+    design = cur.fetchone()
+    
+    if design:
+        # Dosyayı silmeye çalış
+        try:
+            full_path = os.path.join(app.root_path, 'diff', 'static', design['design_image'])
+            if os.path.exists(full_path):
+                os.remove(full_path)
+        except: pass
+        
+        cur.execute("DELETE FROM designs WHERE design_id = %s", [design_id])
+        mysql.connection.commit()
+        flash('Tasarım silindi.', 'success')
+    
+    cur.close()
+    return redirect(url_for('admin_dashboard'))
+
+# --- 5. RANDEVU İŞLEMLERİ ---
+
+@app.route('/randevu', methods=['GET', 'POST'])
+@login_required 
+def randevu_page():
+    user_id = session.get('user_id')
+    cur = mysql.connection.cursor() 
+    
+    # Verileri Çek
+    cur.execute("SELECT * FROM services ORDER BY service_id")
+    services = cur.fetchall()
+    cur.execute("SELECT * FROM designs ORDER BY design_id")
+    designs = cur.fetchall()
+    
+    if request.method == 'POST':
+        services_ids = request.form.getlist('selected_services')
+        design_id = request.form.get('selected_design')
+        date = request.form.get('appointment_date')
+        time = request.form.get('appointment_time')
+        price = request.form.get('total_price')
+        pay_method = request.form.get('payment_method')
+        length = request.form.get('nail_length')
+        shape = request.form.get('nail_shape')
+        
+        custom_path = None
+        if 'custom_design_file' in request.files:
+            f = request.files['custom_design_file']
+            if f.filename != '' and allowed_file(f.filename):
+                fname = secure_filename(f.filename)
+                ext = fname.rsplit('.', 1)[1].lower()
+                unique = f"custom_{user_id}_{datetime.now().strftime('%Y%m%d%H%M%S')}.{ext}"
+                custom_folder = os.path.join(app.root_path, 'diff', 'static', 'uploads', 'custom')
+                os.makedirs(custom_folder, exist_ok=True)
+                f.save(os.path.join(custom_folder, unique))
+                custom_path = f"uploads/custom/{unique}"
+
+        dt = datetime.strptime(f"{date} {time}", '%Y-%m-%d %H:%M')
+        
+        try:
+            # Ana Randevu Kaydı
+            design_id_int = int(design_id) if design_id and design_id.isdigit() else None
+            primary_service = services_ids[0] if services_ids else None
+            
+            cur.execute("""INSERT INTO appointments 
+                (user_id, service_id, design_id, custom_design_path, appointment_date, total_price, status, payment_method, nail_length, nail_shape) 
+                VALUES (%s, %s, %s, %s, %s, %s, 'pending', %s, %s, %s)""", 
+                (user_id, primary_service, design_id_int, custom_path, dt, price, pay_method, length, shape))
+            
+            appt_id = cur.lastrowid
+            
+            # Ek Hizmetler
+            for sid in services_ids:
+                cur.execute("INSERT INTO appointment_services (appointment_id, service_id) VALUES (%s, %s)", (appt_id, sid))
+            
+            mysql.connection.commit()
+            cur.close()
+            flash('Randevu oluşturuldu!', 'success')
+            return redirect(url_for('profile_page'))
+            
+        except Exception as e:
+            mysql.connection.rollback()
+            print(f"Hata: {e}")
+            flash('Hata oluştu.', 'error')
+    
+    cur.close()
+    return render_template('randevu.html', services=services, designs=designs, today=datetime.now(), is_update=False, appointment=None)
+
+@app.route('/update_appointment/<int:appointment_id>', methods=['GET', 'POST'])
+@login_required
+def update_appointment(appointment_id):
+    user_id = session.get('user_id')
+    cur = mysql.connection.cursor()
+    
+    cur.execute("SELECT * FROM appointments WHERE appointment_id=%s AND user_id=%s", (appointment_id, user_id))
+    appt = cur.fetchone()
+    
+    if not appt:
+        flash('Randevu bulunamadı.', 'error')
+        return redirect(url_for('profile_page'))
+        
+    # --- POST (Güncelleme İşlemi) ---
+    if request.method == 'POST':
+        new_service_ids = request.form.getlist('selected_services') 
+        new_design_id_raw = request.form.get('selected_design') 
+        new_date = request.form.get('appointment_date')
+        new_time = request.form.get('appointment_time')
+        new_total_price = request.form.get('total_price') 
+        new_length = request.form.get('nail_length')
+        new_shape = request.form.get('nail_shape')
+        
+        new_datetime = datetime.strptime(f"{new_date} {new_time}", '%Y-%m-%d %H:%M')
+        new_design_id = int(new_design_id_raw) if new_design_id_raw and new_design_id_raw.isdigit() else None
+        
+        try:
+            # Ana Randevuyu Güncelle
+            cur.execute("""
+                UPDATE appointments SET 
+                    appointment_date = %s, 
+                    design_id = %s,
+                    total_price = %s,
+                    nail_length = %s,  
+                    nail_shape = %s,
+                    status = 'pending' 
+                WHERE appointment_id = %s AND user_id = %s
+            """, (new_datetime, new_design_id or None, new_total_price, new_length, new_shape, appointment_id, user_id))
+            
+            # Hizmetleri Sıfırla ve Yeniden Ekle
+            cur.execute("DELETE FROM appointment_services WHERE appointment_id = %s", [appointment_id])
+            for service_id_str in new_service_ids:
+                cur.execute("""
+                    INSERT INTO appointment_services (appointment_id, service_id) VALUES (%s, %s)
+                """, (appointment_id, int(service_id_str)))
+
+            mysql.connection.commit()
+            flash('Randevu güncellendi.', 'success')
+            cur.close()
+            return redirect(url_for('profile_page'))
+
+        except Exception as e:
+            mysql.connection.rollback()
+            flash(f'Hata: {e}', 'error')
+            cur.close()
+            return redirect(url_for('update_appointment', appointment_id=appointment_id))
+
+    # --- GET (Formu Gösterme) ---
+    cur.execute("SELECT service_id FROM appointment_services WHERE appointment_id = %s", [appointment_id])
+    selected_service_ids = [row['service_id'] for row in cur.fetchall()]
+    
+    cur.execute("SELECT * FROM services")
+    services = cur.fetchall()
+    cur.execute("SELECT * FROM designs")
+    designs = cur.fetchall()
+    
+    cur.close()
+    
+    return render_template('randevu.html', 
+                           services=services, 
+                           designs=designs, 
+                           today=datetime.now(), 
+                           is_update=True, 
+                           appointment=appt, 
+                           initial_date=appt['appointment_date'].strftime('%Y-%m-%d'), 
+                           initial_time=appt['appointment_date'].strftime('%H:%M'),
+                           selected_service_ids=selected_service_ids,
+                           appointment_id=appointment_id)
+
+@app.route('/delete_appointment/<int:appointment_id>', methods=['POST'])
+@login_required
+def delete_appointment(appointment_id):
+    user_id = session.get('user_id')
+    cur = mysql.connection.cursor()
+    cur.execute("DELETE FROM appointments WHERE appointment_id=%s AND user_id=%s", (appointment_id, user_id))
+    mysql.connection.commit()
+    cur.close()
+    flash('Randevu silindi.', 'success')
+    return redirect(url_for('profile_page'))
+
+@app.route('/api/booked-hours')
+def get_booked_hours():
+    date_str = request.args.get('date')
+    if not date_str: return jsonify([])
+    
+    cur = mysql.connection.cursor()
+    cur.execute("SELECT DATE_FORMAT(appointment_date, '%%H:%%i') as time FROM appointments WHERE DATE(appointment_date) = %s", [date_str])
+    times = [r['time'] for r in cur.fetchall()]
+    cur.close()
+    return jsonify(times)
+
+# --- 6. YORUM SİSTEMİ ---
+
+@app.route('/submit_review', methods=['POST'])
+@login_required
+def submit_review():
+    user_id = session['user_id']
+    rating = request.form.get('rating')
+    content = request.form.get('content')
+    
+    if rating and content:
+        try:
+            cur = mysql.connection.cursor()
+            cur.execute("INSERT INTO reviews (user_id, rating, content) VALUES (%s, %s, %s)", (user_id, rating, content))
+            mysql.connection.commit()
+            cur.close()
+            flash('Yorumunuz için teşekkürler!', 'success')
+        except:
+            flash('Hata oluştu.', 'error')
+            
+    return redirect(url_for('profile_page'))
+
+if __name__ == '__main__':
+    if not os.path.exists(UPLOAD_FOLDER):
+        os.makedirs(UPLOAD_FOLDER)
+    app.run(debug=True)

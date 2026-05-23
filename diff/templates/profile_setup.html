@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <title>Profil Kurulumu</title>
+<style>
+/* =============================================
+    PROFİL KURULUM FORMU (NİHAİ DÜZENLEME) STİLİ
+    ============================================= */
+
+:root {
+    --primary-color: #ff3399; /* Parlak Pembe */
+    --secondary-color: #000000; /* Açık Pembe */
+    --glass-bg: rgba(255, 255, 255, 0.25); /* KRİTİK: Daha şeffaf cam */
+    --glass-border: rgba(255, 255, 255, 0.4); /* Sınır görünürlüğü artırıldı */
+}
+
+/* ---- KRİTİK: ARKA PLAN VE ORTALAMA AYARLARI ---- */
+body {
+    /* Lütfen resim yolunu kendi projenize göre güncelleyin! */
+    background-image: url('{{ url_for("static", filename="images/arkaplan5.jpg.jpeg") }}'); /* UZANTIYI KONTROL EDİN */
+    background-size: cover; 
+    background-position: center;  
+    background-attachment: fixed;
+    background-repeat: no-repeat; 
+    
+    /* KRİTİK DÜZELTME: Overlay opaklığı 0.40'a düşürüldü (Daha az karartma) */
+    background-blend-mode: multiply; 
+    background-color: rgba(0, 0, 0, 0.40); 
+
+    min-height: 100vh;
+    color: #000000; 
+    
+    /* FORMU DİKEY VE YATAYDA TAM ORTALAMA */
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    padding: 0;
+    margin: 0;
+}
+
+/* Ana Form Konteyneri (Cam Panel) */
+.profile-form-container {
+    /* KRİTİK DÜZELTME: Arka plan şeffaflığı artırıldı, arka plan resmi daha iyi görünecek */
+    background: var(--glass-bg); 
+    backdrop-filter: blur(12px); /* Bulanıklık biraz azaltıldı */
+    border-radius: 20px;
+    border: 1px solid var(--glass-border);
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.6);
+    
+    padding: 35px;
+    width: 100%;
+    max-width: 450px; 
+    text-align: center;
+    /* Merkezi konumlandırma body tarafından yapıldığı için margin kaldırıldı */
+}
+
+/* Başlık ve Alt Başlık */
+.profile-form-container h3 {
+    font-size: 1.6rem;
+    font-weight: 600;
+    margin-bottom: 5px;
+    color: black;
+}
+.profile-form-container p {
+    font-size: 0.95rem;
+    color: var(--secondary-color);
+    margin-bottom: 25px;
+}
+
+/* Form Elemanları */
+.profile-form-container form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; 
+}
+
+.profile-form-container label {
+    text-align: left;
+    font-size: 0.9em;
+    font-weight: 500;
+    color: var(--secondary-color);
+    margin-bottom: -10px;
+}
+
+/* Input ve Select Stilleri */
+.profile-form-container input[type="date"],
+.profile-form-container input[type="tel"],
+.profile-form-container select {
+    padding: 12px 15px;
+    border-radius: 10px;
+    border: 1px solid var(--glass-border);
+    /* Input arka planı daha şeffaf yapıldı */
+    background: rgba(0, 0, 0, 0.3);
+    color: rgb(228, 59, 163);
+    font-size: 1em;
+    width: 100%;
+    transition: border-color 0.3s;
+    color-scheme: dark; 
+}
+
+/* Buton Stili */
+.appointment-button {
+    background: var(--primary-color);
+    color: rgb(0, 0, 0) !important;
+    text-decoration: none;
+    padding: 12px 25px;
+    border-radius: 30px;
+    font-weight: 700;
+    transition: background 0.3s;
+    border: none;
+    margin-top: 15px;
+}
+
+.appointment-button:hover {
+    background: #e04ea3;
+}
+</style>
+</head>
+<body class="setup-page"> 
+
+<div class="profile-form-container">
+    
+    <h3 style="color: var(--primary-color);">Hoş Geldiniz, {{ session.full_name }}!</h3>
+    
+    <p>Randevuya devam etmeden önce yaşınızı ve telefon numaranızı girmelisiniz.</p>
+    
+    <form action="{{ url_for('save_profile_setup') }}" method="POST">
+        
+        <input type="hidden" name="user_id" value="{{ session.user_id }}"> 
+
+        <label for="birth_date">Doğum Tarihiniz:</label>
+        <input type="date" name="birth_date" id="birth_date" required>
+        
+        <label for="phone">Telefon Numaranız:</label>
+        <input type="tel" name="phone" id="phone" placeholder="05xx xxx xx xx" required>
+        
+        <label for="continue_to_appointment">Tırnak randevusu almaya devam etmek istiyor musunuz?</label>
+        <select name="continue_to_appointment" id="continue_to_appointment" required>
+            <option value="yes">Evet, randevu almaya devam et</option>
+            <option value="no">Hayır, sadece profilimi gör</option>
+        </select>
+        
+        <button type="submit" class="appointment-button">BİLGİLERİ KAYDET VE DEVAM ET</button>
+    </form>
+</div>
+
+</body>
+</html>
